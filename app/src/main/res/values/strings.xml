@@ -4,4 +4,20 @@
     <string name="hint_password">Password</string>
     <string name="btn_login">Login</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="user_and_password_required">user name and password must not be empty!</string>
+    <string name="hint_name">full name</string>
+    <string name="register">Register</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_address">Address</string>
+    <string name="main_user">Main User</string>
+    <string name="donor">Donor</string>
+    <string name="volunteer">Volunteer</string>
+
+    <string name="phone_missing_message">please enter your phone number!</string>
+    <string name="password_missing_message">please enter your password!</string>
+    <string name="name_missing_message">please enter your full name !</string>
+    <string name="user_name_missing_message">Please enter your user name!</string>
+    <string name="address_missing_message">please enter your address !</string>
+    <string name="type_missing_message">please select your account type!</string>
 </resources>
