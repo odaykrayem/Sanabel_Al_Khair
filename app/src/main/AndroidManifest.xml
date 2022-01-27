@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Profile"></activity>
+        <activity android:name=".activities.Splash"></activity>
+        <activity android:name=".activities.UpdateProfile" />
+        <activity android:name=".activities.Profile" />
         <activity android:name=".activities.SendProblemReport" />
         <activity android:name=".activities.Login" />
         <activity android:name=".MainActivity">
