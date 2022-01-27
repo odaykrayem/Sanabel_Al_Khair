@@ -1,4 +1,4 @@
-package com.example.sanabelalkhair;
+package com.example.sanabelalkhayr;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.sanabelalkhair.model;
+package com.example.sanabelalkhayr.model;
 
 public class Service {
 

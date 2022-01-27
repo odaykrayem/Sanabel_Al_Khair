@@ -1,9 +1,9 @@
-package com.example.sanabelalkhair.utils;
+package com.example.sanabelalkhayr.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.sanabelalkhair.model.User;
+import com.example.sanabelalkhayr.model.User;
 
 
 public class SharedPrefManager {
