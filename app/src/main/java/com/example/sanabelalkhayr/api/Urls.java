@@ -1,4 +1,4 @@
-package com.example.sanabelalkhair.api;
+package com.example.sanabelalkhayr.api;
 
 public class Urls {
 

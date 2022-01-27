@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sanabel Al Khayr</string>
+    <string name="app_name">Sanabel Al-Khayr</string>
     <string name="hint_user_name">User name</string>
     <string name="hint_password">Password</string>
     <string name="btn_login">Login</string>

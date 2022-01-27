@@ -1,10 +1,9 @@
-package com.example.sanabelalkhair.activities;
+package com.example.sanabelalkhayr.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +14,9 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.example.sanabelalkhair.Constants;
-import com.example.sanabelalkhair.R;
-import com.example.sanabelalkhair.api.Urls;
-import com.example.sanabelalkhair.model.User;
-import com.example.sanabelalkhair.utils.SharedPrefManager;
+import com.example.sanabelalkhayr.Constants;
+import com.example.sanabelalkhayr.R;
+import com.example.sanabelalkhayr.api.Urls;
 
 import org.json.JSONException;
 import org.json.JSONObject;
