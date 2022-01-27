@@ -20,4 +20,8 @@
     <string name="user_name_missing_message">Please enter your user name!</string>
     <string name="address_missing_message">please enter your address !</string>
     <string name="type_missing_message">please select your account type!</string>
+    <string name="send_report">Send Problem Report</string>
+    <string name="hint_problem_report_title">Title</string>
+    <string name="hint_details">Details</string>
+    <string name="send">Send</string>
 </resources>
