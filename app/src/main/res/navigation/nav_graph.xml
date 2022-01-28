@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/donationDetailsFragment"
-        android:name="com.example.sanabelalkhayr.DonationDetailsFragment"
+        android:name="com.example.sanabelalkhayr.fragments.user.DonationDetailsFragment"
         android:label="fragment_donation_details"
         tools:layout="@layout/fragment_donation_details" />
 
