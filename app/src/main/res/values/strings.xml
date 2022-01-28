@@ -10,6 +10,8 @@
     <string name="btn_link_to_login">Already registred! Login Me.</string>
     <string name="hint_phone">Phone</string>
     <string name="hint_address">Address</string>
+
+    <string name="user_type">user type</string>
     <string name="main_user">Main User</string>
     <string name="donor">Donor</string>
     <string name="volunteer">Volunteer</string>
@@ -39,4 +41,6 @@
     <string name="menu_donations">Donations</string>
     <string name="menu_report_problem">Send Problem Report</string>
     <string name="menu_share">Share</string>
+    <string name="service_title">service title</string>
+
 </resources>

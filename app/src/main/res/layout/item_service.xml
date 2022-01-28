@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg_item_donation"
+    android:background="@drawable/bg_user_card"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp">
@@ -12,17 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_toStartOf="@id/quantity"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/bg_item_donation">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="75dp"
-            android:layout_height="85dp"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
             android:layout_weight="2"
-            android:src="@drawable/food"
+            android:src="@drawable/ic_service"
             android:background="@color/secondary"
+
             />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -30,7 +29,7 @@
             android:orientation="vertical"
             android:layout_toEndOf="@id/image"
             android:padding="8dp"
-            android:layout_weight="3"
+            android:layout_weight="4"
             >
             <TextView
                 android:id="@+id/title"
@@ -39,62 +38,36 @@
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:layout_marginBottom="5dp"
-                android:text="@string/donation_title"
+                android:text="@string/service_title"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/user_full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_weight="2"
+                android:layout_marginBottom="5dp"
+                android:text="@string/profile_name"
+                android:textColor="@color/black"
 
                 />
+
             <TextView
-                android:id="@+id/response"
+                android:id="@+id/user_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:layout_weight="2"
                 android:layout_marginBottom="5dp"
-                android:text="@string/donation_description"
-                />
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:layout_weight="2"
-                android:layout_marginBottom="5dp"
-                android:text="@string/order_date"
+                android:text="@string/user_type"
+                android:textColor="@color/black"
+
                 />
         </LinearLayout>
     </LinearLayout>
 
 
-
-    <TextView
-        android:id="@+id/quantity"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="8"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:background="@drawable/bg_item_quantity"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        />
-    <!--only displayed for donors -->
-    <TextView
-        android:id="@+id/user_name"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:textStyle="bold"
-        android:layout_weight="1"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:text="@string/profile_name"
-        android:background="@drawable/bg_order_btn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="10dp"
-
-        />
 </RelativeLayout>
