@@ -18,6 +18,7 @@ public class Profile extends AppCompatActivity {
 
     Button mLogoutBtn;
 
+    TextView mFullNameTV;
     TextView mUserNameTV;
     TextView mPhoneTV;
     TextView mAddressTV;
@@ -32,12 +33,14 @@ public class Profile extends AppCompatActivity {
 
         mLogoutBtn = findViewById(R.id.logout);
 
+        mFullNameTV = findViewById(R.id.name_text_view);
         mUserNameTV = findViewById(R.id.user_name_text_view);
         mPhoneTV = findViewById(R.id.phone_text_view);
         mAddressTV = findViewById(R.id.address_text_view);
 
         User user = SharedPrefManager.getInstance(this).getUserData();
 
+        mFullNameTV.setText(user.getName());
         mUserNameTV.setText(user.getUserName());
         mPhoneTV.setText(user.getPhone());
         mAddressTV.setText(user.getAddress());
