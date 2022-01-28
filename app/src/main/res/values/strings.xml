@@ -30,4 +30,9 @@
     <string name="profile_mobile">phone number</string>
     <string name="profile_address">address</string>
     <string name="profile_username">user name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_donations">Donations</string>
+    <string name="menu_report_problem">Send Problem Report</string>
+    <string name="menu_share">Share</string>
 </resources>

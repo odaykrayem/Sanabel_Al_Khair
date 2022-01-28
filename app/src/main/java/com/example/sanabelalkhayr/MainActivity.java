@@ -1,14 +1,130 @@
 package com.example.sanabelalkhayr;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.sanabelalkhayr.utils.SharedPrefManager;
+import com.google.android.material.navigation.NavigationView;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    public Toolbar toolbar;
+
+    public DrawerLayout drawerLayout;
+
+    public NavController navController;
+
+    public NavigationView navigationView;
+
+    SharedPrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        prefManager = SharedPrefManager.getInstance(this);
+
+        setupNavigation();
+
+
     }
+
+    private void setupNavigation() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+
+        navigationView = findViewById(R.id.nav_view);
+
+        navigationView.inflateMenu(getSelectedMenu());
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
+
+        NavigationUI.setupWithNavController(navigationView, navController);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    private int getSelectedMenu() {
+
+        int userType = Constants.USER_TYPE_MAIN;
+        int menuId = -1;
+
+        switch (userType){
+            case Constants.USER_TYPE_ADMIN:
+                menuId = R.menu.admin_nav_menu;
+                break;
+            case Constants.USER_TYPE_DONOR:
+                menuId = R.menu.donor_nav_menu;
+                break;
+            case Constants.USER_TYPE_MAIN:
+                menuId = R.menu.user_nav_menu;
+                break;
+            case Constants.USER_TYPE_VOLUNTEER:
+                menuId = R.menu.volunteer_nav_menu;
+                break;
+
+        }
+        return menuId;
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.nav_host_fragment), drawerLayout);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        menuItem.setChecked(true);
+
+        drawerLayout.closeDrawers();
+
+        int id = menuItem.getItemId();
+
+        switch (id) {
+
+            case R.id.menu_donations:
+                navController.navigate(R.id.donationsFragment);
+                break;
+
+            case R.id.menu_report_problem:
+//                navController.navigate(R.id.secondFragment);
+                break;
+
+            case R.id.menu_share:
+//                navController.navigate(R.id.thirdFragment);
+                break;
+
+        }
+        return true;
+
+    }
+
+
 }
