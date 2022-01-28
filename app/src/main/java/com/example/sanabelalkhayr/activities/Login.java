@@ -99,7 +99,6 @@ public class Login extends AppCompatActivity {
                         try {
                             //converting response to json object
                             JSONObject obj = response;
-
                             //if no error in response
                             if (obj.getInt("status") == 1) {
 
