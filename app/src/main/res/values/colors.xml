@@ -9,6 +9,7 @@
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 
 <!--    all activities background-->
     <color name="app_bg">#ffffff</color>
@@ -29,4 +30,6 @@
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#A800FF48</color>
     <color name="primaryTextColorDark">#A8037323</color>
+    <color name="donation_bg">#CCCCCC</color>
+
 </resources>
