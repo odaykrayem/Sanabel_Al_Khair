@@ -20,6 +20,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:src="@drawable/ic_service"
+            android:padding="8dp"
             android:background="@color/secondary"
 
             />

@@ -11,11 +11,13 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener {
 
     public Toolbar toolbar;
 
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public NavigationView navigationView;
 
     SharedPrefManager prefManager;
+
+    int destination = R.id.donationsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = findViewById(R.id.nav_view);
 
+        //        navigationView.getMenu().clear();
+
         navigationView.inflateMenu(getSelectedMenu());
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -56,7 +62,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationUI.setupWithNavController(navigationView, navController);
 
+
         navigationView.setNavigationItemSelectedListener(this);
+
+        drawerLayout.addDrawerListener(this);
 
     }
 
@@ -103,28 +112,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         menuItem.setChecked(true);
 
-        drawerLayout.closeDrawers();
-
         int id = menuItem.getItemId();
 
         switch (id) {
 
             case R.id.menu_donations:
-                navController.navigate(R.id.donationsFragment);
+                destination = R.id.donationsFragment;
+                break;
+
+            case R.id.menu_my_orders:
+                destination = R.id.action_donationsFragment_to_ordersFragment;
+                break;
+
+            case R.id.menu_charitable_events:
+                destination = R.id.action_donationsFragment_to_charitableEventsFragment;
                 break;
 
             case R.id.menu_report_problem:
-//                navController.navigate(R.id.secondFragment);
+//                navController.navigate(R.id.charitableEventsFragment);
                 break;
 
             case R.id.menu_share:
-//                navController.navigate(R.id.thirdFragment);
+//                navController.navigate(R.id.ordersFragment);
                 break;
 
         }
-        return true;
 
+        drawerLayout.closeDrawers();
+
+        return true;
     }
 
 
+    @Override
+    public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+    }
+
+    @Override
+    public void onDrawerOpened(@NonNull View drawerView) {
+
+    }
+
+    @Override
+    public void onDrawerClosed(@NonNull View drawerView) {
+        navController.navigate(destination);
+    }
+
+    @Override
+    public void onDrawerStateChanged(int newState) {
+
+    }
 }

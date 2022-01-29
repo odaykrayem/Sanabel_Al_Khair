@@ -23,7 +23,7 @@ public class DonationsFragment extends Fragment {
 
     Context ctx;
 
-    ArrayList donations;
+    ArrayList<Donation> donations;
     RecyclerView mList;
     DonationsAdapter mAdapter;
 

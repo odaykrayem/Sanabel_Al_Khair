@@ -2,8 +2,6 @@ package com.example.sanabelalkhayr.adapters.user;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.media.Image;
-import android.text.style.IconMarginSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +25,6 @@ import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.api.Urls;
 import com.example.sanabelalkhayr.model.Donation;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
-import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -114,9 +111,6 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
             navController = Navigation.findNavController(holder.itemView);
             navController.navigate(R.id.action_donationsFragment_to_donationDetailsFragment);
         });
-
-
-
 
 
     }
