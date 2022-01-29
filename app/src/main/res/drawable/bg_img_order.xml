@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:bottomLeftRadius="@dimen/donation_corner" android:topLeftRadius="@dimen/donation_corner" />
+    <solid android:color="@color/secondary"/>
+    <size android:width="60dp" android:height="@dimen/donation_corner"/>
+
+</shape>
