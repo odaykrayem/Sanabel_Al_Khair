@@ -165,8 +165,6 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
                     }
                 });
 
-
-
     }
 
 

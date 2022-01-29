@@ -9,9 +9,9 @@ public class User {
     private String password;
     private String phone;
     private String address;
-    private Integer type;
+    private int type;
 
-    public User(int id, String name, String userName,  String password, String phone, String address, Integer type) {
+    public User(int id, String name, String userName,  String password, String phone, String address, int type) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -45,7 +45,7 @@ public class User {
         return address;
     }
 
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
@@ -73,7 +73,7 @@ public class User {
         this.address = address;
     }
 
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 }

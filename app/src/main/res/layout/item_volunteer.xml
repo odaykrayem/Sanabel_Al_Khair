@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:src="@drawable/ic_volunteer"
-android:background="@color/secondary"
+             android:background="@color/secondary"
             />
         <LinearLayout
             android:layout_width="wrap_content"

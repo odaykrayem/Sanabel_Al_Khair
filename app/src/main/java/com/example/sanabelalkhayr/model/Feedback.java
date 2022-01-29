@@ -2,19 +2,19 @@ package com.example.sanabelalkhayr.model;
 
 public class Feedback
 {
-    private Integer id;
+    private int id;
     private String title;
     private String content;
-    private Integer userId;
+    private int userId;
 
-    public Feedback(Integer id, String title, String content, Integer userId) {
+    public Feedback(int id, String title, String content, int userId) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.userId = userId;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -26,11 +26,11 @@ public class Feedback
         return content;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -42,7 +42,7 @@ public class Feedback
         this.content = content;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

@@ -2,19 +2,19 @@ package com.example.sanabelalkhayr.model;
 
 public class Service {
 
-    private Integer id;
+    private int id;
     private String subject;
     private String description;
     private String region;
 
-    public Service(Integer id, String subject, String description, String region) {
+    public Service(int id, String subject, String description, String region) {
         this.id = id;
         this.subject = subject;
         this.description = description;
         this.region = region;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -30,7 +30,7 @@ public class Service {
         return region;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
