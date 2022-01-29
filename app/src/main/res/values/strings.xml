@@ -42,6 +42,10 @@
     <string name="menu_report_problem">Send Problem Report</string>
     <string name="menu_share">Share</string>
     <string name="service_title">service title</string>
+    <string name="service_description">service descruption</string>
+    <string name="service_region">service region</string>
+    <string name="volunteer_region">volunteer region</string>
+    <string name="availability">availability</string>
     <string name="cancel">Cancel</string>
     <string name="confirmation_dialog">Confirmation Dialog</string>
     <string name="are_you_sure_you_want_to_order">Are you sure you want to order this item ?</string>

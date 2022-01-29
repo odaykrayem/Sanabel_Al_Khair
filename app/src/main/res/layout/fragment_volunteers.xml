@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/donation_bg">
+            >
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
@@ -23,7 +23,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:overScrollMode="never"
-                tools:listitem="@layout/item_order">
+                tools:listitem="@layout/item_volunteer">
 
             </androidx.recyclerview.widget.RecyclerView>
         </RelativeLayout>

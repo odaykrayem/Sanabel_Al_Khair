@@ -37,35 +37,46 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:layout_weight="1"
+                android:textStyle="bold"
                 android:layout_marginBottom="5dp"
                 android:text="@string/service_title"
                 android:textColor="@color/black"
                 />
             <TextView
-                android:id="@+id/user_full_name"
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_weight="2"
                 android:layout_marginBottom="5dp"
-                android:text="@string/profile_name"
+                android:text="@string/service_description"
                 android:textColor="@color/black"
 
                 />
 
-            <TextView
-                android:id="@+id/user_type"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_weight="2"
-                android:layout_marginBottom="5dp"
-                android:text="@string/user_type"
-                android:textColor="@color/black"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_region"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/region"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_weight="2"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/service_region"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="3dp"
+                    />
+            </LinearLayout>
 
-                />
         </LinearLayout>
     </LinearLayout>
 

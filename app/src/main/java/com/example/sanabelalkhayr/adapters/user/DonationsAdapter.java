@@ -129,9 +129,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
         pDialog.setMessage("Processing Please wait...");
         pDialog.show();
 
-        String url = Urls.BASE_URL + "";
-
-        AndroidNetworking.post(url)
+        AndroidNetworking.post(Urls.GET_DONATIONS)
                 .addBodyParameter("user_id", String.valueOf(userId))
                 .addBodyParameter("donation_id", String.valueOf(id))
                 .setPriority(Priority.MEDIUM)
