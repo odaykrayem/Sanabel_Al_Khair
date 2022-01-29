@@ -104,8 +104,6 @@ public class OrdersFragment extends Fragment {
             add(new Order(1, 1, "butger", 10, Constants.REQUEST_STATUS_NEW, "reason why", "10/10/2021"));
             add(new Order(1, 1, "butger", 10, Constants.REQUEST_STATUS_NEW, "reason why", "10/10/2021"));
             add(new Order(1, 1, "butger", 10, Constants.REQUEST_STATUS_NEW, "reason why", "10/10/2021"));
-
-
         }};
 
         mAdapter = new OrdersAdapter(ctx, orders);

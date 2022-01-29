@@ -1,4 +1,4 @@
-package com.example.sanabelalkhayr;
+package com.example.sanabelalkhayr.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +13,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener {
+public class UserMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener {
 
     public Toolbar toolbar;
 
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_user);
 
         prefManager = SharedPrefManager.getInstance(this);
 
@@ -52,10 +53,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = findViewById(R.id.nav_view);
 
-        //        navigationView.getMenu().clear();
-
-        navigationView.inflateMenu(getSelectedMenu());
-
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
@@ -69,28 +66,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private int getSelectedMenu() {
-
-        int userType = Constants.USER_TYPE_MAIN;
-        int menuId = -1;
-
-        switch (userType){
-            case Constants.USER_TYPE_ADMIN:
-                menuId = R.menu.admin_nav_menu;
-                break;
-            case Constants.USER_TYPE_DONOR:
-                menuId = R.menu.donor_nav_menu;
-                break;
-            case Constants.USER_TYPE_MAIN:
-                menuId = R.menu.user_nav_menu;
-                break;
-            case Constants.USER_TYPE_VOLUNTEER:
-                menuId = R.menu.volunteer_nav_menu;
-                break;
-
-        }
-        return menuId;
-    }
+//    private int getSelectedMenu() {
+//
+//        int userType = Constants.USER_TYPE_MAIN;
+//        int menuId = -1;
+//
+//        switch (userType){
+//            case Constants.USER_TYPE_ADMIN:
+//                menuId = R.menu.admin_nav_menu;
+//                break;
+//            case Constants.USER_TYPE_DONOR:
+//                menuId = R.menu.donor_nav_menu;
+//                break;
+//            case Constants.USER_TYPE_MAIN:
+//                menuId = R.menu.user_nav_menu;
+//                break;
+//            case Constants.USER_TYPE_VOLUNTEER:
+//                menuId = R.menu.volunteer_nav_menu;
+//                break;
+//
+//        }
+//        return menuId;
+//    }
 
 
     @Override
