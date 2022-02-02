@@ -11,12 +11,12 @@ public class User {
     private String address;
     private int type;
 
-    public User(int id, String name, String userName,  String password, String phone, String address, int type) {
+
+    public User(int id, String name, String userName, String phone, String address, int type) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.userName = userName;
-        this.password = password;
         this.address = address;
         this.type = type;
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape android:shape="rectangle"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners  android:topLeftRadius="@dimen/donation_corner" android:topRightRadius="@dimen/donation_corner" android:bottomRightRadius="@dimen/donation_corner" android:bottomLeftRadius="@dimen/donation_corner"/>
+    <corners  android:radius="@dimen/donation_corner"/>
     <stroke android:color="@color/secondary" android:width="3dp"/>
 </shape>

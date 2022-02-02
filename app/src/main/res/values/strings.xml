@@ -42,7 +42,7 @@
     <string name="menu_report_problem">Send Problem Report</string>
     <string name="menu_share">Share</string>
     <string name="service_title">service title</string>
-    <string name="service_description">service descruption</string>
+    <string name="service_description">service description</string>
     <string name="service_region">service region</string>
     <string name="volunteer_region">volunteer region</string>
     <string name="availability">availability</string>
@@ -50,7 +50,7 @@
     <string name="confirmation_dialog">Confirmation Dialog</string>
     <string name="are_you_sure_you_want_to_order">Are you sure you want to order this item ?</string>
     <string name="my_orders">My orders</string>
-    <string name="charitable_events">Charitable events</string>
+    <string name="charitable_events">Charitable Events</string>
 
     <string name="status_new">NEW</string>
     <string name="status_rejected">REJECTED</string>
@@ -63,5 +63,10 @@
 
     <string name="start_at">start at</string>
     <string name="end_at">end at</string>
+
+    <string name="orders_list">Orders List</string>
+    <string name="my_donations">My Donations</string>
+    <string name="my_services">My Services</string>
+    <string name="account">Account</string>
 
 </resources>

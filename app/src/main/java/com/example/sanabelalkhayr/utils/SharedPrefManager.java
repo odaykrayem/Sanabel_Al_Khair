@@ -13,7 +13,6 @@ public class SharedPrefManager {
     private static final String KEY_ID = "keyid";
     private static final String KEY_NAME = "keyname";
     private static final String KEY_USERNAME = "keyusername";
-    private static final String KEY_USER_PASSWORD = "keyuserpassword";
     private static final String KEY_PHONE = "keyphone";
     private static final String KEY_ADDRESS = "keyaddress";
     private static final String KEY_USER_TYPE = "userType";
@@ -40,7 +39,6 @@ public class SharedPrefManager {
         editor.putInt(KEY_ID, user.getId());
         editor.putString(KEY_NAME, user.getName());
         editor.putString(KEY_USERNAME, user.getUserName());
-        editor.putString(KEY_USER_PASSWORD, user.getPassword());
         editor.putString(KEY_PHONE, user.getPhone());
         editor.putString(KEY_ADDRESS, user.getAddress());
         editor.putInt(KEY_USER_TYPE, user.getType());
@@ -81,7 +79,6 @@ public class SharedPrefManager {
                 sharedPreferences.getInt(KEY_ID, -1),
                 sharedPreferences.getString(KEY_NAME, null),
                 sharedPreferences.getString(KEY_USERNAME, null),
-                sharedPreferences.getString(KEY_USER_PASSWORD, null),
                 sharedPreferences.getString(KEY_PHONE, null),
                 sharedPreferences.getString(KEY_ADDRESS, null),
                 sharedPreferences.getInt(KEY_USER_TYPE, -1)

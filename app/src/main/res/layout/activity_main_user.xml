@@ -43,7 +43,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/user_nav_menu"
-        app:headerLayout="@layout/nav_header">
+        app:headerLayout="@layout/nav_header"
+        >
+
+
 
     </com.google.android.material.navigation.NavigationView>
 
