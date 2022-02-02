@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.VolunteerMain"></activity>
+        <activity android:name=".activities.VolunteerMain"/>
+
         <activity android:name=".activities.DonorMain" />
         <activity android:name=".activities.AdminMain" />
         <activity android:name=".activities.Splash" />
@@ -17,6 +18,7 @@
         <activity android:name=".activities.Profile" />
         <activity android:name=".activities.SendProblemReport" />
         <activity android:name=".activities.Login" />
+        <activity android:name=".activities.Register" />
 
         <activity android:name=".activities.UserMain">
             <intent-filter>

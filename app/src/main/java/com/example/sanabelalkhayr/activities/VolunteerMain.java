@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
@@ -29,7 +30,9 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
 
     SharedPrefManager prefManager;
 
-    int destination = R.id.donationsFragment;
+    AppBarConfiguration mAppBarConfiguration;
+
+    int destination = R.id.menu_donations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

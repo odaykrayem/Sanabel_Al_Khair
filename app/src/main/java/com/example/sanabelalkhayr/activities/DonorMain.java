@@ -29,7 +29,7 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
 
     SharedPrefManager prefManager;
 
-    int destination = R.id.donationsFragment;
+    int destination = R.id.menu_donations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

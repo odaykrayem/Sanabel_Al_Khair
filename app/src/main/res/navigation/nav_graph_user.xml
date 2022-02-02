@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/donationsFragment">
+    app:startDestination="@id/menu_donations">
     <fragment
-        android:id="@+id/donationsFragment"
+        android:id="@+id/menu_donations"
         android:name="com.example.sanabelalkhayr.fragments.user.DonationsFragment"
         android:label="fragment_donations"
         tools:layout="@layout/fragment_donations" >
@@ -16,23 +16,9 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/donationsFragment" />
-        <action
-            android:id="@+id/action_donationsFragment_to_charitableEventsFragment"
-            app:destination="@id/charitableEventsFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/donationsFragment" />
-        <action
-            android:id="@+id/action_donationsFragment_to_ordersFragment"
-            app:destination="@id/ordersFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/donationsFragment" />
+            app:popUpTo="@id/menu_donations" />
+
+
     </fragment>
 
     <fragment
@@ -41,17 +27,17 @@
         android:label="fragment_donation_details"
         tools:layout="@layout/fragment_donation_details" />
     <fragment
-        android:id="@+id/charitableEventsFragment"
+        android:id="@+id/menu_charitable_events"
         android:name="com.example.sanabelalkhayr.fragments.CharitableEventsFragment"
         android:label="fragment_charitable_events"
         tools:layout="@layout/fragment_charitable_events" />
     <fragment
-        android:id="@+id/ordersFragment"
+        android:id="@+id/menu_my_orders"
         android:name="com.example.sanabelalkhayr.fragments.user.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
     <fragment
-        android:id="@+id/profileFragment"
+        android:id="@+id/menu_profile"
         android:name="com.example.sanabelalkhayr.fragments.user.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_user_profile"/>

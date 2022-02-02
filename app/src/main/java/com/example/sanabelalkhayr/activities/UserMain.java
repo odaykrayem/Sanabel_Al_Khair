@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
@@ -16,6 +17,9 @@ import android.view.View;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class UserMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener {
@@ -30,7 +34,9 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
 
     SharedPrefManager prefManager;
 
-    int destination = R.id.donationsFragment;
+    int destination = R.id.menu_donations;
+
+    AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +61,12 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
+
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_donations, R.id.menu_charitable_events, R.id.menu_my_orders, R.id.menu_profile).setOpenableLayout(drawerLayout).build();
+
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
         NavigationUI.setupWithNavController(navigationView, navController);
-
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -92,7 +100,9 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public boolean onSupportNavigateUp() {
-        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.nav_host_fragment), drawerLayout);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 
     @Override
@@ -114,15 +124,15 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
         switch (id) {
 
             case R.id.menu_donations:
-                destination = R.id.donationsFragment;
+                destination = R.id.menu_donations;
                 break;
 
             case R.id.menu_my_orders:
-                destination = R.id.action_donationsFragment_to_ordersFragment;
+                destination = R.id.menu_my_orders;
                 break;
 
             case R.id.menu_charitable_events:
-                destination = R.id.action_donationsFragment_to_charitableEventsFragment;
+                destination = R.id.menu_charitable_events;
                 break;
 
             case R.id.menu_report_problem:
