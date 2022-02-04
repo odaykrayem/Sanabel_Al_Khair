@@ -72,7 +72,7 @@ public class DonationsFragment extends Fragment {
 
         }};
 
-        mAdapter = new DonationsAdapter(getContext(), donations);
+        mAdapter = new DonationsAdapter(getContext(), donations, false);
         mList.setAdapter(mAdapter);
 
 

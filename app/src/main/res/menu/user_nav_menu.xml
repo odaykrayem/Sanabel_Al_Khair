@@ -12,7 +12,11 @@
         android:icon="@drawable/ic_orders"
         android:title="@string/my_orders"
         android:actionLayout="@layout/fragment_orders"/>
-
+    <item
+        android:id="@+id/menu_search_services"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_service"
+        android:actionLayout="@layout/fragment_services"/>
     <item
         android:id="@+id/menu_charitable_events"
         android:icon="@drawable/ic_event"

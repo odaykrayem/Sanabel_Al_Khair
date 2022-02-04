@@ -38,12 +38,14 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
     Context context;
     private List<Donation> donations;
     public NavController navController;
-
+    private boolean selectable;
+    OnDonationSelected mSelectionListener;
 
     // RecyclerView recyclerView;
-    public DonationsAdapter(Context context, ArrayList<Donation> donations) {
+    public DonationsAdapter(Context context, ArrayList<Donation> donations, boolean selectable) {
         this.context = context;
         this.donations = donations;
+        this.selectable = selectable;
     }
 
 
@@ -57,6 +59,20 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
         return viewHolder;
     }
 
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        if(context instanceof DonationsAdapter.OnDonationSelected){
+            mSelectionListener = (DonationsAdapter.OnDonationSelected) context;
+        }
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        mSelectionListener = null;
+        super.onDetachedFromRecyclerView(recyclerView);
+
+    }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -76,41 +92,56 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
         }
 
 
+        if(selectable){
+            holder.orderBtn.setVisibility(View.GONE);
+            holder.itemView.setOnClickListener(v -> {
+                mSelectionListener.onDonationSelected(donation.getDescription());
+            });
+        }else {
 
-        holder.orderBtn.setOnClickListener(v -> {
-            LayoutInflater factory = LayoutInflater.from(context);
-            final View view = factory.inflate(R.layout.order_confirmation_dialog, null);
-            final AlertDialog orderConfirmationDialog = new AlertDialog.Builder(context).create();
-            orderConfirmationDialog.setView(view);
-
-            TextView yes = view.findViewById(R.id.yes_btn);
-            TextView no = view.findViewById(R.id.no_btn);
-
-
-            yes.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    orderItem(donation.getId());
-
-                    orderConfirmationDialog.dismiss();
-
-                }
+            holder.itemView.setOnClickListener(v -> {
+                navController = Navigation.findNavController(holder.itemView);
+                navController.navigate(R.id.action_donationsFragment_to_donationDetailsFragment);
             });
 
-            no.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    orderConfirmationDialog.dismiss();
-                }
-            });
-            orderConfirmationDialog.show();
-        });
+            holder.orderBtn.setOnClickListener(v -> {
+                LayoutInflater factory = LayoutInflater.from(context);
+                final View view = factory.inflate(R.layout.order_confirmation_dialog, null);
+                final AlertDialog orderConfirmationDialog = new AlertDialog.Builder(context).create();
+                orderConfirmationDialog.setView(view);
 
-        holder.itemView.setOnClickListener(v -> {
-            navController = Navigation.findNavController(holder.itemView);
-            navController.navigate(R.id.action_donationsFragment_to_donationDetailsFragment);
-        });
+                TextView yes = view.findViewById(R.id.yes_btn);
+                TextView no = view.findViewById(R.id.no_btn);
+
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        orderItem(donation.getId());
+
+                        orderConfirmationDialog.dismiss();
+
+                    }
+                });
+
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        orderConfirmationDialog.dismiss();
+                    }
+                });
+                orderConfirmationDialog.show();
+            });
+
+
+        }
+
+
+
+
+
+
 
 
     }
@@ -189,6 +220,9 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
     }
 
 
+     public interface OnDonationSelected{
+        void onDonationSelected(String desc);
+     }
 
 
 

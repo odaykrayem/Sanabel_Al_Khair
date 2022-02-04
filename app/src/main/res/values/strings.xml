@@ -68,5 +68,10 @@
     <string name="my_donations">My Donations</string>
     <string name="my_services">My Services</string>
     <string name="account">Account</string>
+    <string name="search_volunteer">Search For Volunteer</string>
+    <string name="volunteer_name">Volunteer Name</string>
+    <string name="are_you_sure_you_want_to_order_service">Are you sure you want to order this service?</string>
+    <string name="search_service">Search for Service</string>
+    <string name="choose">Choose</string>
 
 </resources>

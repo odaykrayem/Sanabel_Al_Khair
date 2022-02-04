@@ -62,7 +62,7 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_donations, R.id.menu_charitable_events, R.id.menu_my_orders, R.id.menu_profile).setOpenableLayout(drawerLayout).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_donations, R.id.menu_charitable_events, R.id.menu_my_orders, R.id.menu_profile, R.id.servicesFragment).setOpenableLayout(drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
@@ -74,28 +74,6 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
 
     }
 
-//    private int getSelectedMenu() {
-//
-//        int userType = Constants.USER_TYPE_MAIN;
-//        int menuId = -1;
-//
-//        switch (userType){
-//            case Constants.USER_TYPE_ADMIN:
-//                menuId = R.menu.admin_nav_menu;
-//                break;
-//            case Constants.USER_TYPE_DONOR:
-//                menuId = R.menu.donor_nav_menu;
-//                break;
-//            case Constants.USER_TYPE_MAIN:
-//                menuId = R.menu.user_nav_menu;
-//                break;
-//            case Constants.USER_TYPE_VOLUNTEER:
-//                menuId = R.menu.volunteer_nav_menu;
-//                break;
-//
-//        }
-//        return menuId;
-//    }
 
 
     @Override
@@ -138,7 +116,9 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
             case R.id.menu_report_problem:
 //                navController.navigate(R.id.charitableEventsFragment);
                 break;
-
+            case R.id.menu_search_services:
+                destination = R.id.servicesFragment;
+                break;
             case R.id.menu_share:
 //                navController.navigate(R.id.ordersFragment);
                 break;

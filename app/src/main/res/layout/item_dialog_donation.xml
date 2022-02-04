@@ -2,26 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_item_donation"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="8dp"
-    android:layout_marginStart="8dp">
+    android:layout_marginStart="8dp"
+    android:layoutDirection="ltr"
+
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true">
+        android:layout_toStartOf="@id/quantity"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/bg_item_donation">
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
             android:layout_weight="2"
-            android:src="@drawable/ic_service"
-            android:padding="8dp"
-            android:background="@drawable/bg_img_order"
+            android:src="@drawable/ic_profile"
+            android:background="@drawable/bg_item_donation"
 
             />
         <LinearLayout
@@ -30,70 +34,62 @@
             android:orientation="vertical"
             android:layout_toEndOf="@id/image"
             android:padding="8dp"
-            android:layout_weight="4"
+            android:layout_weight="3"
             >
             <TextView
-                android:id="@+id/volunteer_name"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:layout_weight="1"
-                android:textStyle="bold"
                 android:layout_marginBottom="5dp"
-                android:text="@string/volunteer_name"
-                android:textColor="@color/black"
+                android:text="@string/donation_title"
+
                 />
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textSize="12sp"
                 android:layout_weight="2"
                 android:layout_marginBottom="5dp"
-                android:text="@string/service_description"
-                android:textColor="@color/black"
+                android:text="@string/donation_description"
                 android:maxLines="2"
                 android:lines="2"
-                />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_region"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/region"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_weight="2"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/service_region"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="3dp"
-                    />
-            </LinearLayout>
+                />
 
         </LinearLayout>
     </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:text="8"
+        android:textColor="@color/black"
+        android:textSize="@dimen/card_corner_txt_size"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:background="@drawable/bg_item_quantity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        />
     <Button
-        android:id="@+id/order"
+        android:id="@+id/choose"
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:textStyle="bold"
         android:layout_weight="1"
         android:textSize="16sp"
-        android:text="@string/order"
+        android:text="@string/choose"
         android:background="@drawable/bg_order_btn"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="10dp"
 
         />
-
 </RelativeLayout>
