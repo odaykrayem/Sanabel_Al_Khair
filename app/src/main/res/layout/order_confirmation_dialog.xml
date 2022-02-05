@@ -15,6 +15,7 @@
         android:textAlignment="viewStart"
         android:textColor="@android:color/black"
         android:text="@string/confirmation_dialog"/>
+
     <TextView
         android:id="@+id/desc"
         android:layout_width="match_parent"

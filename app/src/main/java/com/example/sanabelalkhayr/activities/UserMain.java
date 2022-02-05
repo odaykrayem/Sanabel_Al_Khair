@@ -113,13 +113,13 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
                 destination = R.id.menu_charitable_events;
                 break;
 
-            case R.id.menu_report_problem:
-//                navController.navigate(R.id.charitableEventsFragment);
+            case R.id.menu_profile:
+                navController.navigate(R.id.menu_profile);
                 break;
             case R.id.menu_search_services:
                 destination = R.id.servicesFragment;
                 break;
-            case R.id.menu_share:
+            case R.id.menu_report_problem:
 //                navController.navigate(R.id.ordersFragment);
                 break;
 

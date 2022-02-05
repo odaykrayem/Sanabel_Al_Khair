@@ -15,7 +15,7 @@
     <item
         android:id="@+id/menu_search_services"
         android:icon="@drawable/ic_search"
-        android:title="@string/search_service"
+        android:title="@string/voluntary_services"
         android:actionLayout="@layout/fragment_services"/>
     <item
         android:id="@+id/menu_charitable_events"

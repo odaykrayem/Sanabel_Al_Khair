@@ -1,5 +1,6 @@
 package com.example.sanabelalkhayr.adapters.user;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -38,14 +39,14 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
     Context context;
     private List<Donation> donations;
     public NavController navController;
-    private boolean selectable;
+    private Dialog dialog;
     OnDonationSelected mSelectionListener;
 
     // RecyclerView recyclerView;
-    public DonationsAdapter(Context context, ArrayList<Donation> donations, boolean selectable) {
+    public DonationsAdapter(Context context, ArrayList<Donation> donations, Dialog dialog) {
         this.context = context;
         this.donations = donations;
-        this.selectable = selectable;
+        this.dialog = dialog;
     }
 
 
@@ -62,8 +63,8 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
-        if(context instanceof DonationsAdapter.OnDonationSelected){
-            mSelectionListener = (DonationsAdapter.OnDonationSelected) context;
+        if(dialog instanceof DonationsAdapter.OnDonationSelected){
+            mSelectionListener = (DonationsAdapter.OnDonationSelected) dialog;
         }
     }
 
@@ -92,18 +93,17 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
         }
 
 
-        if(selectable){
-            holder.orderBtn.setVisibility(View.GONE);
-            holder.itemView.setOnClickListener(v -> {
-                mSelectionListener.onDonationSelected(donation.getDescription());
-            });
-        }else {
-
-            holder.itemView.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
+            if(dialog!=null){
+                mSelectionListener.onDonationSelected(donation.getId());
+            }else {
                 navController = Navigation.findNavController(holder.itemView);
                 navController.navigate(R.id.action_donationsFragment_to_donationDetailsFragment);
-            });
-
+            }
+        });
+        if(dialog!=null){
+            holder.orderBtn.setVisibility(View.GONE);
+        }else {
             holder.orderBtn.setOnClickListener(v -> {
                 LayoutInflater factory = LayoutInflater.from(context);
                 final View view = factory.inflate(R.layout.order_confirmation_dialog, null);
@@ -112,7 +112,6 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
 
                 TextView yes = view.findViewById(R.id.yes_btn);
                 TextView no = view.findViewById(R.id.no_btn);
-
 
                 yes.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -133,7 +132,6 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
                 });
                 orderConfirmationDialog.show();
             });
-
 
         }
 
@@ -221,7 +219,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
 
 
      public interface OnDonationSelected{
-        void onDonationSelected(String desc);
+        void onDonationSelected(int id);
      }
 
 

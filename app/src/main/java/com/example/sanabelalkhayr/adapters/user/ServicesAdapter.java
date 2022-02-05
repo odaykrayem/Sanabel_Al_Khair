@@ -43,9 +43,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     public ServicesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem= layoutInflater.inflate(R.layout.item_service, parent, false);
-        ServicesAdapter.ViewHolder viewHolder = new ServicesAdapter.ViewHolder(listItem);
 
-        return viewHolder;
+        return new ViewHolder(listItem);
     }
 
     @Override
@@ -61,9 +60,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
 
         holder.order.setOnClickListener(v -> {
-            ChooseDonationDialog cd = new ChooseDonationDialog(a);
-
-            cd.show();
+            ChooseDonationDialog cd = new ChooseDonationDialog(context);
             LayoutInflater factory = LayoutInflater.from(context);
             final View view = factory.inflate(R.layout.service_confirmation_dialog, null);
             final AlertDialog orderConfirmationDialog = new AlertDialog.Builder(context).create();
@@ -79,6 +76,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
                 public void onClick(View v) {
 
                     orderConfirmationDialog.dismiss();
+                    cd.show();
+
 
                 }
             });

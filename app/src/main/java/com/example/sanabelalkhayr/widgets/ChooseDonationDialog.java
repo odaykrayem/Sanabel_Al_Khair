@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,46 +40,46 @@ public class ChooseDonationDialog extends Dialog implements DonationsAdapter.OnD
         ctx = context;
     }
 
-    public ChooseDonationDialog(Activity a) {
-            super(a);
-            this.c = a;
-        }
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-            setContentView(R.layout.dialog_donations);
-            mList = findViewById(R.id.rv);
 
-            donations = new ArrayList<Donation>(){{
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "nice burger", null, 7));
-                add(new Donation(1, "burger", "awesome burger!", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
-                add(new Donation(1, "burger", "good burger", null, 7));
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.dialog_donations);
 
-            }};
 
-            mAdapter = new DonationsAdapter(ctx, donations, true);
-            mList.setAdapter(mAdapter);
+        mList = findViewById(R.id.rv);
+
+        donations = new ArrayList<Donation>(){{
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "nice burger", null, 7));
+            add(new Donation(1, "burger", "awesome burger!", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, 7));
+
+        }};
+
+        mAdapter = new DonationsAdapter(getContext(), donations, this);
+        mList.setAdapter(mAdapter);
 
     }
 
+    //todo send the voluntary service request from here :)
     @Override
-    public void onDonationSelected(String desc) {
-        Toast.makeText(getContext(), desc, Toast.LENGTH_SHORT).show();
+    public void onDonationSelected(int selectedDonationId) {
+        Toast.makeText(getContext(), "selected donation id = " + selectedDonationId, Toast.LENGTH_SHORT).show();
     }
 }

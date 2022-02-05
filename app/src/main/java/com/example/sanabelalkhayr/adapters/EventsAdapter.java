@@ -1,6 +1,5 @@
 package com.example.sanabelalkhayr.adapters;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,17 +7,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.model.CharitableEvent;
-import com.example.sanabelalkhayr.model.Order;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventsAdapter extends RecyclerView.Adapter<com.example.sanabelalkhayr.adapters.EventsAdapter.ViewHolder> {
+public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
 
 
     Context context;
@@ -33,17 +29,17 @@ public class EventsAdapter extends RecyclerView.Adapter<com.example.sanabelalkha
 
     @NonNull
     @Override
-    public com.example.sanabelalkhayr.adapters.EventsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem = layoutInflater.inflate(R.layout.item_charitable_event, parent, false);
-        EventsAdapter.ViewHolder viewHolder = new EventsAdapter.ViewHolder(listItem);
+        ViewHolder viewHolder = new ViewHolder(listItem);
 
         return viewHolder;
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull EventsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         CharitableEvent event = events.get(position);
 
