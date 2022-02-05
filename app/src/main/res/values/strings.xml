@@ -73,7 +73,7 @@
     <string name="are_you_sure_you_want_to_order_service">Are you sure you want to order this service?</string>
     <string name="search_service">Search for Service</string>
     <string name="choose">Choose</string>
-    <string name="voluntary_services">Voluntary Services</string>
-    <string name="choose_donation_to_deliver">Choose donation to Deliver :</string>
+    <string name="my_donation_orders">Donation Orders</string>
+    <string name="my_service_oreders">Service Orders</string>
 
 </resources>

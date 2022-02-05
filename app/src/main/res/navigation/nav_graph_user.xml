@@ -35,7 +35,7 @@
         android:id="@+id/menu_my_orders"
         android:name="com.example.sanabelalkhayr.fragments.user.OrdersFragment"
         android:label="fragment_orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_donation_orders" />
     <fragment
         android:id="@+id/menu_profile"
         android:name="com.example.sanabelalkhayr.fragments.user.ProfileFragment"

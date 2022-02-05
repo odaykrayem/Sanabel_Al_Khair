@@ -8,30 +8,35 @@
         android:title="@string/menu_donations" />
 
     <item
-        android:id="@+id/menu_my_orders"
+        android:id="@+id/menu_donation_orders"
         android:icon="@drawable/ic_orders"
-        android:title="@string/my_orders"
-        android:actionLayout="@layout/fragment_orders"/>
+        android:title="@string/my_donation_orders"
+        android:actionLayout="@layout/fragment_donation_orders"/>
+    <item
+        android:id="@+id/menu_services_orders"
+        android:icon="@drawable/ic_orders"
+        android:title="@string/my_service_oreders"
+        android:actionLayout="@layout/fragment_donation_orders"/>
     <item
         android:id="@+id/menu_search_services"
         android:icon="@drawable/ic_search"
-        android:title="@string/voluntary_services"
+        android:title="@string/search_service"
         android:actionLayout="@layout/fragment_services"/>
     <item
         android:id="@+id/menu_charitable_events"
         android:icon="@drawable/ic_event"
         android:title="@string/charitable_events"
-        android:actionLayout="@layout/fragment_orders" />
+        android:actionLayout="@layout/fragment_donation_orders" />
     <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_account"
         android:title="@string/account"
-        android:actionLayout="@layout/fragment_orders" />
+        android:actionLayout="@layout/fragment_donation_orders" />
     <item
         android:id="@+id/menu_logout"
         android:icon="@drawable/ic_logout"
         android:title="@string/logout"
-        android:actionLayout="@layout/fragment_orders" />
+        android:actionLayout="@layout/fragment_donation_orders" />
 
     <item android:title="Communicate">
         <menu>

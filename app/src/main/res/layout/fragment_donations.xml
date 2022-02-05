@@ -7,18 +7,81 @@
     android:layout_height="match_parent"
     android:background="@color/donation_bg">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nested_sV"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv"
+
+        <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="11"
+            android:layoutDirection="ltr"
+            >
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/bg_item_donation"
+                android:iconifiedByDefault="false"
+                app:closeIcon="@drawable/ic_clear_white"
+                app:iconifiedByDefault="false"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:queryHint="@string/search_service"
+                app:searchIcon="@drawable/ic_search"
+                android:textAlignment="textStart"
+                android:gravity="start"
+                />
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:overScrollMode="never"
-                tools:listitem="@layout/item_donation"/>
+                android:layout_weight="6"
+                android:background="@drawable/bg_img_order"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                >
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/donations_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:tooltipText="Category"
+                    android:backgroundTint="@color/white"
+                    />
+            </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_sV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/search_layout"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_service">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

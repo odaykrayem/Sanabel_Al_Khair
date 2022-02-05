@@ -4,18 +4,18 @@
         android:id="@+id/menu_my_services"
         android:icon="@drawable/ic_service_black"
         android:title="@string/my_services"
-        android:actionLayout="@layout/fragment_orders" />
+        android:actionLayout="@layout/fragment_donation_orders" />
     <item
         android:id="@+id/menu_my_orders"
         android:icon="@drawable/ic_orders"
         android:title="@string/orders_list"
-        android:actionLayout="@layout/fragment_orders"/>
+        android:actionLayout="@layout/fragment_donation_orders"/>
 
     <item
         android:id="@+id/menu_charitable_events"
         android:icon="@drawable/ic_event"
         android:title="@string/charitable_events"
-        android:actionLayout="@layout/fragment_orders" />
+        android:actionLayout="@layout/fragment_donation_orders" />
     <item android:title="Communicate">
         <menu>
             <item
