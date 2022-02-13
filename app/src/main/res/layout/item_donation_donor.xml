@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_item_donation"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layoutDirection="ltr"
+
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_toStartOf="@id/quantity"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/bg_item_donation">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="2"
+            android:src="@drawable/ic_profile"
+            android:background="@drawable/bg_item_donation"
+
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toEndOf="@id/image"
+            android:padding="8dp"
+            android:layout_weight="3"
+            >
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:text="@string/donation_title"
+
+                />
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_weight="2"
+                android:layout_marginBottom="5dp"
+                android:text="@string/donation_description"
+                android:maxLines="2"
+                android:lines="2"
+
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:text="8"
+        android:textColor="@color/white"
+        android:textSize="@dimen/card_corner_txt_size"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:background="@drawable/bg_item_quantity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        />
+
+</RelativeLayout>

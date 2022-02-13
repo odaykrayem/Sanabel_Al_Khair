@@ -18,10 +18,6 @@ import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.HashSet;
-import java.util.Set;
-
-
 public class UserMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener {
 
     public Toolbar toolbar;
@@ -62,7 +58,7 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_donations, R.id.menu_charitable_events, R.id.menu_my_orders, R.id.menu_profile, R.id.servicesFragment).setOpenableLayout(drawerLayout).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_donations, R.id.menu_charitable_events, R.id.menu_my_orders, R.id.menu_profile, R.id.servicesFragment, R.id.sendProblemReportFragment).setOpenableLayout(drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
@@ -113,14 +109,14 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
                 destination = R.id.menu_charitable_events;
                 break;
 
-            case R.id.menu_report_problem:
-//                navController.navigate(R.id.charitableEventsFragment);
+            case R.id.menu_profile:
+                destination = R.id.menu_profile;
                 break;
             case R.id.menu_search_services:
                 destination = R.id.servicesFragment;
                 break;
-            case R.id.menu_share:
-//                navController.navigate(R.id.ordersFragment);
+            case R.id.menu_report_problem:
+                destination = R.id.sendProblemReportFragment;
                 break;
 
         }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_donations"
             android:icon="@drawable/ic_donation"
             android:title="@string/my_donations" />
 
         <item
-            android:id="@+id/menu_my_orders"
+            android:id="@+id/menu_user_orders"
             android:icon="@drawable/ic_orders"
             android:title="@string/orders_list"
             android:actionLayout="@layout/fragment_donation_orders"/>
@@ -17,16 +17,14 @@
             android:icon="@drawable/ic_event"
             android:title="@string/charitable_events"
             android:actionLayout="@layout/fragment_donation_orders" />
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/menu_share"
-                android:icon="@drawable/ic_share"
-                android:title="@string/menu_share" />
-            <item
-                android:id="@+id/menu_report_problem"
-                android:icon="@drawable/ic_report"
-                android:title="@string/menu_report_problem" />
-        </menu>
-    </item>
+        <item android:title="Communicate">
+            <menu>
+                <item
+                    android:id="@+id/menu_report_problem"
+                    android:icon="@drawable/ic_report"
+                    android:title="@string/menu_report_problem" />
+            </menu>
+        </item>
+
+    </group>
 </menu>

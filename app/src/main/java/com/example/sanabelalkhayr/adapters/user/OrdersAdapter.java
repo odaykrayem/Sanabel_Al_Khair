@@ -1,32 +1,20 @@
 package com.example.sanabelalkhayr.adapters.user;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.api.Urls;
 import com.example.sanabelalkhayr.model.Order;
-import com.example.sanabelalkhayr.utils.SharedPrefManager;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +24,6 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
 
     Context context;
     private List<Order> orders;
-    public NavController navController;
 
 
     // RecyclerView recyclerView;
@@ -64,22 +51,25 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
 
 
         switch (order.getStatus()){
-            case Constants.REQUEST_STATUS_NEW :
-                holder.status.setTextColor(context.getResources().getColor(R.color.status_new));
-                holder.status.setText(context.getResources().getString(R.string.status_new));
+//            case Constants.REQUEST_STATUS_NEW :
+//                holder.status.setTextColor(context.getResources().getColor(R.color.status_new));
+//                holder.status.setText(context.getResources().getString(R.string.status_new));
+//                break;
+            case Constants.REQUEST_STATUS_ACCEPTED:
+                holder.status.setTextColor(context.getResources().getColor(R.color.status_accepted));
+                holder.status.setText(context.getResources().getString(R.string.status_accepted));
                 break;
-            case Constants.REQUEST_STATUS_PROCESSING:
-                holder.status.setTextColor(context.getResources().getColor(R.color.status_processing));
-                holder.status.setText(context.getResources().getString(R.string.status_processing));
-                break;
-            case Constants.REQUEST_STATUS_COMPLETE :
-                holder.status.setTextColor(context.getResources().getColor(R.color.status_completed));
-                holder.status.setText(context.getResources().getString(R.string.status_completed));
-                break;
+//            case Constants.REQUEST_STATUS_COMPLETE :
+//                holder.status.setTextColor(context.getResources().getColor(R.color.status_completed));
+//                holder.status.setText(context.getResources().getString(R.string.status_completed));
+//                break;
             case Constants.REQUEST_STATUS_REJECTED :
                 holder.status.setTextColor(context.getResources().getColor(R.color.status_rejected));
                 holder.status.setText(context.getResources().getString(R.string.status_rejected));
                 break;
+            default:
+                holder.status.setTextColor(context.getResources().getColor(R.color.status_new));
+                holder.status.setText(context.getResources().getString(R.string.status_new));
         }
 
 
@@ -101,22 +91,25 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
             TextView ok = view.findViewById(R.id.no_btn);
 
             switch (order.getStatus()){
-                case Constants.REQUEST_STATUS_NEW :
-                    status.setTextColor(context.getResources().getColor(R.color.status_new));
-                    status.setText(context.getResources().getString(R.string.status_new));
+//                case Constants.REQUEST_STATUS_NEW :
+//                    status.setTextColor(context.getResources().getColor(R.color.status_new));
+//                    status.setText(context.getResources().getString(R.string.status_new));
+//                    break;
+                case Constants.REQUEST_STATUS_ACCEPTED:
+                    status.setTextColor(context.getResources().getColor(R.color.status_accepted));
+                    status.setText(context.getResources().getString(R.string.status_accepted));
                     break;
-                case Constants.REQUEST_STATUS_PROCESSING:
-                    status.setTextColor(context.getResources().getColor(R.color.status_processing));
-                    status.setText(context.getResources().getString(R.string.status_processing));
-                    break;
-                case Constants.REQUEST_STATUS_COMPLETE :
-                    status.setTextColor(context.getResources().getColor(R.color.status_completed));
-                    status.setText(context.getResources().getString(R.string.status_completed));
-                    break;
+//                case Constants.REQUEST_STATUS_COMPLETE :
+//                    status.setTextColor(context.getResources().getColor(R.color.status_completed));
+//                    status.setText(context.getResources().getString(R.string.status_completed));
+//                    break;
                 case Constants.REQUEST_STATUS_REJECTED :
                     status.setTextColor(context.getResources().getColor(R.color.status_rejected));
                     status.setText(context.getResources().getString(R.string.status_rejected));
                     break;
+                default:
+                    status.setTextColor(context.getResources().getColor(R.color.status_new));
+                    status.setText(context.getResources().getString(R.string.status_new));
             }
 
             message.setText(order.getMessage());
@@ -129,8 +122,6 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
             });
             message_dialog.show();
         });
-
-
 
 
     }

@@ -54,7 +54,7 @@
 
     <string name="status_new">NEW</string>
     <string name="status_rejected">REJECTED</string>
-    <string name="status_processing">PROCESSING</string>
+    <string name="status_accepted">PROCESSING</string>
     <string name="status_completed">COMPLETED</string>
     <string name="show_message">Show message</string>
     <string name="ok">Ok</string>
@@ -75,5 +75,20 @@
     <string name="choose">Choose</string>
     <string name="my_donation_orders">Donation Orders</string>
     <string name="my_service_oreders">Service Orders</string>
+    <string name="voluntary_services">Voluntary Services</string>
+    <string name="choose_donation_to_deliver">Choose donation to Deliver :</string>
+    <string name="order_this_donation">Order this donation</string>
+    <string name="search_donation">Search for donations</string>
+    <string name="save_donation">Save donation</string>
+    <string name="categories">Categories</string>
+    <string name="regions">Regions</string>
+    <string name="quantity">Quantity</string>
+    <string name="category">Category</string>
+    <string name="region">Region</string>
+    <string name="missing_fields_message">All fields are required</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="Reason">Reason</string>
+    <string name="save">Save</string>
 
 </resources>

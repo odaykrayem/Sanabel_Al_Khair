@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ChooseDonationDialog extends Dialog implements DonationsAdapter.OnDonationSelected{
 
-//        private static final String DIALOG_PROFILE_TAG =  "dialog_profile_tag";
+        private static final String DIALOG_PROFILE_TAG =  "dialog_choose_from_orders_tag";
         public Activity c;
         public Dialog d;
         public Button addBtn, cancelBtn;
@@ -52,23 +52,18 @@ public class ChooseDonationDialog extends Dialog implements DonationsAdapter.OnD
         mList = findViewById(R.id.rv);
 
         donations = new ArrayList<Donation>(){{
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "nice burger", null, 7));
-            add(new Donation(1, "burger", "awesome burger!", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
-            add(new Donation(1, "burger", "good burger", null, 7));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
+            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
 
         }};
 
@@ -82,4 +77,10 @@ public class ChooseDonationDialog extends Dialog implements DonationsAdapter.OnD
     public void onDonationSelected(int selectedDonationId) {
         Toast.makeText(getContext(), "selected donation id = " + selectedDonationId, Toast.LENGTH_SHORT).show();
     }
+
+    //todo api call
+    void getAllAcceptedDonations(){
+
+    }
+
 }

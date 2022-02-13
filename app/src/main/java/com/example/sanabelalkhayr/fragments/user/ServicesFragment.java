@@ -12,11 +12,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.adapters.user.DonationsAdapter;
 import com.example.sanabelalkhayr.adapters.user.ServicesAdapter;
-import com.example.sanabelalkhayr.model.Donation;
 import com.example.sanabelalkhayr.model.Service;
 
 import java.util.ArrayList;
@@ -56,18 +53,18 @@ public class ServicesFragment extends Fragment {
 
         searchView = view.findViewById(R.id.search);
         services = new ArrayList<Service>(){{
-            add(new Service(1, "burger", "good burger", "jaddah", Constants.REQUEST_STATUS_NEW));
-            add(new Service(1, "burger", "good burger", "mekkah", Constants.REQUEST_STATUS_NEW));
-            add(new Service(1, "burger", "good burger", "Riad", Constants.REQUEST_STATUS_NEW));
-            add(new Service(1, "burger", "good burger", "madina", Constants.REQUEST_STATUS_NEW));
-            add(new Service(1, "burger", "good burger", "hgtaief", Constants.REQUEST_STATUS_NEW));
-            add(new Service(1, "burger", "good burger", "jaddah", Constants.REQUEST_STATUS_NEW));
-
-
+            add(new Service(1, "burger", "good burger", "jaddah"));
+            add(new Service(1, "burger", "good burger", "jaddah"));
+            add(new Service(1, "burger", "good burger", "jaddah"));
+            add(new Service(1, "burger", "good burger", "jaddah"));
+            add(new Service(1, "burger", "good burger", "jaddah"));
+            add(new Service(1, "burger", "good burger", "jaddah"));
+            add(new Service(1, "burger", "good burger", "jaddah"));
         }};
 
-        mAdapter = new ServicesAdapter(getContext(), services, getActivity());
+        mAdapter = new ServicesAdapter(getContext(), services);
         mList.setAdapter(mAdapter);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

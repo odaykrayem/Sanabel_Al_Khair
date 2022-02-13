@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.model.User;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
@@ -41,8 +40,8 @@ public class SendProblemReportFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static com.example.sanabelalkhayr.fragments.SendProblemReportFragment newInstance(String param1, String param2) {
-        com.example.sanabelalkhayr.fragments.SendProblemReportFragment fragment = new com.example.sanabelalkhayr.fragments.SendProblemReportFragment();
+    public static SendProblemReportFragment newInstance(String param1, String param2) {
+        SendProblemReportFragment fragment = new SendProblemReportFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

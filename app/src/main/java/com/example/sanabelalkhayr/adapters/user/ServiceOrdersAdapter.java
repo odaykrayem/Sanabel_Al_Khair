@@ -49,22 +49,25 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
 
 
         switch (order.getStatus()){
-            case Constants.REQUEST_STATUS_NEW :
-                holder.status.setTextColor(context.getResources().getColor(R.color.status_new));
-                holder.status.setText(context.getResources().getString(R.string.status_new));
+//            case Constants.REQUEST_STATUS_NEW :
+//                holder.status.setTextColor(context.getResources().getColor(R.color.status_new));
+//                holder.status.setText(context.getResources().getString(R.string.status_new));
+//                break;
+            case Constants.REQUEST_STATUS_ACCEPTED:
+                holder.status.setTextColor(context.getResources().getColor(R.color.status_accepted));
+                holder.status.setText(context.getResources().getString(R.string.status_accepted));
                 break;
-            case Constants.REQUEST_STATUS_PROCESSING:
-                holder.status.setTextColor(context.getResources().getColor(R.color.status_processing));
-                holder.status.setText(context.getResources().getString(R.string.status_processing));
-                break;
-            case Constants.REQUEST_STATUS_COMPLETE :
-                holder.status.setTextColor(context.getResources().getColor(R.color.status_completed));
-                holder.status.setText(context.getResources().getString(R.string.status_completed));
-                break;
+//            case Constants.REQUEST_STATUS_COMPLETE :
+//                holder.status.setTextColor(context.getResources().getColor(R.color.status_completed));
+//                holder.status.setText(context.getResources().getString(R.string.status_completed));
+//                break;
             case Constants.REQUEST_STATUS_REJECTED :
                 holder.status.setTextColor(context.getResources().getColor(R.color.status_rejected));
                 holder.status.setText(context.getResources().getString(R.string.status_rejected));
                 break;
+            default:
+                holder.status.setTextColor(context.getResources().getColor(R.color.status_new));
+                holder.status.setText(context.getResources().getString(R.string.status_new));
         }
 
 
@@ -86,22 +89,25 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
             TextView ok = view.findViewById(R.id.no_btn);
 
             switch (order.getStatus()){
-                case Constants.REQUEST_STATUS_NEW :
-                    status.setTextColor(context.getResources().getColor(R.color.status_new));
-                    status.setText(context.getResources().getString(R.string.status_new));
+//                case Constants.REQUEST_STATUS_NEW :
+//                    status.setTextColor(context.getResources().getColor(R.color.status_new));
+//                    status.setText(context.getResources().getString(R.string.status_new));
+//                    break;
+                case Constants.REQUEST_STATUS_ACCEPTED:
+                    status.setTextColor(context.getResources().getColor(R.color.status_accepted));
+                    status.setText(context.getResources().getString(R.string.status_accepted));
                     break;
-                case Constants.REQUEST_STATUS_PROCESSING:
-                    status.setTextColor(context.getResources().getColor(R.color.status_processing));
-                    status.setText(context.getResources().getString(R.string.status_processing));
-                    break;
-                case Constants.REQUEST_STATUS_COMPLETE :
-                    status.setTextColor(context.getResources().getColor(R.color.status_completed));
-                    status.setText(context.getResources().getString(R.string.status_completed));
-                    break;
+//                case Constants.REQUEST_STATUS_COMPLETE :
+//                    status.setTextColor(context.getResources().getColor(R.color.status_completed));
+//                    status.setText(context.getResources().getString(R.string.status_completed));
+//                    break;
                 case Constants.REQUEST_STATUS_REJECTED :
                     status.setTextColor(context.getResources().getColor(R.color.status_rejected));
                     status.setText(context.getResources().getString(R.string.status_rejected));
                     break;
+                default:
+                    status.setTextColor(context.getResources().getColor(R.color.status_new));
+                    status.setText(context.getResources().getString(R.string.status_new));
             }
 
             message.setText(order.getMessage());

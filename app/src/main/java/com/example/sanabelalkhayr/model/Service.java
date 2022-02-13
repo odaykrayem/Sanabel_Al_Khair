@@ -6,40 +6,21 @@ public class Service {
     private String volunteerName;
     private String description;
     private String region;
-    private int status;
-    private int donationId;
 
     public void setvolunteerName(String volunteerName) {
         this.volunteerName = volunteerName;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public String getvolunteerName() {
         return volunteerName;
     }
 
-    public int getStatus() {
-        return status;
-    }
 
-    public Service(int id, String volunteerName, String description, String region, int status, int donationId) {
+    public Service(int id, String volunteerName, String description, String region) {
         this.id = id;
         this.volunteerName = volunteerName;
         this.description = description;
         this.region = region;
-        this.status = status;
-        this.donationId = donationId;
-    }
-
-    public Service(int id, String volunteerName, String description, String region, int donationId) {
-        this.id = id;
-        this.volunteerName = volunteerName;
-        this.description = description;
-        this.region = region;
-        this.donationId = donationId;
     }
 
     public int getId() {

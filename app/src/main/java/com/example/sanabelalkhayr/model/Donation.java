@@ -8,22 +8,16 @@ public class Donation {
     private String category;
     private String image;
     private int quantity;
+    private String donorUserName;
 
-    public Donation(Integer id, String title, String description, String category, String image, int quantity) {
+    public Donation(Integer id, String title, String description, String image, String category, int quantity, String donorUserName) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.category = category;
         this.image = image;
         this.quantity = quantity;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
         this.category = category;
+        this.donorUserName = donorUserName;
     }
 
     public Integer getId() {
@@ -64,5 +58,21 @@ public class Donation {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getDonorUserName() {
+        return donorUserName;
+    }
+
+    public void setDonorUserName(String donorUserName) {
+        this.donorUserName = donorUserName;
     }
 }

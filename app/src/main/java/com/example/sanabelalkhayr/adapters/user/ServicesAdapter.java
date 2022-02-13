@@ -12,10 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.model.Service;
 import com.example.sanabelalkhayr.widgets.ChooseDonationDialog;
@@ -28,23 +26,20 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     Context context;
     private List<Service> services;
     private List<Service> servicesFiltered;
-    private Activity a;
-    // RecyclerView recyclerView;
-    public ServicesAdapter(Context context, ArrayList<Service> services ,Activity a) {
+
+    public ServicesAdapter(Context context, ArrayList<Service> services) {
         this.context = context;
         this.services = services;
         this.servicesFiltered = services;
-        this.a=a;
     }
 
     @NonNull
     @Override
-    public ServicesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem= layoutInflater.inflate(R.layout.item_service, parent, false);
-        ServicesAdapter.ViewHolder viewHolder = new ServicesAdapter.ViewHolder(listItem);
 
-        return viewHolder;
+        return new ViewHolder(listItem);
     }
 
     @Override
@@ -60,7 +55,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
 
         holder.order.setOnClickListener(v -> {
-            ChooseDonationDialog cd = new ChooseDonationDialog(a);
+            ChooseDonationDialog cd = new ChooseDonationDialog(context);
 
             cd.show();
             LayoutInflater factory = LayoutInflater.from(context);
@@ -128,7 +123,6 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-
                 services = (List<Service>) filterResults.values;
                 notifyDataSetChanged();
 

@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
@@ -29,7 +30,10 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
 
     SharedPrefManager prefManager;
 
-    int destination = R.id.menu_donations;
+    int destination = R.id.myDonationsFragment;
+
+    AppBarConfiguration mAppBarConfiguration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +58,12 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
+
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.myDonationsFragment, R.id.sendProblemReportFragment2, R.id.charitableEventsFragment, R.id.userOrders).setOpenableLayout(drawerLayout).build();
+
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
         NavigationUI.setupWithNavController(navigationView, navController);
-
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -65,33 +71,11 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
-//    private int getSelectedMenu() {
-//
-//        int userType = Constants.USER_TYPE_MAIN;
-//        int menuId = -1;
-//
-//        switch (userType){
-//            case Constants.USER_TYPE_ADMIN:
-//                menuId = R.menu.admin_nav_menu;
-//                break;
-//            case Constants.USER_TYPE_DONOR:
-//                menuId = R.menu.donor_nav_menu;
-//                break;
-//            case Constants.USER_TYPE_MAIN:
-//                menuId = R.menu.user_nav_menu;
-//                break;
-//            case Constants.USER_TYPE_VOLUNTEER:
-//                menuId = R.menu.volunteer_nav_menu;
-//                break;
-//
-//        }
-//        return menuId;
-//    }
-
-
     @Override
     public boolean onSupportNavigateUp() {
-        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.nav_host_fragment), drawerLayout);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 
     @Override
@@ -112,29 +96,26 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
 
         switch (id) {
 
-//            case R.id.menu_donations:
-//                destination = R.id.donationsFragment;
-//                break;
-//
-//            case R.id.menu_my_orders:
-//                destination = R.id.action_donationsFragment_to_ordersFragment;
-//                break;
-//
-//            case R.id.menu_charitable_events:
-//                destination = R.id.action_donationsFragment_to_charitableEventsFragment;
-//                break;
-//
-//            case R.id.menu_report_problem:
-////                navController.navigate(R.id.charitableEventsFragment);
-//                break;
-//
-//            case R.id.menu_share:
-////                navController.navigate(R.id.ordersFragment);
-//                break;
+            case R.id.menu_donations:
+                destination = R.id.myDonationsFragment;
+                break;
+
+            case R.id.menu_user_orders:
+                destination = R.id.userOrders;
+                break;
+
+            case R.id.menu_charitable_events:
+                destination = R.id.charitableEventsFragment;
+                break;
+
+            case R.id.menu_report_problem:
+                destination = R.id.sendProblemReportFragment2;
+                break;
+
 
         }
 
-//        drawerLayout.closeDrawers();
+        drawerLayout.closeDrawers();
 
         return true;
     }
@@ -152,7 +133,7 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
 
     @Override
     public void onDrawerClosed(@NonNull View drawerView) {
-//        navController.navigate(destination);
+        navController.navigate(destination);
     }
 
     @Override

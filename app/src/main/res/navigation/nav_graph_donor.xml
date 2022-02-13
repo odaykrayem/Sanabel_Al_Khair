@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph_donor">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_donor"
+    app:startDestination="@id/myDonationsFragment">
+
+    <fragment
+        android:id="@+id/myDonationsFragment"
+        android:name="com.example.sanabelalkhayr.fragments.donor.MyDonationsFragment"
+        android:label="fragment_my_donations"
+        tools:layout="@layout/fragment_my_donations" >
+        <action
+            android:id="@+id/action_myDonationsFragment_to_donationDetailsFragment2"
+            app:destination="@id/donationDetailsFragment2"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/myDonationsFragment"/>
+        <action
+            android:id="@+id/action_myDonationsFragment_to_addDonationFragment"
+            app:destination="@id/addDonationFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/myDonationsFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/donationDetailsFragment2"
+        android:name="com.example.sanabelalkhayr.fragments.user.DonationDetailsFragment"
+        android:label="fragment_donation_details"
+        tools:layout="@layout/fragment_donation_details" />
+    <fragment
+        android:id="@+id/addDonationFragment"
+        android:name="com.example.sanabelalkhayr.fragments.donor.AddDonationFragment"
+        android:label="fragment_add_donation"
+        tools:layout="@layout/fragment_add_donation" />
+    <fragment
+        android:id="@+id/charitableEventsFragment"
+        android:name="com.example.sanabelalkhayr.fragments.CharitableEventsFragment"
+        android:label="CharitableEventsFragment"
+        tools:layout="@layout/fragment_charitable_events"/>
+    <fragment
+        android:id="@+id/sendProblemReportFragment2"
+        android:name="com.example.sanabelalkhayr.fragments.SendProblemReportFragment"
+        android:label="fragment_send_problem_report"
+        tools:layout="@layout/fragment_send_problem_report" />
+    <fragment
+        android:id="@+id/userOrders"
+        android:name="com.example.sanabelalkhayr.fragments.donor.UserOrdersFragment"
+        android:label="fragment_user_orders"
+        tools:layout="@layout/fragment_user_orders" />
+
 
 </navigation>

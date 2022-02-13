@@ -46,5 +46,11 @@
         android:name="com.example.sanabelalkhayr.fragments.user.ServicesFragment"
         android:label="ServicesFragment"
         tools:layout="@layout/fragment_services"/>
+    <fragment
+        android:id="@+id/sendProblemReportFragment"
+        android:name="com.example.sanabelalkhayr.fragments.SendProblemReportFragment"
+        android:label="fragment_send_problem_report"
+        tools:layout="@layout/fragment_send_problem_report" />
+
 
 </navigation>
