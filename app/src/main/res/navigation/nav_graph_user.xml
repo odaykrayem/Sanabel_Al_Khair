@@ -8,7 +8,7 @@
         android:id="@+id/menu_donations"
         android:name="com.example.sanabelalkhayr.fragments.user.DonationsFragment"
         android:label="fragment_donations"
-        tools:layout="@layout/fragment_donations" >
+        tools:layout="@layout/fragment_donations">
         <action
             android:id="@+id/action_donationsFragment_to_donationDetailsFragment"
             app:destination="@id/donationDetailsFragment"
