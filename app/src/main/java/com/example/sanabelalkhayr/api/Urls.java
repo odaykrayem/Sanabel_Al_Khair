@@ -26,6 +26,10 @@ public class Urls {
     public static final String ADD_DONATION_URL = BASE_URL +"";
 
     //VOLUNTEER
+    public static final String ADD_SERVICE_URL = BASE_URL +"";
+    public static final String GET_MY_SERVICES_URL = BASE_URL +"";
+    public static final String ADD_DONATION_URL = BASE_URL +"";
+
 
     //ADMIN
 
