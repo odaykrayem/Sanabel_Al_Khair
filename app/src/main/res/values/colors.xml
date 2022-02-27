@@ -33,6 +33,9 @@
     <color name="status_new">#018DCD</color>
 
 
+    <color name="needy">#11203B</color>
+    <color name="donor">#5cb85c</color>
+    <color name="volunteer">#1A0A2E</color>
 
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#A800FF48</color>

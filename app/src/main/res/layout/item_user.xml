@@ -65,8 +65,24 @@
                 android:textColor="@color/black"
 
                 />
+            <Button
+                android:id="@+id/view_details"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="@string/accept"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_img_order"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="end"
+                />
         </LinearLayout>
+
     </LinearLayout>
+
 
 
 </RelativeLayout>

@@ -32,17 +32,17 @@
         android:label="@string/events_list"
         tools:layout="@layout/fragment_events_list">
         <action
-            android:id="@+id/action_EventsListFragment_to_UserDetailsFragment"
-            app:destination="@id/userDetailsFragment"
+            android:id="@+id/action_EventsListFragment_to_AddEventFragment"
+            app:destination="@id/AddEventFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/menu_users"/>
+            app:popUpTo="@id/menu_events"/>
     </fragment>
 
     <fragment
-        android:id="@+id/addEventFragment"
+        android:id="@+id/AddEventFragment"
         android:name="com.example.sanabelalkhayr.fragments.admin.AddEventFragment"
         android:label="@string/add_event"
         tools:layout="@layout/fragment_user_details" />
