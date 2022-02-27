@@ -15,9 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.adapters.donor.UserOrdersAdapter;
-import com.example.sanabelalkhayr.model.DonationOrder;
-import com.example.sanabelalkhayr.model.ServiceOrder;
 import com.example.sanabelalkhayr.model.ServiceRequest;
 
 import java.util.ArrayList;

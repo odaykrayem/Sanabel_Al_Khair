@@ -15,13 +15,14 @@ import com.example.sanabelalkhayr.R;
 
 public class UserDetailsFragment extends Fragment {
 
-
     Context ctx;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.ctx = context;
     }
+
     public UserDetailsFragment() {
     }
 

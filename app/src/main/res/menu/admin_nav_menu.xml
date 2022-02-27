@@ -3,12 +3,22 @@
 
     <group android:checkableBehavior="single">
        <item
-        android:id="@+id/menu_users"
-        android:icon="@drawable/ic_profile"
-        android:title="@string/users_list" />
+            android:id="@+id/menu_users"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/users_list" />
         <item
             android:id="@+id/menu_events"
             android:icon="@drawable/ic_event"
             android:title="@string/events_list" />
+        <item
+            android:id="@+id/menu_reports"
+            android:icon="@drawable/ic_report"
+            android:title="@string/problem_reports" />
+
+        <item
+            android:id="@+id/menu_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout"
+            android:actionLayout="@layout/fragment_donation_orders" />
     </group>
 </menu>

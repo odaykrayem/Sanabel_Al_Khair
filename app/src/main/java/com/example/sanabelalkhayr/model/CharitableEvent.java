@@ -17,6 +17,14 @@ public class CharitableEvent {
         this.interested = interested;
     }
 
+    public CharitableEvent(int id, String description, String start_at, String end_at, String address) {
+        this.id = id;
+        this.description = description;
+        this.start_at = start_at;
+        this.end_at = end_at;
+        this.address = address;
+    }
+
     public boolean isInterested() {
         return interested;
     }

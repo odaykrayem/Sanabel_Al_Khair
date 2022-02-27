@@ -3,6 +3,7 @@ package com.example.sanabelalkhayr.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -33,7 +34,7 @@ public class Register extends AppCompatActivity {
     Button mToLoginBtn;
 
     RadioGroup mAccountTypeSelector;
-    int selectedUserType = -1;
+    int selectedUserType = Constants.USER_TYPE_ADMIN;
 
     private ProgressDialog pDialog;
 
@@ -55,10 +56,10 @@ public class Register extends AppCompatActivity {
         });
 
         mRegisterBtn.setOnClickListener(v -> {
-            if(validateUserInput()){
+//            if(validateUserInput()){
                 mRegisterBtn.setEnabled(false);
                 register();
-            }
+//            }
         });
 
 
@@ -151,76 +152,91 @@ public class Register extends AppCompatActivity {
     }
 
     private void register() {
-        pDialog.setMessage("Processing Please wait...");
-        pDialog.show();
 
-        //first getting the values
-        final String pass = mPassET.getText().toString();
-        final String name = mNameET.getText().toString();
-        final String phone = mPhoneET.getText().toString();
-        final String userName = mUserNameET.getText().toString();
-        final String address = mAddressET.getText().toString();
-
-
-
-        AndroidNetworking.post(Urls.REGISTER_URL)
-                .addBodyParameter("type", String.valueOf(selectedUserType))
-                .addBodyParameter("name", name)
-                .addBodyParameter("phone", phone)
-                .addBodyParameter("password", pass)
-                .addBodyParameter("user_name", userName)
-                .addBodyParameter("address", address)
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // do anything with response
-                        pDialog.dismiss();
-
-                        try {
-                            //converting response to json object
-                            JSONObject obj = response;
-
-                            //if no error in response
-                            if (obj.getInt("status") == 1) {
-
-//                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+        switch (selectedUserType){
+            case Constants.USER_TYPE_MAIN:
+                startActivity(new Intent(this, UserMain.class));
+                break;
+            case Constants.USER_TYPE_DONOR:
+                startActivity(new Intent(this, DonorMain.class));
+                break;
+            case Constants.USER_TYPE_VOLUNTEER:
+                startActivity(new Intent(this, VolunteerMain.class));
+                break;
+            case Constants.USER_TYPE_ADMIN:
+                startActivity(new Intent(this, AdminMain.class));
+                break;
+        }
+//        pDialog.setMessage("Processing Please wait...");
+//        pDialog.show();
 //
-//                                //getting the user from the response
-//                                JSONObject userJson = obj.getJSONObject("data");
-//                                User user;
-//                                SharedPrefManager.getInstance(getApplicationContext()).setUserType(Constants.USER);
-//                                user = new User(
-//                                        Integer.parseInt(userJson.getString("id")),
-//                                        userJson.getString("name"),
-//                                        "+966 "+userJson.getString("phone")
-//                                );
+//        //first getting the values
+//        final String pass = mPassET.getText().toString();
+//        final String name = mNameET.getText().toString();
+//        final String phone = mPhoneET.getText().toString();
+//        final String userName = mUserNameET.getText().toString();
+//        final String address = mAddressET.getText().toString();
 //
-//                                //storing the user in shared preferences
-//                                SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-//                                goToUserMainActivity();
-//                                finish();
 //
-//                                mRegisterBtn.setEnabled(true);
-//                            } else if(obj.getInt("status") == -1){
-//                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-//                                mRegisterBtn.setEnabled(true);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        pDialog.dismiss();
-                        mRegisterBtn.setEnabled(true);
-                        Toast.makeText(Register.this, anError.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+//
+//        AndroidNetworking.post(Urls.REGISTER_URL)
+//                .addBodyParameter("type", String.valueOf(selectedUserType))
+//                .addBodyParameter("name", name)
+//                .addBodyParameter("phone", phone)
+//                .addBodyParameter("password", pass)
+//                .addBodyParameter("user_name", userName)
+//                .addBodyParameter("address", address)
+//                .setPriority(Priority.MEDIUM)
+//                .build()
+//                .getAsJSONObject(new JSONObjectRequestListener() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        // do anything with response
+//                        pDialog.dismiss();
+//
+//                        try {
+//                            //converting response to json object
+//                            JSONObject obj = response;
+//
+//                            //if no error in response
+//                            if (obj.getInt("status") == 1) {
+//
+////                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+////
+////                                //getting the user from the response
+////                                JSONObject userJson = obj.getJSONObject("data");
+////                                User user;
+////                                SharedPrefManager.getInstance(getApplicationContext()).setUserType(Constants.USER);
+////                                user = new User(
+////                                        Integer.parseInt(userJson.getString("id")),
+////                                        userJson.getString("name"),
+////                                        "+966 "+userJson.getString("phone")
+////                                );
+////
+////                                //storing the user in shared preferences
+////                                SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+////                                goToUserMainActivity();
+////                                finish();
+////
+////                                mRegisterBtn.setEnabled(true);
+////                            } else if(obj.getInt("status") == -1){
+////                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+////                                mRegisterBtn.setEnabled(true);
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(ANError anError) {
+//                        pDialog.dismiss();
+//                        mRegisterBtn.setEnabled(true);
+//                        Toast.makeText(Register.this, anError.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
     }
 
 
