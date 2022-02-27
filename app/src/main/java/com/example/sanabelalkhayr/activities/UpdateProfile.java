@@ -46,7 +46,7 @@ public class UpdateProfile extends AppCompatActivity {
         mSubmitBtn.setOnClickListener(v -> {
             if(validateUserInput()){
                 mSubmitBtn.setEnabled(false);
-                register();
+                update();
             }
         });
 
@@ -105,7 +105,7 @@ public class UpdateProfile extends AppCompatActivity {
         return true;
     }
 
-    private void register() {
+    private void update() {
         pDialog.setMessage("Processing Please wait...");
         pDialog.show();
 

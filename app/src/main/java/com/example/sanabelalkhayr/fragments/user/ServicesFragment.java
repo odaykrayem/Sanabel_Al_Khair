@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.adapters.user.ServicesAdapter;
+import com.example.sanabelalkhayr.api.Urls;
 import com.example.sanabelalkhayr.model.Service;
 
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class ServicesFragment extends Fragment {
         mList = view.findViewById(R.id.rv);
 
         searchView = view.findViewById(R.id.search);
+        getServices();
         services = new ArrayList<Service>(){{
             add(new Service(1, "burger", "good burger", "jaddah"));
             add(new Service(1, "burger", "good burger", "jaddah"));
@@ -73,11 +75,14 @@ public class ServicesFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // TODO: setFilter
                 mAdapter.getFilter().filter(newText);
                 return true;
             }
         });
 
+    }
+
+    private void getServices() {
+      String url = Urls.GET_SERVICES;
     }
 }

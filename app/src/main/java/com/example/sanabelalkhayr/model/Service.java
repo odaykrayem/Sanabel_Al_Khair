@@ -23,6 +23,13 @@ public class Service {
         this.region = region;
     }
 
+    //Volunteer services
+    public Service(int id, String description, String region) {
+        this.id = id;
+        this.description = description;
+        this.region = region;
+    }
+
     public int getId() {
         return id;
     }

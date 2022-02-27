@@ -35,7 +35,7 @@
     <string name="donation_title">donation title</string>
     <string name="donation_description">description</string>
     <string name="order_date">28-1-2022</string>
-    <string name="order">Order</string>
+    <string name="donationOrder">Order</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_donations">Donations</string>
@@ -48,8 +48,8 @@
     <string name="availability">availability</string>
     <string name="cancel">Cancel</string>
     <string name="confirmation_dialog">Confirmation Dialog</string>
-    <string name="are_you_sure_you_want_to_order">Are you sure you want to order this item ?</string>
-    <string name="my_orders">My orders</string>
+    <string name="are_you_sure_you_want_to_order">Are you sure you want to donationOrder this item ?</string>
+    <string name="my_orders">My donationOrders</string>
     <string name="charitable_events">Charitable Events</string>
 
     <string name="status_new">NEW</string>
@@ -70,11 +70,11 @@
     <string name="account">Account</string>
     <string name="search_volunteer">Search For Volunteer</string>
     <string name="volunteer_name">Volunteer Name</string>
-    <string name="are_you_sure_you_want_to_order_service">Are you sure you want to order this service?</string>
+    <string name="are_you_sure_you_want_to_order_service">Are you sure you want to donationOrder this service?</string>
     <string name="search_service">Search for Service</string>
     <string name="choose">Choose</string>
     <string name="my_donation_orders">Donation Orders</string>
-    <string name="my_service_oreders">Service Orders</string>
+    <string name="my_service_orders">Service Orders</string>
     <string name="voluntary_services">Voluntary Services</string>
     <string name="choose_donation_to_deliver">Choose donation to Deliver :</string>
     <string name="order_this_donation">Order this donation</string>
@@ -90,5 +90,9 @@
     <string name="reject">Reject</string>
     <string name="Reason">Reason</string>
     <string name="save">Save</string>
+    <string name="profile">Profile</string>
+    <string name="service_requests">Service Requests</string>
+    <string name="delete">Delete</string>
+    <string name="add_service">Add Service</string>
 
 </resources>

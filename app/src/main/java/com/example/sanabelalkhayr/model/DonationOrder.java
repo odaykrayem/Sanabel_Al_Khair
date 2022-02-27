@@ -1,6 +1,6 @@
 package com.example.sanabelalkhayr.model;
 
-public class Order {
+public class DonationOrder {
     private int id;
     private int user_id;
     private int donation_id;
@@ -10,7 +10,7 @@ public class Order {
     private String message;
     private String createdAt;
 
-    public Order(int id, int user_id, int donation_id, int quantity, int status, String message) {
+    public DonationOrder(int id, int user_id, int donation_id, int quantity, int status, String message) {
         this.id = id;
         this.user_id = user_id;
         this.donation_id = donation_id;
@@ -20,7 +20,7 @@ public class Order {
     }
 
 //constructor for order list
-    public Order(int id, int donation_id, String donation_title, int quantity, int status, String message, String createdAt) {
+    public DonationOrder(int id, int donation_id, String donation_title, int quantity, int status, String message, String createdAt) {
         this.id = id;
         this.donation_id = donation_id;
         this.donation_title = donation_title;

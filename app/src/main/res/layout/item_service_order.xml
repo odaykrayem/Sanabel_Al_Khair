@@ -7,24 +7,24 @@
     android:layout_marginTop="10dp"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
-    android:layoutDirection="ltr">
+    android:layoutDirection="ltr"
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_toStartOf="@id/quantity"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:background="@drawable/bg_item_donation">
 
-    <ImageView
+        <ImageView
             android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
             android:layout_weight="2"
-            android:src="@drawable/ic_donation"
-        android:background="@drawable/bg_item_donation"
-
+            android:src="@drawable/food"
+            android:background="@drawable/bg_img_order"
             />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
 
                 />
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/volunteer_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -53,41 +53,38 @@
                 android:layout_weight="2"
                 android:layout_marginBottom="5dp"
                 android:text="@string/donation_description"
-                android:maxLines="2"
-                android:lines="2"
-
+                android:ellipsize="end"
                 />
-
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_weight="2"
+                android:layout_marginBottom="5dp"
+                android:text="@string/order_date"
+                />
         </LinearLayout>
     </LinearLayout>
 
 
 
-    <TextView
-        android:id="@+id/quantity"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:text="8"
-        android:textColor="@color/white"
-        android:textSize="@dimen/card_corner_txt_size"
+
+    <Button
+        android:id="@+id/show_message"
+        android:layout_width="110dp"
+        android:layout_height="30dp"
+        android:textStyle="bold"
+        android:textSize="12sp"
         android:gravity="center"
         android:textAlignment="center"
-        android:background="@drawable/bg_item_quantity"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        />
-    <Button
-        android:id="@+id/donationOrder"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:textStyle="bold"
-        android:layout_weight="1"
-        android:textSize="16sp"
-        android:text="@string/donationOrder"
+        android:text="@string/show_message"
         android:background="@drawable/bg_order_btn"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="10dp"
-
         />
+
+
 </RelativeLayout>

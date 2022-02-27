@@ -98,7 +98,6 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
                     .into(holder.image);
         }
 
-
         holder.itemView.setOnClickListener(v -> {
             if(dialog!=null){
                 mSelectionListener.onDonationSelected(donation.getId());
@@ -115,7 +114,6 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
                 navController.navigate(R.id.action_donationsFragment_to_donationDetailsFragment, args);
             }
         });
-
 
         if(dialog!=null){
             holder.orderBtn.setVisibility(View.GONE);
@@ -134,9 +132,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
                     public void onClick(View v) {
 
                         orderItem(donation.getId());
-
                         orderConfirmationDialog.dismiss();
-
                     }
                 });
 
@@ -148,13 +144,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
                 });
                 orderConfirmationDialog.show();
             });
-
         }
-
-
-
-
-
     }
 
     private void orderItem(int id) {
@@ -165,7 +155,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
         pDialog.setMessage("Processing Please wait...");
         pDialog.show();
 
-        AndroidNetworking.post(Urls.GET_DONATIONS)
+        AndroidNetworking.post(Urls.ORDER_DONATION_URL)
                 .addBodyParameter("user_id", String.valueOf(userId))
                 .addBodyParameter("donation_id", String.valueOf(id))
                 .setPriority(Priority.MEDIUM)
@@ -179,7 +169,6 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
                         try {
                             //converting response to json object
                             JSONObject obj = response;
-
                             //if no error in response
                             if (obj.getInt("status") == 1) {
 
@@ -191,16 +180,13 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
-
                     @Override
                     public void onError(ANError anError) {
                         pDialog.dismiss();
                         Toast.makeText(context, anError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 
     @Override

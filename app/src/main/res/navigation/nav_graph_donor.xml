@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_donor"
-    app:startDestination="@id/myDonationsFragment">
+    app:startDestination="@id/menu_my_donations">
 
     <fragment
-        android:id="@+id/myDonationsFragment"
+        android:id="@+id/menu_my_donations"
         android:name="com.example.sanabelalkhayr.fragments.donor.MyDonationsFragment"
         android:label="fragment_my_donations"
         tools:layout="@layout/fragment_my_donations" >
@@ -17,7 +17,7 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/myDonationsFragment"/>
+            app:popUpTo="@id/menu_my_donations"/>
         <action
             android:id="@+id/action_myDonationsFragment_to_addDonationFragment"
             app:destination="@id/addDonationFragment"
@@ -25,7 +25,7 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/myDonationsFragment"/>
+            app:popUpTo="@id/menu_my_donations"/>
     </fragment>
 
     <fragment
@@ -39,20 +39,24 @@
         android:label="fragment_add_donation"
         tools:layout="@layout/fragment_add_donation" />
     <fragment
-        android:id="@+id/charitableEventsFragment"
+        android:id="@+id/menu_charitable_events"
         android:name="com.example.sanabelalkhayr.fragments.CharitableEventsFragment"
         android:label="CharitableEventsFragment"
         tools:layout="@layout/fragment_charitable_events"/>
     <fragment
-        android:id="@+id/sendProblemReportFragment2"
+        android:id="@+id/menu_report_problem"
         android:name="com.example.sanabelalkhayr.fragments.SendProblemReportFragment"
         android:label="fragment_send_problem_report"
         tools:layout="@layout/fragment_send_problem_report" />
     <fragment
-        android:id="@+id/userOrders"
+        android:id="@+id/menu_user_orders"
         android:name="com.example.sanabelalkhayr.fragments.donor.UserOrdersFragment"
         android:label="fragment_user_orders"
         tools:layout="@layout/fragment_user_orders" />
-
+    <fragment
+        android:id="@+id/menu_donor_profile"
+        android:name="com.example.sanabelalkhayr.fragments.user.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_user_profile" />
 
 </navigation>

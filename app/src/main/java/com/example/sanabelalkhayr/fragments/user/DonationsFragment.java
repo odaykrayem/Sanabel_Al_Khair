@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.adapters.user.DonationsAdapter;
+import com.example.sanabelalkhayr.api.Urls;
 import com.example.sanabelalkhayr.model.Donation;
 
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class DonationsFragment extends Fragment {
 
         setUpCategoryChooser();
 
+        getDonations();
         donations = new ArrayList<Donation>(){{
             add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
             add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
@@ -129,7 +131,6 @@ public class DonationsFragment extends Fragment {
                 mAdapter.getFilter().filter("" + ":" + selectedCategory);
 
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -139,6 +140,13 @@ public class DonationsFragment extends Fragment {
 
     //todo api call (get all categories)
     private void getAllCategories() {
+        String url = Urls.GET_CATEGORIES;
+
+    }
+
+    //todo api call (get all donations)
+    private void getDonations() {
+        String url = Urls.GET_DONATIONS;
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.sanabelalkhayr.fragments.donor;
+package com.example.sanabelalkhayr.fragments.user;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,20 +14,19 @@ import android.view.ViewGroup;
 
 import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.adapters.donor.UserOrdersAdapter;
+import com.example.sanabelalkhayr.adapters.user.OrdersAdapter;
+import com.example.sanabelalkhayr.api.Urls;
 import com.example.sanabelalkhayr.model.DonationOrder;
 
 import java.util.ArrayList;
 
 
-public class UserOrdersFragment extends Fragment {
+public class DonationOrdersFragment extends Fragment {
 
     Context ctx;
-
     ArrayList<DonationOrder> donationOrders;
     RecyclerView mList;
-    UserOrdersAdapter mAdapter;
-
+    OrdersAdapter mAdapter;
 
     @Override
     public void onAttach(Context context) {
@@ -35,7 +34,7 @@ public class UserOrdersFragment extends Fragment {
         ctx = context;
     }
 
-    public UserOrdersFragment() {
+    public DonationOrdersFragment() {
         // Required empty public constructor
     }
 
@@ -45,14 +44,16 @@ public class UserOrdersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_orders, container, false);
+        return inflater.inflate(R.layout.fragment_donation_orders, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         mList = view.findViewById(R.id.rv);
 
+        getOrders();
         donationOrders = new ArrayList<DonationOrder>(){{
             add(new DonationOrder(1, 1, "butger", 10, -1, "reason why", "10/10/2021"));
             add(new DonationOrder(1, 1, "butger", 10, Constants.REQUEST_STATUS_ACCEPTED, "reason why", "10/10/2021"));
@@ -65,7 +66,12 @@ public class UserOrdersFragment extends Fragment {
             add(new DonationOrder(1, 1, "butger", 10, Constants.REQUEST_STATUS_REJECTED, "reason why", "10/10/2021"));
         }};
 
-        mAdapter = new UserOrdersAdapter(ctx, donationOrders);
+        mAdapter = new OrdersAdapter(ctx, donationOrders);
         mList.setAdapter(mAdapter);
+    }
+
+    private void getOrders(){
+
+        String url = Urls.GET_ORDERS;
     }
 }

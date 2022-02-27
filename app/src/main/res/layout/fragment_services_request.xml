@@ -7,17 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/donation_bg"
-    tools:context=".fragments.user.DonationOrdersFragment">
+    tools:context=".fragments.volunteer.MyServicesFragment">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nested_sV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <RelativeLayout
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_sV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/donation_bg">
+>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
@@ -26,9 +24,8 @@
                 android:orientation="vertical"
                 android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_order">
+                tools:listitem="@layout/items">
 
             </androidx.recyclerview.widget.RecyclerView>
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

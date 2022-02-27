@@ -11,12 +11,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.model.Order;
+import com.example.sanabelalkhayr.model.DonationOrder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +24,14 @@ public class UserOrdersAdapter extends RecyclerView.Adapter<UserOrdersAdapter.Vi
 
 
     Context context;
-    private List<Order> orders;
+    private List<DonationOrder> donationOrders;
     private String message;
 
 
     // RecyclerView recyclerView;
-    public UserOrdersAdapter(Context context, ArrayList<Order> orders) {
+    public UserOrdersAdapter(Context context, ArrayList<DonationOrder> donationOrders) {
         this.context = context;
-        this.orders = orders;
+        this.donationOrders = donationOrders;
     }
 
 
@@ -49,10 +48,10 @@ public class UserOrdersAdapter extends RecyclerView.Adapter<UserOrdersAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Order order = orders.get(position);
+        DonationOrder donationOrder = donationOrders.get(position);
 
 
-        switch (order.getStatus()){
+        switch (donationOrder.getStatus()){
             case Constants.REQUEST_STATUS_ACCEPTED:
                 holder.status.setTextColor(context.getResources().getColor(R.color.status_accepted));
                 holder.status.setText(context.getResources().getString(R.string.status_accepted));
@@ -68,15 +67,15 @@ public class UserOrdersAdapter extends RecyclerView.Adapter<UserOrdersAdapter.Vi
         }
 
 
-        holder.date.setText(order.getCreatedAt());
+        holder.date.setText(donationOrder.getCreatedAt());
 
-        holder.title.setText(order.getDonation_title());
+        holder.title.setText(donationOrder.getDonation_title());
 
-        holder.quantity.setText(String.valueOf(order.getQuantity()));
+        holder.quantity.setText(String.valueOf(donationOrder.getQuantity()));
 
         holder.accept.setOnClickListener(v -> {
             message = "donation accepted";
-            changeStatus(order, Constants.REQUEST_STATUS_ACCEPTED, message);
+            changeStatus(donationOrder, Constants.REQUEST_STATUS_ACCEPTED, message);
         });
 
         holder.reject.setOnClickListener(v -> {
@@ -96,7 +95,7 @@ public class UserOrdersAdapter extends RecyclerView.Adapter<UserOrdersAdapter.Vi
                         reason = "no reason";
                     }
                     message = reason;
-                    changeStatus(order, Constants.REQUEST_STATUS_REJECTED, message);
+                    changeStatus(donationOrder, Constants.REQUEST_STATUS_REJECTED, message);
                     message_dialog.dismiss();
                 }
             });
@@ -108,14 +107,14 @@ public class UserOrdersAdapter extends RecyclerView.Adapter<UserOrdersAdapter.Vi
 
     }
 
-    private void changeStatus(Order order, int status, String message) {
+    private void changeStatus(DonationOrder donationOrder, int status, String message) {
 
     }
 
 
     @Override
     public int getItemCount() {
-        return orders.size();
+        return donationOrders.size();
     }
 
 

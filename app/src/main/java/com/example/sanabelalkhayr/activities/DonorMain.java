@@ -30,7 +30,7 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
 
     SharedPrefManager prefManager;
 
-    int destination = R.id.myDonationsFragment;
+    int destination = R.id.menu_my_donations;
 
     AppBarConfiguration mAppBarConfiguration;
 
@@ -59,7 +59,7 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.myDonationsFragment, R.id.sendProblemReportFragment2, R.id.charitableEventsFragment, R.id.userOrders).setOpenableLayout(drawerLayout).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_my_donations, R.id.menu_report_problem, R.id.menu_charitable_events, R.id.menu_user_orders, R.id.menu_donor_profile).setOpenableLayout(drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
@@ -96,22 +96,28 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
 
         switch (id) {
 
-            case R.id.menu_donations:
-                destination = R.id.myDonationsFragment;
+            case R.id.menu_my_donations:
+                destination = R.id.menu_my_donations;
                 break;
 
             case R.id.menu_user_orders:
-                destination = R.id.userOrders;
+                destination = R.id.menu_user_orders;
                 break;
 
             case R.id.menu_charitable_events:
-                destination = R.id.charitableEventsFragment;
+                destination = R.id.menu_charitable_events;
                 break;
 
             case R.id.menu_report_problem:
-                destination = R.id.sendProblemReportFragment2;
+                destination = R.id.menu_report_problem;
+                break;
+            case R.id.menu_donor_profile:
+                destination = R.id.menu_donor_profile;
                 break;
 
+            case R.id.logout:
+
+                break;
 
         }
 

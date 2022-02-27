@@ -7,7 +7,8 @@
     android:layout_marginTop="10dp"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
-    android:layoutDirection="ltr">
+    android:layoutDirection="ltr"
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -17,25 +18,23 @@
         android:layout_alignParentStart="true"
         android:background="@drawable/bg_item_donation">
 
-    <ImageView
+        <ImageView
             android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
             android:layout_weight="2"
-            android:src="@drawable/ic_donation"
-        android:background="@drawable/bg_item_donation"
-
+            android:src="@drawable/ic_request"
+            android:background="@drawable/bg_item_donation"
             />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_toEndOf="@id/image"
             android:padding="8dp"
             android:layout_weight="3"
             >
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/donation_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -45,19 +44,26 @@
 
                 />
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="12sp"
                 android:layout_weight="2"
                 android:layout_marginBottom="5dp"
-                android:text="@string/donation_description"
-                android:maxLines="2"
-                android:lines="2"
-
+                android:text="@string/hint_user_name"
+                android:ellipsize="end"
                 />
-
+            <TextView
+                android:id="@+id/request_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_weight="2"
+                android:layout_marginBottom="5dp"
+                android:text="@string/order_date"
+                />
         </LinearLayout>
     </LinearLayout>
 
@@ -66,9 +72,9 @@
     <TextView
         android:id="@+id/quantity"
         android:layout_width="100dp"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:text="8"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/card_corner_txt_size"
         android:gravity="center"
         android:textAlignment="center"
@@ -76,18 +82,39 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         />
+
     <Button
-        android:id="@+id/donationOrder"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
+        android:id="@+id/accept"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
         android:textStyle="bold"
-        android:layout_weight="1"
-        android:textSize="16sp"
-        android:text="@string/donationOrder"
-        android:background="@drawable/bg_order_btn"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/accept"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_img_order"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="10dp"
-
         />
+
+    <Button
+        android:id="@+id/reject"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/reject"
+        android:background="@drawable/bg_img_order"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/accept"
+        android:layout_marginBottom="10dp"
+        />
+
+
 </RelativeLayout>

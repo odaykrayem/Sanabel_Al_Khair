@@ -30,9 +30,9 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
 
     SharedPrefManager prefManager;
 
-    AppBarConfiguration mAppBarConfiguration;
+    int destination = R.id.menu_my_services;
 
-    int destination = R.id.menu_donations;
+    AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +57,12 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
+
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_my_services, R.id.menu_service_requests, R.id.menu_charitable_events,R.id.menu_volunteer_profile, R.id.menu_report_problem).setOpenableLayout(drawerLayout).build();
+
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
         NavigationUI.setupWithNavController(navigationView, navController);
-
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -68,33 +70,13 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
 
     }
 
-//    private int getSelectedMenu() {
-//
-//        int userType = Constants.USER_TYPE_MAIN;
-//        int menuId = -1;
-//
-//        switch (userType){
-//            case Constants.USER_TYPE_ADMIN:
-//                menuId = R.menu.admin_nav_menu;
-//                break;
-//            case Constants.USER_TYPE_DONOR:
-//                menuId = R.menu.donor_nav_menu;
-//                break;
-//            case Constants.USER_TYPE_MAIN:
-//                menuId = R.menu.user_nav_menu;
-//                break;
-//            case Constants.USER_TYPE_VOLUNTEER:
-//                menuId = R.menu.volunteer_nav_menu;
-//                break;
-//
-//        }
-//        return menuId;
-//    }
 
 
     @Override
     public boolean onSupportNavigateUp() {
-        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.nav_host_fragment), drawerLayout);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 
     @Override
@@ -115,29 +97,28 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
 
         switch (id) {
 
-//            case R.id.menu_donations:
-//                destination = R.id.donationsFragment;
-//                break;
-//
-//            case R.id.menu_my_orders:
-//                destination = R.id.action_donationsFragment_to_ordersFragment;
-//                break;
-//
-//            case R.id.menu_charitable_events:
-//                destination = R.id.action_donationsFragment_to_charitableEventsFragment;
-//                break;
-//
-//            case R.id.menu_report_problem:
-////                navController.navigate(R.id.charitableEventsFragment);
-//                break;
-//
-//            case R.id.menu_share:
-////                navController.navigate(R.id.ordersFragment);
-//                break;
+            case R.id.menu_my_services:
+                destination = R.id.menu_my_services;
+                break;
+
+            case R.id.menu_service_requests:
+                destination = R.id.menu_service_requests;
+                break;
+
+            case R.id.menu_charitable_events:
+                destination = R.id.menu_charitable_events;
+                break;
+
+            case R.id.menu_volunteer_profile:
+                destination = R.id.menu_volunteer_profile;
+                break;
+            case R.id.menu_report_problem:
+                destination = R.id.menu_report_problem;
+                break;
 
         }
 
-//        drawerLayout.closeDrawers();
+        drawerLayout.closeDrawers();
 
         return true;
     }
@@ -155,7 +136,7 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
 
     @Override
     public void onDrawerClosed(@NonNull View drawerView) {
-//        navController.navigate(destination);
+        navController.navigate(destination);
     }
 
     @Override

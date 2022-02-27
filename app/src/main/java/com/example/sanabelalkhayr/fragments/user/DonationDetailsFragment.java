@@ -33,10 +33,7 @@ import org.json.JSONObject;
 public class DonationDetailsFragment extends Fragment {
 
     ImageView mImage;
-    TextView mNameTV;
-    TextView mCategoryTV;
-    TextView mDonorUserNameTV;
-    TextView mDetailsTV;
+    TextView mNameTV, mCategoryTV, mDonorUserNameTV, mDetailsTV;
     Button mOrderBtn;
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,14 +51,13 @@ public class DonationDetailsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             id = getArguments().getInt(KEY_ID);
             name = getArguments().getString(KEY_NAME);
-            details = getArguments().getString(KEY_NAME);
+            details = getArguments().getString(KEY_DETAILS);
             donorUserName = getArguments().getString(KEY_DONOR);
             image = getArguments().getString(KEY_IMAGE);
             category = getArguments().getString(KEY_CATEGORY);
@@ -79,10 +75,20 @@ public class DonationDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        bindViews(view);
-
-        updateUi();
+        mImage = view.findViewById(R.id.image);
+        mNameTV = view.findViewById(R.id.name);
+        mCategoryTV = view.findViewById(R.id.category);
+        mDonorUserNameTV = view.findViewById(R.id.donor_user_name);
+        mDetailsTV = view.findViewById(R.id.details);
+        mOrderBtn = view.findViewById(R.id.order_btn);
+        if(image != null)
+            Glide.with(getContext())
+                    .load(image)
+                    .into(mImage);
+        mNameTV.setText(name);
+        mCategoryTV.setText(category);
+        mDetailsTV.setText(details);
+        mDonorUserNameTV.setText(donorUserName);
 
         if(forDonor.equals("yes"))
             mOrderBtn.setVisibility(View.GONE);
@@ -91,37 +97,8 @@ public class DonationDetailsFragment extends Fragment {
                 orderItem(id);
             });
         }
-
-
-
     }
 
-
-    private void bindViews(View view) {
-        mImage = view.findViewById(R.id.image);
-        mNameTV = view.findViewById(R.id.name);
-        mCategoryTV = view.findViewById(R.id.category);
-        mDonorUserNameTV = view.findViewById(R.id.donor_user_name);
-        mDetailsTV = view.findViewById(R.id.details);
-        mOrderBtn = view.findViewById(R.id.order_btn);
-    }
-
-    private void updateUi() {
-
-        if(image != null)
-            Glide.with(getContext())
-                    .load(image)
-                    .into(mImage);
-
-        mNameTV.setText(name);
-
-        mCategoryTV.setText(category);
-
-        mDetailsTV.setText(details);
-
-        mDonorUserNameTV.setText(donorUserName);
-
-    }
 
     private void orderItem(int id) {
 
@@ -131,7 +108,7 @@ public class DonationDetailsFragment extends Fragment {
         pDialog.setMessage("Processing Please wait...");
         pDialog.show();
 
-        AndroidNetworking.post(Urls.GET_DONATIONS)
+        AndroidNetworking.post(Urls.ORDER_DONATION_URL)
                 .addBodyParameter("user_id", String.valueOf(userId))
                 .addBodyParameter("donation_id", String.valueOf(id))
                 .setPriority(Priority.MEDIUM)
@@ -145,29 +122,21 @@ public class DonationDetailsFragment extends Fragment {
                         try {
                             //converting response to json object
                             JSONObject obj = response;
-
                             //if no error in response
                             if (obj.getInt("status") == 1) {
-
                                 Toast.makeText(getContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-
                             } else if(obj.getInt("status") == -1){
                                 Toast.makeText(getContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
-
                     @Override
                     public void onError(ANError anError) {
                         pDialog.dismiss();
                         Toast.makeText(getContext(), anError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
-
-
 }

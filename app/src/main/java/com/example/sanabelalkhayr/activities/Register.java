@@ -162,9 +162,8 @@ public class Register extends AppCompatActivity {
         final String address = mAddressET.getText().toString();
 
 
-        String url = Urls.BASE_URL + Urls.REGISTER_URL;
 
-        AndroidNetworking.post(url)
+        AndroidNetworking.post(Urls.REGISTER_URL)
                 .addBodyParameter("type", String.valueOf(selectedUserType))
                 .addBodyParameter("name", name)
                 .addBodyParameter("phone", phone)

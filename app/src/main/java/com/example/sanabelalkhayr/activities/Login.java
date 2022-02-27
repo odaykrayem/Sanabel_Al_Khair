@@ -83,9 +83,8 @@ public class Login extends AppCompatActivity {
         pDialog.setMessage("Processing Please wait...");
         pDialog.show();
 
-        String url = Urls.BASE_URL + Urls.LOGIN_URL;
 
-        AndroidNetworking.post(url)
+        AndroidNetworking.post(Urls.LOGIN_URL)
                 .addBodyParameter("password", password)
                 .addBodyParameter("user_name", userName)
                 .setPriority(Priority.MEDIUM)

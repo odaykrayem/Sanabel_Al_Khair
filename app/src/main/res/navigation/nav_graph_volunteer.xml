@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph_volunteer">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_volunteer"
+    app:startDestination="@id/menu_my_services">
+
+    <fragment
+        android:id="@+id/menu_my_services"
+        android:name="com.example.sanabelalkhayr.fragments.volunteer.MyServicesFragment"
+        android:label="@string/my_services"
+        tools:layout="@layout/fragment_my_services" >
+        <action
+            android:id="@+id/action_myServicesFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/menu_my_services"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addServiceFragment"
+        android:name="com.example.sanabelalkhayr.fragments.volunteer.AddServiceFragment"
+        android:label="@string/add_service"
+        tools:layout="@layout/fragment_add_service" />
+    <fragment
+        android:id="@+id/menu_service_requests"
+        android:name="com.example.sanabelalkhayr.fragments.volunteer.ServicesRequestFragment"
+        android:label="@string/service_requests"
+        tools:layout="@layout/fragment_services_request" />
+    <fragment
+        android:id="@+id/menu_charitable_events"
+        android:name="com.example.sanabelalkhayr.fragments.CharitableEventsFragment"
+        android:label="@string/charitable_events"
+        tools:layout="@layout/fragment_charitable_events"/>
+    <fragment
+        android:id="@+id/menu_report_problem"
+        android:name="com.example.sanabelalkhayr.fragments.SendProblemReportFragment"
+        android:label="@string/send_report"
+        tools:layout="@layout/fragment_send_problem_report" />
+    <fragment
+        android:id="@+id/menu_volunteer_profile"
+        android:name="com.example.sanabelalkhayr.fragments.user.ProfileFragment"
+        android:label="@string/account"
+        tools:layout="@layout/fragment_user_profile" />
+
 
 </navigation>

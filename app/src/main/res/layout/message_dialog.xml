@@ -52,7 +52,7 @@
         android:layout_marginBottom="30dp"
         android:textAlignment="viewStart"
         android:textSize="20sp"
-        android:text="we are proccessing your order and you will hear from us very soon when the order is completed"
+        android:text="we are proccessing your donationOrder and you will hear from us very soon when the donationOrder is completed"
         />
 
 

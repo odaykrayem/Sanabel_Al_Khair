@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.model.Order;
+import com.example.sanabelalkhayr.model.DonationOrder;
 
 
 import java.util.ArrayList;
@@ -21,17 +21,14 @@ import java.util.List;
 
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder>{
 
-
     Context context;
-    private List<Order> orders;
-
+    private List<DonationOrder> donationOrders;
 
     // RecyclerView recyclerView;
-    public OrdersAdapter(Context context, ArrayList<Order> orders) {
+    public OrdersAdapter(Context context, ArrayList<DonationOrder> donationOrders) {
         this.context = context;
-        this.orders = orders;
+        this.donationOrders = donationOrders;
     }
-
 
     @NonNull
     @Override
@@ -43,26 +40,16 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
         return viewHolder;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Order order = orders.get(position);
+        DonationOrder donationOrder = donationOrders.get(position);
+        switch (donationOrder.getStatus()){
 
-
-        switch (order.getStatus()){
-//            case Constants.REQUEST_STATUS_NEW :
-//                holder.status.setTextColor(context.getResources().getColor(R.color.status_new));
-//                holder.status.setText(context.getResources().getString(R.string.status_new));
-//                break;
             case Constants.REQUEST_STATUS_ACCEPTED:
                 holder.status.setTextColor(context.getResources().getColor(R.color.status_accepted));
                 holder.status.setText(context.getResources().getString(R.string.status_accepted));
                 break;
-//            case Constants.REQUEST_STATUS_COMPLETE :
-//                holder.status.setTextColor(context.getResources().getColor(R.color.status_completed));
-//                holder.status.setText(context.getResources().getString(R.string.status_completed));
-//                break;
             case Constants.REQUEST_STATUS_REJECTED :
                 holder.status.setTextColor(context.getResources().getColor(R.color.status_rejected));
                 holder.status.setText(context.getResources().getString(R.string.status_rejected));
@@ -73,12 +60,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
         }
 
 
-        holder.date.setText(order.getCreatedAt());
-
-        holder.title.setText(order.getDonation_title());
-
-        holder.quantity.setText(String.valueOf(order.getQuantity()));
-
+        holder.date.setText(donationOrder.getCreatedAt());
+        holder.title.setText(donationOrder.getDonation_title());
+        holder.quantity.setText(String.valueOf(donationOrder.getQuantity()));
 
         holder.show_message.setOnClickListener(v -> {
             LayoutInflater factory = LayoutInflater.from(context);
@@ -90,19 +74,11 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
             TextView message = view.findViewById(R.id.message);
             TextView ok = view.findViewById(R.id.no_btn);
 
-            switch (order.getStatus()){
-//                case Constants.REQUEST_STATUS_NEW :
-//                    status.setTextColor(context.getResources().getColor(R.color.status_new));
-//                    status.setText(context.getResources().getString(R.string.status_new));
-//                    break;
+            switch (donationOrder.getStatus()){
                 case Constants.REQUEST_STATUS_ACCEPTED:
                     status.setTextColor(context.getResources().getColor(R.color.status_accepted));
                     status.setText(context.getResources().getString(R.string.status_accepted));
                     break;
-//                case Constants.REQUEST_STATUS_COMPLETE :
-//                    status.setTextColor(context.getResources().getColor(R.color.status_completed));
-//                    status.setText(context.getResources().getString(R.string.status_completed));
-//                    break;
                 case Constants.REQUEST_STATUS_REJECTED :
                     status.setTextColor(context.getResources().getColor(R.color.status_rejected));
                     status.setText(context.getResources().getString(R.string.status_rejected));
@@ -112,7 +88,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
                     status.setText(context.getResources().getString(R.string.status_new));
             }
 
-            message.setText(order.getMessage());
+            message.setText(donationOrder.getMessage());
 
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -122,19 +98,12 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
             });
             message_dialog.show();
         });
-
-
     }
-
-
-
 
     @Override
     public int getItemCount() {
-        return orders.size();
+        return donationOrders.size();
     }
-
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

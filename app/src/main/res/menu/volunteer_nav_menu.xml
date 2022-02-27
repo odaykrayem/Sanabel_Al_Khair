@@ -4,24 +4,31 @@
         android:id="@+id/menu_my_services"
         android:icon="@drawable/ic_service_black"
         android:title="@string/my_services"
-        android:actionLayout="@layout/fragment_donation_orders" />
+        android:actionLayout="@layout/fragment_my_services" />
     <item
-        android:id="@+id/menu_my_orders"
+        android:id="@+id/menu_service_requests"
         android:icon="@drawable/ic_orders"
-        android:title="@string/orders_list"
-        android:actionLayout="@layout/fragment_donation_orders"/>
+        android:title="@string/service_requests"
+        android:actionLayout="@layout/fragment_services_request"/>
 
     <item
         android:id="@+id/menu_charitable_events"
         android:icon="@drawable/ic_event"
         android:title="@string/charitable_events"
+        android:actionLayout="@layout/fragment_charitable_events" />
+    <item
+        android:id="@+id/menu_volunteer_profile"
+        android:icon="@drawable/ic_account"
+        android:title="@string/account"
+        android:actionLayout="@layout/fragment_user_profile" />
+
+    <item
+        android:id="@+id/menu_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout"
         android:actionLayout="@layout/fragment_donation_orders" />
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/menu_share"
-                android:icon="@drawable/ic_share"
-                android:title="@string/menu_share" />
             <item
                 android:id="@+id/menu_report_problem"
                 android:icon="@drawable/ic_report"

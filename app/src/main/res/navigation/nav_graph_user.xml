@@ -24,32 +24,40 @@
     <fragment
         android:id="@+id/donationDetailsFragment"
         android:name="com.example.sanabelalkhayr.fragments.user.DonationDetailsFragment"
-        android:label="fragment_donation_details"
+        android:label="@string/menu_donations"
         tools:layout="@layout/fragment_donation_details" />
+    <fragment
+        android:id="@+id/menu_my_donation_orders"
+        android:name="com.example.sanabelalkhayr.fragments.user.DonationOrdersFragment"
+        android:label="@string/my_donation_orders"
+        tools:layout="@layout/fragment_donation_orders" />
+    <fragment
+        android:id="@+id/menu_services_orders"
+        android:name="com.example.sanabelalkhayr.fragments.user.ServiceOrdersFragment"
+        android:label="@string/my_service_orders"
+        tools:layout="@layout/fragment_service_orders" />
+    <fragment
+        android:id="@+id/menu_search_services"
+        android:name="com.example.sanabelalkhayr.fragments.user.ServicesFragment"
+        android:label="@string/search_service"
+        tools:layout="@layout/fragment_services"/>
+
     <fragment
         android:id="@+id/menu_charitable_events"
         android:name="com.example.sanabelalkhayr.fragments.CharitableEventsFragment"
-        android:label="fragment_charitable_events"
+        android:label="@string/charitable_events"
         tools:layout="@layout/fragment_charitable_events" />
-    <fragment
-        android:id="@+id/menu_my_orders"
-        android:name="com.example.sanabelalkhayr.fragments.user.OrdersFragment"
-        android:label="fragment_orders"
-        tools:layout="@layout/fragment_donation_orders" />
+
     <fragment
         android:id="@+id/menu_profile"
         android:name="com.example.sanabelalkhayr.fragments.user.ProfileFragment"
-        android:label="ProfileFragment"
+        android:label="@string/account"
         tools:layout="@layout/fragment_user_profile"/>
+
     <fragment
-        android:id="@+id/servicesFragment"
-        android:name="com.example.sanabelalkhayr.fragments.user.ServicesFragment"
-        android:label="ServicesFragment"
-        tools:layout="@layout/fragment_services"/>
-    <fragment
-        android:id="@+id/sendProblemReportFragment"
+        android:id="@+id/menu_report_problem"
         android:name="com.example.sanabelalkhayr.fragments.SendProblemReportFragment"
-        android:label="fragment_send_problem_report"
+        android:label="@string/menu_report_problem"
         tools:layout="@layout/fragment_send_problem_report" />
 
 

@@ -58,7 +58,7 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_donations, R.id.menu_charitable_events, R.id.menu_my_orders, R.id.menu_profile, R.id.servicesFragment, R.id.sendProblemReportFragment).setOpenableLayout(drawerLayout).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_donations, R.id.menu_charitable_events, R.id.menu_my_donation_orders, R.id.menu_profile, R.id.menu_search_services, R.id.menu_report_problem).setOpenableLayout(drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
@@ -101,8 +101,8 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
                 destination = R.id.menu_donations;
                 break;
 
-            case R.id.menu_my_orders:
-                destination = R.id.menu_my_orders;
+            case R.id.menu_my_donation_orders:
+                destination = R.id.menu_my_donation_orders;
                 break;
 
             case R.id.menu_charitable_events:
@@ -113,10 +113,10 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
                 destination = R.id.menu_profile;
                 break;
             case R.id.menu_search_services:
-                destination = R.id.servicesFragment;
+                destination = R.id.menu_search_services;
                 break;
             case R.id.menu_report_problem:
-                destination = R.id.sendProblemReportFragment;
+                destination = R.id.menu_report_problem;
                 break;
 
         }

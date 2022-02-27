@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
+import com.example.sanabelalkhayr.api.Urls;
 import com.example.sanabelalkhayr.model.User;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
 
@@ -72,8 +73,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             return view;
         }
 
-    private void updateUserData() {
-    }
 
     @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -100,5 +99,10 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @Override
     public void onRefresh() {
         updateUserData();
+    }
+
+
+    private void updateUserData() {
+            String url = Urls.UPDATE_ACC_URL;
     }
 }

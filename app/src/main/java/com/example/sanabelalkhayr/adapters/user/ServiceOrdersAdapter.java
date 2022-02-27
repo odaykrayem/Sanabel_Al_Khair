@@ -12,7 +12,9 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.sanabelalkhayr.Constants;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.model.Order;
+import com.example.sanabelalkhayr.model.DonationOrder;
+import com.example.sanabelalkhayr.model.ServiceOrder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +22,14 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
 
 
     Context context;
-    private List<Order> orders;
+    private List<ServiceOrder> list;
     public NavController navController;
 
 
     // RecyclerView recyclerView;
-    public ServiceOrdersAdapter(Context context, ArrayList<Order> orders) {
+    public ServiceOrdersAdapter(Context context, ArrayList<ServiceOrder> list) {
         this.context = context;
-        this.orders = orders;
+        this.list = list;
     }
 
 
@@ -35,7 +37,7 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.item_order, parent, false);
+        View listItem= layoutInflater.inflate(R.layout.item_service_order, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
 
         return viewHolder;
@@ -45,39 +47,29 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Order order = orders.get(position);
+        ServiceOrder obj = list.get(position);
 
 
-        switch (order.getStatus()){
-//            case Constants.REQUEST_STATUS_NEW :
+//        switch (obj.getStatus()){
+//            case Constants.REQUEST_STATUS_ACCEPTED:
+//                holder.status.setTextColor(context.getResources().getColor(R.color.status_accepted));
+//                holder.status.setText(context.getResources().getString(R.string.status_accepted));
+//                break;
+//            case Constants.REQUEST_STATUS_REJECTED :
+//                holder.status.setTextColor(context.getResources().getColor(R.color.status_rejected));
+//                holder.status.setText(context.getResources().getString(R.string.status_rejected));
+//                break;
+//            default:
 //                holder.status.setTextColor(context.getResources().getColor(R.color.status_new));
 //                holder.status.setText(context.getResources().getString(R.string.status_new));
-//                break;
-            case Constants.REQUEST_STATUS_ACCEPTED:
-                holder.status.setTextColor(context.getResources().getColor(R.color.status_accepted));
-                holder.status.setText(context.getResources().getString(R.string.status_accepted));
-                break;
-//            case Constants.REQUEST_STATUS_COMPLETE :
-//                holder.status.setTextColor(context.getResources().getColor(R.color.status_completed));
-//                holder.status.setText(context.getResources().getString(R.string.status_completed));
-//                break;
-            case Constants.REQUEST_STATUS_REJECTED :
-                holder.status.setTextColor(context.getResources().getColor(R.color.status_rejected));
-                holder.status.setText(context.getResources().getString(R.string.status_rejected));
-                break;
-            default:
-                holder.status.setTextColor(context.getResources().getColor(R.color.status_new));
-                holder.status.setText(context.getResources().getString(R.string.status_new));
-        }
+//        }
 
 
-        holder.date.setText(order.getCreatedAt());
+        holder.date.setText(obj.getCreatedAt());
 
-        holder.title.setText(order.getDonation_title());
+        holder.title.setText(obj.getDonation_title());
 
-        holder.quantity.setText(String.valueOf(order.getQuantity()));
-
-
+//        holder.quantity.setText(String.valueOf(obj.getQuantity()));
         holder.show_message.setOnClickListener(v -> {
             LayoutInflater factory = LayoutInflater.from(context);
             final View view = factory.inflate(R.layout.message_dialog, null);
@@ -88,19 +80,11 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
             TextView message = view.findViewById(R.id.message);
             TextView ok = view.findViewById(R.id.no_btn);
 
-            switch (order.getStatus()){
-//                case Constants.REQUEST_STATUS_NEW :
-//                    status.setTextColor(context.getResources().getColor(R.color.status_new));
-//                    status.setText(context.getResources().getString(R.string.status_new));
-//                    break;
+            switch (obj.getStatus()){
                 case Constants.REQUEST_STATUS_ACCEPTED:
                     status.setTextColor(context.getResources().getColor(R.color.status_accepted));
                     status.setText(context.getResources().getString(R.string.status_accepted));
                     break;
-//                case Constants.REQUEST_STATUS_COMPLETE :
-//                    status.setTextColor(context.getResources().getColor(R.color.status_completed));
-//                    status.setText(context.getResources().getString(R.string.status_completed));
-//                    break;
                 case Constants.REQUEST_STATUS_REJECTED :
                     status.setTextColor(context.getResources().getColor(R.color.status_rejected));
                     status.setText(context.getResources().getString(R.string.status_rejected));
@@ -110,7 +94,7 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
                     status.setText(context.getResources().getString(R.string.status_new));
             }
 
-            message.setText(order.getMessage());
+            message.setText(obj.getMessage());
 
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -131,7 +115,7 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
 
     @Override
     public int getItemCount() {
-        return orders.size();
+        return list.size();
     }
 
 
@@ -140,16 +124,14 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
 
         public TextView date;
         public TextView title;
-        public TextView quantity;
-        public TextView status;
+        public TextView volunteerName;
         public Button show_message;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.date = itemView.findViewById(R.id.date);
             this.title = itemView.findViewById(R.id.title);
-            this.quantity = itemView.findViewById(R.id.quantity);
-            this.status = itemView.findViewById(R.id.response);
+            this.volunteerName = itemView.findViewById(R.id.volunteer_name);
             this.show_message = itemView.findViewById(R.id.show_message);
         }
     }

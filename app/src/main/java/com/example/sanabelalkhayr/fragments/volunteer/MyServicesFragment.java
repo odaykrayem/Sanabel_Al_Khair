@@ -1,4 +1,4 @@
-package com.example.sanabelalkhayr.fragments.donor;
+package com.example.sanabelalkhayr.fragments.volunteer;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,29 +17,24 @@ import android.view.ViewGroup;
 
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.adapters.donor.MyDonationsAdapter;
+import com.example.sanabelalkhayr.adapters.volunteer.MyServicesAdapter;
 import com.example.sanabelalkhayr.model.Donation;
+import com.example.sanabelalkhayr.model.Service;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-
-public class MyDonationsFragment extends Fragment {
-
+public class MyServicesFragment extends Fragment {
 
     SearchView searchView;
-    ArrayList<Donation> donations;
+    ArrayList<Service> services;
     RecyclerView mList;
-    MyDonationsAdapter mAdapter;
+    MyServicesAdapter mAdapter;
 
     FloatingActionButton mAddBtn;
     NavController navController;
 
     Context ctx;
-
-    public MyDonationsFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -47,11 +42,22 @@ public class MyDonationsFragment extends Fragment {
         this.ctx = context;
     }
 
+    public MyServicesFragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_donations, container, false);
+        return inflater.inflate(R.layout.fragment_my_services, container, false);
     }
 
     @Override
@@ -62,24 +68,15 @@ public class MyDonationsFragment extends Fragment {
         searchView = view.findViewById(R.id.search);
         mAddBtn = view.findViewById(R.id.add_btn);
 
-        donations = new ArrayList<Donation>(){{
-            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
-            add(new Donation(1, "pizza", "good burger", null, "food", 7, "peace maker"));
-            add(new Donation(1, "cloths", "good burger", null, "cloth", 7, "peace maker"));
-            add(new Donation(1, "sandals", "good burger", null, "cloth", 7, "peace maker"));
-            add(new Donation(1, "cheese", "good burger", null, "food", 7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null, "food", 7, "peace maker"));
-
+        services = new ArrayList<Service>(){{
+           add(new Service(1, "new service", "ahsaa"));
+           add(new Service(1, "new service", "ahsaa"));
+           add(new Service(1, "my service", "ahsaa"));
+           add(new Service(1, "order", "ahsaa"));
 
         }};
 
-        mAdapter = new MyDonationsAdapter(getContext(), donations);
+        mAdapter = new MyServicesAdapter(getContext(), services);
         mList.setAdapter(mAdapter);
 
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
@@ -97,7 +94,7 @@ public class MyDonationsFragment extends Fragment {
 
         mAddBtn.setOnClickListener(v -> {
             navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_myDonationsFragment_to_addDonationFragment);
+            navController.navigate(R.id.action_myServicesFragment_to_addServiceFragment);
         });
 
     }
