@@ -1,5 +1,7 @@
 package com.example.sanabelalkhayr.api;
 
+import java.util.Base64;
+
 public class Urls {
 
 
@@ -18,17 +20,22 @@ public class Urls {
     public static final String GET_DONATIONS = BASE_URL +"";
     public static final String ORDER_DONATION_URL = BASE_URL +"";
     public static final String GET_CATEGORIES = BASE_URL +"" ;
-    public static final String GET_ORDERS = BASE_URL +"";
+    public static final String GET_DONATION_ORDERS = BASE_URL +"";
     public static final String GET_SERVICES = BASE_URL + "";
     public static final String GET_SERVICE_ORDERS = BASE_URL + "";
 
 
     //DONOR
     public static final String ADD_DONATION_URL = BASE_URL +"";
+    public static final String GET_REGIONS = BASE_URL + "";
+    public static final String GET_ORDERS_REQUESTS = BASE_URL + "";
+    public static final String GET_DONATIONS_BY_DONOR = BASE_URL + "";
+    public static final String UPDATE_REQUEST_STATUS = BASE_URL + ""; //accept or reject request
 
     //VOLUNTEER
     public static final String ADD_SERVICE_URL = BASE_URL +"";
     public static final String GET_MY_SERVICES_URL = BASE_URL +"";
+
 
 
     //ADMIN
