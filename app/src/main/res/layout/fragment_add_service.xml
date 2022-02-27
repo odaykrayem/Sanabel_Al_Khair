@@ -1,14 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.volunteer.AddServiceFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.donor.AddDonationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/image_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        android:layout_margin="16dp">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="top"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_add_image"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:translationZ="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_above="@id/save"
+        android:layout_below="@id/image_container">
 
-</FrameLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:hint="@string/donation_title"
+                android:textSize="18sp"
+                android:inputType="text"
+                android:backgroundTint="@color/secondary"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/category_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="@string/category"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <FrameLayout
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_img_order"
+                    android:layout_toEndOf="@id/category_title"
+                    android:layout_marginStart="30dp"
+                    >
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/category_chooser"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tooltipText="@string/categories"
+                        android:prompt="@string/categories"
+                        android:backgroundTint="@color/white"
+                        />
+                </FrameLayout>
+
+
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/region_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="@string/region"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <FrameLayout
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_img_order"
+                    android:layout_toEndOf="@id/region_title"
+                    android:layout_marginStart="45dp"
+                    >
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/region_chooser"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tooltipText="@string/regions"
+                        android:prompt="@string/regions"
+                        android:backgroundTint="@color/white"
+                        />
+                </FrameLayout>
+
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/quantity_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quantity"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_weight="3"/>
+
+                <ImageView
+                    android:id="@+id/minus_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_toEndOf="@id/quantity_title"
+                    android:layout_marginStart="30dp"
+                    android:src="@drawable/ic_baseline_remove_24"/>
+
+                <TextView
+                    android:id="@+id/quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_toEndOf="@id/minus_icon"
+                    android:layout_marginStart="16dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_weight="3"/>
+
+                <ImageView
+                    android:id="@+id/add_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_toEndOf="@id/quantity"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_add_24"/>
+
+
+            </RelativeLayout>
+
+
+
+            <EditText
+                android:id="@+id/details"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:lines="5"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:backgroundTint="@color/secondary"
+                android:hint="@string/hint_details"
+                android:isScrollContainer="true"
+                android:overScrollMode="never"
+                android:scrollbars="none"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:id="@+id/save"
+        android:text="@string/save_donation"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_img_order"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:drawableTint="@color/white"
+        android:drawableEnd="@drawable/ic_forward"
+        android:layout_marginTop="20dp"
+        />
+
+
+
+</RelativeLayout>
