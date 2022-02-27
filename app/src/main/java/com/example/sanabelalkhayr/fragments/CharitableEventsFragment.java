@@ -52,14 +52,14 @@ public class CharitableEventsFragment extends Fragment {
         mList = view.findViewById(R.id.rv);
 
         charitableEvents = new ArrayList<CharitableEvent>(){{
-            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah"));
-            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah"));
-
-            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah"));
-            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah"));
-            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah"));
-            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah"));
-
+            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah", true));
+            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah", false));
+            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah", true));
+            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah", true));
+            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah", true));
+            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah", true));
+            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah", true));
+            add(new CharitableEvent(1, "jjj", "2-2-2022", "3-2-2022", "jaddah", true));
         }};
 
         mAdapter = new EventsAdapter(ctx, charitableEvents);

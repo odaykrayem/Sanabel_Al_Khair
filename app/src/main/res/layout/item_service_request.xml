@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_toStartOf="@id/quantity"
+        android:layout_toStartOf="@id/status"
         android:layout_alignParentStart="true"
         android:background="@drawable/bg_item_donation">
 
@@ -70,12 +70,13 @@
 
 
     <TextView
-        android:id="@+id/quantity"
+        android:id="@+id/status"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="8"
+        android:text="accepted"
+        android:padding="4dp"
         android:textColor="@color/white"
-        android:textSize="@dimen/card_corner_txt_size"
+        android:textSize="14sp"
         android:gravity="center"
         android:textAlignment="center"
         android:background="@drawable/bg_item_quantity"
