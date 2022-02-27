@@ -95,5 +95,9 @@
     <string name="delete">Delete</string>
     <string name="add_service">Add Service</string>
     <string name="save_service">Save Service</string>
+    <string name="users_list">Users List</string>
+    <string name="events_list">Events List</string>
+    <string name="add_event">Add Event</string>
+    <string name="user_details">User Details</string>
 
 </resources>

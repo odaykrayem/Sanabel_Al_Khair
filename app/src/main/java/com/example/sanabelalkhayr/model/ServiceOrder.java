@@ -3,8 +3,8 @@ package com.example.sanabelalkhayr.model;
 public class ServiceOrder {
         private int id;
         private int donation_id;
-    private int service_id;
-    private String donation_title;
+         private int service_id;
+         private String donation_title;
         private  String volunteer_name;
         private int status;
         private String message;

@@ -12,6 +12,7 @@ public class Urls {
     public static final String RESET_PASSWORD_URL = BASE_URL + "";
     public static final String UPDATE_ACC_URL = BASE_URL +"";
     public static final String FEEDBACK_URL = BASE_URL +"";
+    public static final String GET_EVENTS_FOR_USERS = BASE_URL +"";
 
     //NEEdY
     public static final String GET_DONATIONS = BASE_URL +"";
@@ -28,9 +29,13 @@ public class Urls {
     //VOLUNTEER
     public static final String ADD_SERVICE_URL = BASE_URL +"";
     public static final String GET_MY_SERVICES_URL = BASE_URL +"";
-    public static final String ADD_DONATION_URL = BASE_URL +"";
 
 
     //ADMIN
+
+    public static final String GET_USERS_URL = BASE_URL +"";
+    public static final String GET_EVENTS_URL = BASE_URL +"";
+    public static final String DELETE_USER_URL = BASE_URL +"";
+    public static final String ADD_EVENT_URL = BASE_URL +"";
 
 }
