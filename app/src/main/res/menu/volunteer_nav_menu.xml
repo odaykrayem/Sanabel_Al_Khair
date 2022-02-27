@@ -9,7 +9,7 @@
         android:id="@+id/menu_service_requests"
         android:icon="@drawable/ic_orders"
         android:title="@string/service_requests"
-        android:actionLayout="@layout/fragment_services_request"/>
+        android:actionLayout="@layout/fragment_service_requests"/>
 
     <item
         android:id="@+id/menu_charitable_events"

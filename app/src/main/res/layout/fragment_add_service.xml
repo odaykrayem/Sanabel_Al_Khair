@@ -1,14 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.volunteer.AddServiceFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.donor.AddDonationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <androidx.core.widget.NestedScrollView
+        android:translationZ="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_above="@id/save"
+        >
 
-</FrameLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:hint="@string/donation_title"
+                android:textSize="18sp"
+                android:inputType="text"
+                android:backgroundTint="@color/secondary"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+
+
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/region_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="@string/region"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <FrameLayout
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_img_order"
+                    android:layout_toEndOf="@id/region_title"
+                    android:layout_marginStart="45dp"
+                    >
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/region_chooser"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tooltipText="@string/regions"
+                        android:prompt="@string/regions"
+                        android:backgroundTint="@color/white"
+                        />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/service_description"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                />
+
+
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:lines="5"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:backgroundTint="@color/secondary"
+                android:hint="@string/hint_details"
+                android:isScrollContainer="true"
+                android:overScrollMode="never"
+                android:scrollbars="none"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/save_service"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_img_order"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:drawableTint="@color/white"
+        android:drawableEnd="@drawable/ic_forward"
+        android:layout_marginTop="20dp"
+        android:textAllCaps="false"
+        />
+
+
+
+</RelativeLayout>

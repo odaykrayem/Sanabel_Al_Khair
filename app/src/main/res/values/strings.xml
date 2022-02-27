@@ -94,5 +94,6 @@
     <string name="service_requests">Service Requests</string>
     <string name="delete">Delete</string>
     <string name="add_service">Add Service</string>
+    <string name="save_service">Save Service</string>
 
 </resources>

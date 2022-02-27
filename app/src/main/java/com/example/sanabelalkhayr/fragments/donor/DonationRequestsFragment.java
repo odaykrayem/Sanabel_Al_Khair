@@ -20,7 +20,7 @@ import com.example.sanabelalkhayr.model.DonationOrder;
 import java.util.ArrayList;
 
 
-public class UserOrdersFragment extends Fragment {
+public class DonationRequestsFragment extends Fragment {
 
     Context ctx;
 
@@ -35,7 +35,7 @@ public class UserOrdersFragment extends Fragment {
         ctx = context;
     }
 
-    public UserOrdersFragment() {
+    public DonationRequestsFragment() {
         // Required empty public constructor
     }
 
@@ -45,7 +45,7 @@ public class UserOrdersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_orders, container, false);
+        return inflater.inflate(R.layout.fragment_donation_requests, container, false);
     }
 
     @Override

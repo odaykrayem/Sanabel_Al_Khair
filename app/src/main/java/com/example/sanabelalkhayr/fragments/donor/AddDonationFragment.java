@@ -153,11 +153,11 @@ public class AddDonationFragment extends Fragment {
         regionsList.add("jaddah");
         regionsList.add("alryadh");
 
-        ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, categoriesList);
+        ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, regionsList);
         categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mRegionsChooser.setAdapter(categoriesAdapter);
         mRegionsChooser.setSelection(0);
-        selectedRegion = categoriesList.get(0);
+        selectedRegion = regionsList.get(0);
 
         //set on category chosen listener
         mRegionsChooser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -168,6 +168,7 @@ public class AddDonationFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
