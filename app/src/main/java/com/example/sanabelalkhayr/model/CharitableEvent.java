@@ -6,13 +6,23 @@ public class CharitableEvent {
     private String start_at;
     private String end_at;
     private String address;
+    private boolean interested;
 
-    public CharitableEvent(int id, String description, String start_at, String end_at, String address) {
+    public CharitableEvent(int id, String description, String start_at, String end_at, String address, boolean interested) {
         this.id = id;
         this.description = description;
         this.start_at = start_at;
         this.end_at = end_at;
         this.address = address;
+        this.interested = interested;
+    }
+
+    public boolean isInterested() {
+        return interested;
+    }
+
+    public void setInterested(boolean interested) {
+        this.interested = interested;
     }
 
     public int getId() {

@@ -51,10 +51,20 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         holder.end_at.setText(event.getEnd_at());
 
 
+        if(event.isInterested()){
+            holder.interested.setBackgroundColor(context.getResources().getColor(R.color.white));
+        }else {
+            holder.interested.setBackground(context.getResources().getDrawable(R.drawable.bg_interested_btn));
+        }
+
         holder.interested.setOnClickListener(v -> {
-            holder.interested.setPressed(true);
+            registerInterested(event);
         });
 
+
+    }
+
+    private void registerInterested(CharitableEvent event) {
 
     }
 
