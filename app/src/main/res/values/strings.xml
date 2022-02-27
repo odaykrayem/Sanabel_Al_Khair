@@ -99,5 +99,9 @@
     <string name="events_list">Events List</string>
     <string name="add_event">Add Event</string>
     <string name="user_details">User Details</string>
+    <string name="post_event">Post Event</string>
+    <string name="hint_start_date">Start date</string>
+    <string name="hint_end_date">End date</string>
+    <string name="event_description">Event Description</string>
 
 </resources>
