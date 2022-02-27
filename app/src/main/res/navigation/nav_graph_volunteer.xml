@@ -28,9 +28,9 @@
         tools:layout="@layout/fragment_add_service" />
     <fragment
         android:id="@+id/menu_service_requests"
-        android:name="com.example.sanabelalkhayr.fragments.volunteer.ServicesRequestFragment"
+        android:name="com.example.sanabelalkhayr.fragments.volunteer.ServiceRequestsFragment"
         android:label="@string/service_requests"
-        tools:layout="@layout/fragment_services_request" />
+        tools:layout="@layout/fragment_service_requests" />
     <fragment
         android:id="@+id/menu_charitable_events"
         android:name="com.example.sanabelalkhayr.fragments.CharitableEventsFragment"

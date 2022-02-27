@@ -49,10 +49,10 @@
         android:label="fragment_send_problem_report"
         tools:layout="@layout/fragment_send_problem_report" />
     <fragment
-        android:id="@+id/menu_user_orders"
-        android:name="com.example.sanabelalkhayr.fragments.donor.UserOrdersFragment"
+        android:id="@+id/menu_received_orders"
+        android:name="com.example.sanabelalkhayr.fragments.donor.DonationRequestsFragment"
         android:label="fragment_user_orders"
-        tools:layout="@layout/fragment_user_orders" />
+        tools:layout="@layout/fragment_donation_requests" />
     <fragment
         android:id="@+id/menu_donor_profile"
         android:name="com.example.sanabelalkhayr.fragments.user.ProfileFragment"

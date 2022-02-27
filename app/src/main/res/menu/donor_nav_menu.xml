@@ -7,7 +7,7 @@
             android:title="@string/my_donations" />
 
         <item
-            android:id="@+id/menu_user_orders"
+            android:id="@+id/menu_received_orders"
             android:icon="@drawable/ic_orders"
             android:title="@string/orders_list"
             android:actionLayout="@layout/fragment_donation_orders"/>
@@ -25,18 +25,18 @@
             android:actionLayout="@layout/fragment_user_profile" />
 
         <item
+            android:id="@+id/menu_report_problem"
+            android:icon="@drawable/ic_report"
+            android:title="@string/menu_report_problem" />
+
+        <item
             android:id="@+id/menu_logout"
             android:icon="@drawable/ic_logout"
             android:title="@string/logout"
             android:actionLayout="@layout/fragment_donation_orders" />
-        <item android:title="Communicate">
-            <menu>
-                <item
-                    android:id="@+id/menu_report_problem"
-                    android:icon="@drawable/ic_report"
-                    android:title="@string/menu_report_problem" />
-            </menu>
-        </item>
+
+
+
 
     </group>
 </menu>
