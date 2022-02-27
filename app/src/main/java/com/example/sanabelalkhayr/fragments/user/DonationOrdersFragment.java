@@ -72,6 +72,6 @@ public class DonationOrdersFragment extends Fragment {
 
     private void getOrders(){
 
-        String url = Urls.GET_ORDERS;
+        String url = Urls.GET_DONATION_ORDERS;
     }
 }

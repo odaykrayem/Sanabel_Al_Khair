@@ -39,7 +39,7 @@ public class UserOrdersAdapter extends RecyclerView.Adapter<UserOrdersAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.item_order, parent, false);
+        View listItem= layoutInflater.inflate(R.layout.item_order_donor, parent, false);
 
         return new ViewHolder(listItem);
     }

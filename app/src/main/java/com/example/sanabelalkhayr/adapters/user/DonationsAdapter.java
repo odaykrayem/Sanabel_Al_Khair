@@ -262,7 +262,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
             this.title = itemView.findViewById(R.id.title);
             this.image = itemView.findViewById(R.id.image);
             this.quantity = itemView.findViewById(R.id.quantity);
-            this.orderBtn = itemView.findViewById(R.id.order);
+            this.orderBtn = itemView.findViewById(R.id.donationOrder);
         }
     }
 
