@@ -26,16 +26,18 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".activities.VolunteerMain">
+
+        </activity>
+        <activity android:name=".activities.DonorMain" >
+
+        </activity>
+        <activity android:name=".activities.AdminMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.DonorMain" >
-
-        </activity>
-        <activity android:name=".activities.AdminMain" />
         <activity android:name=".activities.Splash" />
         <activity android:name=".activities.UpdateProfile" />
         <activity android:name=".activities.Profile" />

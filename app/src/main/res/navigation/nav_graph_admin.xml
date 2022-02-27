@@ -46,10 +46,11 @@
         android:name="com.example.sanabelalkhayr.fragments.admin.AddEventFragment"
         android:label="@string/add_event"
         tools:layout="@layout/fragment_user_details" />
+
     <fragment
         android:id="@+id/menu_reports"
         android:name="com.example.sanabelalkhayr.fragments.admin.ProblemReports"
-        android:label="fragment_problem_reports"
+        android:label="@string/problem_reports"
         tools:layout="@layout/fragment_problem_reports" />
 
 </navigation>

@@ -145,7 +145,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
             this.description = itemView.findViewById(R.id.description);
             this.region = itemView.findViewById(R.id.region);
             this.status = itemView.findViewById(R.id.status);
-            this.order = itemView.findViewById(R.id.order);
+            this.order = itemView.findViewById(R.id.donationOrder);
         }
     }
 

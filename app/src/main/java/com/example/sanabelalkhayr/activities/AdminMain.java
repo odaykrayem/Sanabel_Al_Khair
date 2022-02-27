@@ -57,7 +57,7 @@ public class AdminMain extends AppCompatActivity implements NavigationView.OnNav
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_events, R.id.menu_users).setOpenableLayout(drawerLayout).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_events, R.id.menu_users, R.id.menu_reports).setOpenableLayout(drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
