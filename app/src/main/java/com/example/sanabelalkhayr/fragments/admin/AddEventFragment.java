@@ -16,7 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.api.Urls;
+import com.example.sanabelalkhayr.utils.Urls;
 import com.example.sanabelalkhayr.utils.Validation;
 
 import java.util.Calendar;

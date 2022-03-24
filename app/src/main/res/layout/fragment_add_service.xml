@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:hint="@string/donation_title"
+                android:hint="@string/service_title"
                 android:textSize="18sp"
                 android:inputType="text"
                 android:backgroundTint="@color/secondary"

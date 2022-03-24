@@ -11,8 +11,14 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.model.CharitableEvent;
+
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
 
@@ -52,9 +58,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
 
         if(event.isInterested()){
-            holder.interested.setBackgroundColor(context.getResources().getColor(R.color.white));
+            holder.interested.setText(context.getResources().getString(R.string.waiting));
         }else {
-            holder.interested.setBackground(context.getResources().getDrawable(R.drawable.bg_interested_btn));
+            holder.interested.setText(context.getResources().getString(R.string.interested_in));
         }
 
         holder.interested.setOnClickListener(v -> {
@@ -92,6 +98,14 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             this.interested = itemView.findViewById(R.id.interested);
         }
     }
+    private Date stringToDate(String aDate, String aFormat) {
 
+        if(aDate==null) return null;
+        ParsePosition pos = new ParsePosition(0);
+        SimpleDateFormat simpledateformat = new SimpleDateFormat(aFormat);
+        Date stringDate = simpledateformat.parse(aDate, pos);
+        return stringDate;
+
+    }
 
 }

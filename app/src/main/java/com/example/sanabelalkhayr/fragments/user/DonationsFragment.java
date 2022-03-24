@@ -1,5 +1,6 @@
 package com.example.sanabelalkhayr.fragments.user;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -10,50 +11,54 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.adapters.user.DonationsAdapter;
-import com.example.sanabelalkhayr.api.Urls;
+import com.example.sanabelalkhayr.utils.Urls;
 import com.example.sanabelalkhayr.model.Donation;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 
 public class DonationsFragment extends Fragment {
 
-    Context ctx;
-
-    ArrayList<Donation> donations;
+    Context context;
     RecyclerView mList;
     DonationsAdapter mAdapter;
     SearchView searchView;
 
+    ArrayList<Donation> donationsList;
     ArrayList<String> categoriesList;
-
     String selectedCategory;
 
     AppCompatSpinner mCategoriesChooser;
+    ProgressDialog pDialog;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        ctx = context;
+        this.context = context;
     }
 
     public DonationsFragment() {
-        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_donations, container, false);
     }
 
@@ -61,39 +66,35 @@ public class DonationsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         mList = view.findViewById(R.id.rv);
         mCategoriesChooser = view.findViewById(R.id.category_chooser);
         searchView = view.findViewById(R.id.search);
+        pDialog = new ProgressDialog(context);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Processing Please wait...");
 
-        setUpCategoryChooser();
+//        donationsList = new ArrayList<Donation>(){{
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
+//        }};
+
 
         getDonations();
-        donations = new ArrayList<Donation>(){{
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-            add(new Donation(1, "burger", "good burger", null,"food",  7, "peace maker"));
-        }};
-
-
-
-        mAdapter = new DonationsAdapter(ctx, donations, null);
-
-        mList.setAdapter(mAdapter);
-
+        getAllCategories();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -111,42 +112,109 @@ public class DonationsFragment extends Fragment {
 
     private void setUpCategoryChooser() {
 
-        //get and show the categories data
-        getAllCategories();
+        if (categoriesList == null || categoriesList.isEmpty()) {
+            mCategoriesChooser.setEnabled(false);
+        } else {
+            selectedCategory = categoriesList.get(0);
+            ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, categoriesList);
+            categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            mCategoriesChooser.setAdapter(categoriesAdapter);
 
-        categoriesList = new ArrayList<>();
-        categoriesList.add("food");
-        categoriesList.add("clothes");
-        selectedCategory= categoriesList.get(0);
+            //set on category chosen listener
+            mCategoriesChooser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    selectedCategory = categoriesList.get(position);
+                    mAdapter.getFilter().filter("" + ":" + selectedCategory);
+                }
 
-        ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, categoriesList);
-        categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mCategoriesChooser.setAdapter(categoriesAdapter);
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-        //set on category chosen listener
-        mCategoriesChooser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCategory = categoriesList.get(position);
-                mAdapter.getFilter().filter("" + ":" + selectedCategory);
-
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+                }
+            });
+        }
     }
 
     //todo api call (get all categories)
     private void getAllCategories() {
         String url = Urls.GET_CATEGORIES;
+        categoriesList = new ArrayList<String>();
+        pDialog = new ProgressDialog(getContext());
+        pDialog.setMessage("Processing Please wait...");
+        pDialog.show();
 
+        AndroidNetworking.get(url)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject obj = response.getJSONObject(0);
+                                categoriesList.add(
+                                        obj.getString("name")
+                                );
+                            }
+                            setUpCategoryChooser();
+                            pDialog.dismiss();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            pDialog.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        pDialog.dismiss();
+                        Toast.makeText(requireContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     //todo api call (get all donations)
     private void getDonations() {
         String url = Urls.GET_DONATIONS;
+        donationsList = new ArrayList<Donation>();
+        pDialog = new ProgressDialog(getContext());
+        pDialog.setMessage("Processing Please wait...");
+        pDialog.show();
+        AndroidNetworking.get(url)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject obj = response.getJSONObject(0);
+                                donationsList.add(
+                                        new Donation(
+                                                Integer.parseInt(obj.getString("id")),
+                                                obj.getString("title"),
+                                                obj.getString("description"),
+                                                obj.getString("image"),
+                                                obj.getString("category"),
+                                                Integer.parseInt(obj.getString("quantity")),
+                                                obj.getString("donorUserName")
+                                        )
+                                );
+                            }
+                            mAdapter = new DonationsAdapter(context, donationsList, null);
+                            mList.setAdapter(mAdapter);
+                            pDialog.dismiss();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            pDialog.dismiss();
+                        }
+                    }
 
+                    @Override
+                    public void onError(ANError error) {
+                        pDialog.dismiss();
+                        Toast.makeText(requireContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

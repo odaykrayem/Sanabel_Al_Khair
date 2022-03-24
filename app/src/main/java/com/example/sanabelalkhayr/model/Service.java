@@ -4,6 +4,7 @@ public class Service {
 
     private int id;
     private String volunteerName;
+
     private String description;
     private String region;
 

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sanabelalkhayr.Constants;
+import com.example.sanabelalkhayr.utils.Constants;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.model.DonationOrder;
 
@@ -72,7 +72,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
 
             TextView status = view.findViewById(R.id.status);
             TextView message = view.findViewById(R.id.message);
-            TextView ok = view.findViewById(R.id.no_btn);
+            TextView ok = view.findViewById(R.id.ok_btn);
 
             switch (donationOrder.getStatus()){
                 case Constants.REQUEST_STATUS_ACCEPTED:

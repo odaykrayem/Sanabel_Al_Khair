@@ -32,16 +32,18 @@
 
         </activity>
         <activity android:name=".activities.AdminMain">
+
+        </activity>
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Splash" />
-        <activity android:name=".activities.UpdateProfile" />
-        <activity android:name=".activities.Profile" />
-        <activity android:name=".activities.Login" />
+        <activity android:name=".activities.Login">
+
+        </activity>
         <activity android:name=".activities.Register" />
         <activity android:name=".activities.UserMain">
 

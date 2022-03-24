@@ -105,5 +105,12 @@
     <string name="hint_start_date">Start date</string>
     <string name="hint_end_date">End date</string>
     <string name="event_description">Event Description</string>
+    <string name="response">Response</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="please_add_quantity">Please add quantity</string>
+    <string name="please_choose_quantity">Please enter number minimum or equal to quantity</string>
+    <string name="leave_empty">Leave this field empty if you dont want to change password</string>
+    <string name="waiting">waiting</string>
+    <string name="interested_in">interested in</string>
 
 </resources>

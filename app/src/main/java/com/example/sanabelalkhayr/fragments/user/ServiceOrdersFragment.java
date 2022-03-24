@@ -11,14 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.contentcapture.ContentCaptureSession;
 
-import com.example.sanabelalkhayr.Constants;
+import com.example.sanabelalkhayr.utils.Constants;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.adapters.user.OrdersAdapter;
 import com.example.sanabelalkhayr.adapters.user.ServiceOrdersAdapter;
-import com.example.sanabelalkhayr.api.Urls;
-import com.example.sanabelalkhayr.model.DonationOrder;
+import com.example.sanabelalkhayr.utils.Urls;
 import com.example.sanabelalkhayr.model.ServiceOrder;
 
 import java.util.ArrayList;

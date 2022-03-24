@@ -42,10 +42,19 @@
         android:label="@string/send_report"
         tools:layout="@layout/fragment_send_problem_report" />
     <fragment
-        android:id="@+id/menu_volunteer_profile"
+        android:id="@+id/menu_profile"
         android:name="com.example.sanabelalkhayr.fragments.user.ProfileFragment"
-        android:label="@string/account"
-        tools:layout="@layout/fragment_user_profile" />
-
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_user_profile">
+        <action
+            android:id="@+id/action_profileTOUpdateProfileFragment"
+            app:destination="@id/UpdateProfileFragment"
+            app:popUpTo="@id/menu_profile"/>
+    </fragment>
+    <fragment
+        android:id="@+id/UpdateProfileFragment"
+        android:name="com.example.sanabelalkhayr.fragments.user.UpdateProfileFragment"
+        android:label="@string/update_profile"
+        tools:layout="@layout/fragment_update_profile" />
 
 </navigation>

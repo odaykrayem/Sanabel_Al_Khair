@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -118,7 +119,11 @@ public class UserMain extends AppCompatActivity implements NavigationView.OnNavi
             case R.id.menu_report_problem:
                 destination = R.id.menu_report_problem;
                 break;
-
+            case R.id.menu_logout:
+                SharedPrefManager.getInstance(this).logout();
+                startActivity(new Intent(this, Login.class));
+                finish();
+                break;
         }
 
         drawerLayout.closeDrawers();

@@ -21,8 +21,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.activities.DonorMain;
-import com.example.sanabelalkhayr.api.Urls;
+import com.example.sanabelalkhayr.utils.Urls;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
 
 import org.json.JSONException;

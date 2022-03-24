@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,7 +59,7 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_my_services, R.id.menu_service_requests, R.id.menu_charitable_events,R.id.menu_volunteer_profile, R.id.menu_report_problem).setOpenableLayout(drawerLayout).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_my_services, R.id.menu_service_requests, R.id.menu_charitable_events,R.id.menu_profile, R.id.menu_report_problem).setOpenableLayout(drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
@@ -109,30 +110,30 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
                 destination = R.id.menu_charitable_events;
                 break;
 
-            case R.id.menu_volunteer_profile:
-                destination = R.id.menu_volunteer_profile;
+            case R.id.menu_profile:
+                destination = R.id.menu_profile;
                 break;
             case R.id.menu_report_problem:
                 destination = R.id.menu_report_problem;
                 break;
-
+            case R.id.menu_logout:
+                SharedPrefManager.getInstance(this).logout();
+                startActivity(new Intent(this, Login.class));
+                finish();
+                break;
         }
 
         drawerLayout.closeDrawers();
 
         return true;
-    }
-
-
-    @Override
-    public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
 
     }
 
     @Override
-    public void onDrawerOpened(@NonNull View drawerView) {
+    public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {}
 
-    }
+    @Override
+    public void onDrawerOpened(@NonNull View drawerView) {}
 
     @Override
     public void onDrawerClosed(@NonNull View drawerView) {
@@ -141,6 +142,5 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
 
     @Override
     public void onDrawerStateChanged(int newState) {
-
     }
 }

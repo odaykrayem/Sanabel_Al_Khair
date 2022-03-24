@@ -6,12 +6,25 @@ public class Feedback
     private String title;
     private String content;
     private int userId;
+    private String date;
 
     public Feedback(int id, String title, String content, int userId) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.userId = userId;
+    }
+
+    public Feedback(int id, String title, String content, int userId, String date) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.userId = userId;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public int getId() {

@@ -31,7 +31,7 @@
             android:textColorHint="@color/input_login_hint"/>
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/user_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"

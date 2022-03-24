@@ -10,6 +10,7 @@ public class Donation {
     private int quantity;
     private String donorUserName;
 
+
     public Donation(Integer id, String title, String description, String image, String category, int quantity, String donorUserName) {
         this.id = id;
         this.title = title;

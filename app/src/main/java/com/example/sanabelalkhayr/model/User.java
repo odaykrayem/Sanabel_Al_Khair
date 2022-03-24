@@ -10,15 +10,33 @@ public class User {
     private String phone;
     private String address;
     private int type;
+    private int numOfResponses;
 
+    public void setNumOfResponses(int numOfResponses) {
+        this.numOfResponses = numOfResponses;
+    }
+
+    public int getNumOfResponses() {
+        return numOfResponses;
+    }
 
     public User(int id, String name, String userName, String phone, String address, int type) {
         this.id = id;
         this.name = name;
-        this.phone = phone;
         this.userName = userName;
+        this.phone = phone;
         this.address = address;
         this.type = type;
+    }
+
+    public User(int id, String name, String userName, String phone, String address, int type, int numOfResponses) {
+        this.id = id;
+        this.name = name;
+        this.userName = userName;
+        this.phone = phone;
+        this.address = address;
+        this.type = type;
+        this.numOfResponses = numOfResponses;
     }
 
     public int getId() {

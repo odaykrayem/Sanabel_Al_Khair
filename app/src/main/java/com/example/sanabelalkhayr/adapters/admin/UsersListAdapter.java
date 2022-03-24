@@ -12,8 +12,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.sanabelalkhayr.Constants;
+import com.example.sanabelalkhayr.utils.Constants;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.model.User;
 
@@ -28,9 +27,9 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     public NavController navController;
 
     // RecyclerView recyclerView;
-    public UsersListAdapter(Context context, ArrayList<User> donations) {
+    public UsersListAdapter(Context context, ArrayList<User> users) {
         this.context = context;
-        this.users = donations;
+        this.users = users;
     }
 
 

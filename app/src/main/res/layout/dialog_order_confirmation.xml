@@ -27,7 +27,18 @@
         android:text="@string/are_you_sure_you_want_to_order"
         />
 
-
+   <EditText
+     android:id="@+id/quantity"
+     android:layout_width="wrap_content"
+     android:layout_height="60dp"
+     android:background="@drawable/bg_volunteer_card"
+       android:layout_below="@id/desc"
+       android:layout_alignStart="@id/desc"
+       android:textSize="18sp"
+       android:hint="@string/quantity"
+       android:padding="10dp"
+       android:inputType="number"
+     />
 
     <TextView
         android:id="@+id/yes_btn"
@@ -35,18 +46,18 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:layout_alignParentEnd="true"
-        android:layout_below="@id/desc"
+        android:layout_below="@id/quantity"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:paddingBottom="16dp"
         android:textColor="@color/primaryTextColorDark"
         android:text="@string/donationOrder"/>
     <TextView
-        android:id="@+id/no_btn"
+        android:id="@+id/ok_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@+id/yes_btn"
-        android:layout_below="@id/desc"
+        android:layout_below="@id/quantity"
         android:paddingBottom="16dp"
         android:textSize="18sp"
         android:textColor="@color/primaryTextColor"

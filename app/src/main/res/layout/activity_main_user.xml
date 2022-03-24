@@ -22,7 +22,8 @@
             android:background="@drawable/round_bg_appbar"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+            app:title="@string/profile"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
         <fragment
             android:id="@+id/nav_host_fragment"

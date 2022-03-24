@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -27,7 +28,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.api.Urls;
+import com.example.sanabelalkhayr.utils.Urls;
 import com.example.sanabelalkhayr.model.Donation;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
 
@@ -39,16 +40,13 @@ import java.util.List;
 
 public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.ViewHolder> implements Filterable {
 
-
     Context context;
     private List<Donation> donations;
-
     public NavController navController;
     private Dialog dialog;
-    OnDonationSelected mSelectionListener;
     private List<Donation> donationsFiltered;
+    OnDonationSelected mSelectionListener;
 
-    // RecyclerView recyclerView;
     public DonationsAdapter(Context context, ArrayList<Donation> donations, Dialog dialog) {
         this.context = context;
         this.donations = donations;
@@ -56,20 +54,18 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
         this.donationsFiltered = donations;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.item_donation, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.item_donation, parent, false);
 
         return new ViewHolder(listItem);
     }
 
-
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
-        if(dialog instanceof DonationsAdapter.OnDonationSelected){
+        if (dialog instanceof DonationsAdapter.OnDonationSelected) {
             mSelectionListener = (DonationsAdapter.OnDonationSelected) dialog;
         }
     }
@@ -78,7 +74,6 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
     public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
         mSelectionListener = null;
         super.onDetachedFromRecyclerView(recyclerView);
-
     }
 
     @Override
@@ -92,16 +87,16 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
 
         holder.quantity.setText(String.valueOf(donation.getQuantity()));
 
-        if(donation.getImage() != null){
+        if (donation.getImage() != null) {
             Glide.with(context)
                     .load(donation.getImage())
                     .into(holder.image);
         }
 
         holder.itemView.setOnClickListener(v -> {
-            if(dialog!=null){
+            if (dialog != null) {
                 mSelectionListener.onDonationSelected(donation.getId());
-            }else {
+            } else {
                 navController = Navigation.findNavController(holder.itemView);
                 Bundle args = new Bundle();
                 args.putInt("id", donation.getId());
@@ -115,24 +110,33 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
             }
         });
 
-        if(dialog!=null){
+        if (dialog != null) {
             holder.orderBtn.setVisibility(View.GONE);
-        }else {
+        } else {
             holder.orderBtn.setOnClickListener(v -> {
                 LayoutInflater factory = LayoutInflater.from(context);
-                final View view = factory.inflate(R.layout.order_confirmation_dialog, null);
+                final View view = factory.inflate(R.layout.dialog_order_confirmation, null);
                 final AlertDialog orderConfirmationDialog = new AlertDialog.Builder(context).create();
                 orderConfirmationDialog.setView(view);
 
                 TextView yes = view.findViewById(R.id.yes_btn);
-                TextView no = view.findViewById(R.id.no_btn);
+                TextView no = view.findViewById(R.id.ok_btn);
+                EditText quantityET = view.findViewById(R.id.quantity);
+                quantityET.setText("1");
 
-                yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                yes.setOnClickListener(v1 -> {
+                    if(quantityET.getText().toString().isEmpty()){
+                        Toast.makeText(context, context.getResources().getString(R.string.please_add_quantity), Toast.LENGTH_SHORT).show();
+                    }else{
+                        String quantity = quantityET.getText().toString().trim();
+                        int quantityInt = Integer.parseInt(quantity);
+                        if(quantityInt > donation.getQuantity() || quantityInt < 1){
+                            Toast.makeText(context, context.getResources().getString(R.string.please_choose_quantity), Toast.LENGTH_SHORT).show();
+                        }else{
+                            orderItem(donation.getId(), quantity);
+                            orderConfirmationDialog.dismiss();
+                        }
 
-                        orderItem(donation.getId());
-                        orderConfirmationDialog.dismiss();
                     }
                 });
 
@@ -147,7 +151,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
         }
     }
 
-    private void orderItem(int id) {
+    private void orderItem(int id, String quantity) {
 
         int userId = SharedPrefManager.getInstance(context).getUserId();
 
@@ -157,6 +161,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
 
         AndroidNetworking.post(Urls.ORDER_DONATION_URL)
                 .addBodyParameter("user_id", String.valueOf(userId))
+                .addBodyParameter("quantity", quantity)
                 .addBodyParameter("donation_id", String.valueOf(id))
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -174,7 +179,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
 
                                 Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                            } else if(obj.getInt("status") == -1){
+                            } else if (obj.getInt("status") == -1) {
                                 Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
@@ -201,39 +206,35 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
             protected FilterResults performFiltering(CharSequence charSequence) {
                 FilterResults filterResults = new FilterResults();
 
-                if(charSequence == null | charSequence.length() == 0){
+                if (charSequence == null | charSequence.length() == 0) {
                     filterResults.count = donationsFiltered.size();
                     filterResults.values = donationsFiltered;
-
-                }else{
+                } else {
                     String searchChr = charSequence.toString().toLowerCase();
-                    String selectedCategory =  searchChr.split(":")[1];
-                    String search =  searchChr.split(":")[0];
+                    String selectedCategory = searchChr.split(":")[1];
+                    String search = searchChr.split(":")[0];
 
                     Log.e("filter", selectedCategory);
                     List<Donation> resultData = new ArrayList<>();
 
-                    if(search.equals("")){
-                        for(Donation donation : donationsFiltered){
-                            if(donation.getCategory().toLowerCase().equals(selectedCategory))
+                    if (search.equals("")) {
+                        for (Donation donation : donationsFiltered) {
+                            if (donation.getCategory().toLowerCase().equals(selectedCategory))
                                 resultData.add(donation);
                         }
-                    }else{
-                        for(Donation donation: donationsFiltered){
-                            if((donation.getTitle().toLowerCase().contains(search) || donation.getDescription().toLowerCase().contains(search))){
-                                if(donation.getCategory().toLowerCase().equals(selectedCategory)){
+                    } else {
+                        for (Donation donation : donationsFiltered) {
+                            if ((donation.getTitle().toLowerCase().contains(search) || donation.getDescription().toLowerCase().contains(search))) {
+                                if (donation.getCategory().toLowerCase().equals(selectedCategory)) {
 
                                     resultData.add(donation);
                                 }
                             }
                         }
                     }
-
                     filterResults.count = resultData.size();
                     filterResults.values = resultData;
-
                 }
-
                 return filterResults;
             }
 
@@ -244,7 +245,6 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
             }
         };
         return filter;
-
     }
 
 
@@ -266,11 +266,9 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
         }
     }
 
-
-     public interface OnDonationSelected{
+    public interface OnDonationSelected {
         void onDonationSelected(int id);
-     }
-
+    }
 
 
 }

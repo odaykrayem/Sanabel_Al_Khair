@@ -1,6 +1,5 @@
 package com.example.sanabelalkhayr.adapters.user;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +37,6 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem= layoutInflater.inflate(R.layout.item_service, parent, false);
-
         return new ViewHolder(listItem);
     }
 
@@ -59,21 +57,19 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
             cd.show();
             LayoutInflater factory = LayoutInflater.from(context);
-            final View view = factory.inflate(R.layout.service_confirmation_dialog, null);
+            final View view = factory.inflate(R.layout.dialog_service_confirmation, null);
             final AlertDialog orderConfirmationDialog = new AlertDialog.Builder(context).create();
             orderConfirmationDialog.setView(view);
 
             TextView yes = view.findViewById(R.id.yes_btn);
-            TextView no = view.findViewById(R.id.no_btn);
+            TextView no = view.findViewById(R.id.ok_btn);
 
 
             //Todo : display User Donations
             yes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     orderConfirmationDialog.dismiss();
-
                 }
             });
 
@@ -136,7 +132,6 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
         public TextView volunteerName;
         public TextView description;
         public TextView region;
-        public TextView status;
         public Button order;
 
         public ViewHolder(View itemView) {
@@ -144,7 +139,6 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
             this.volunteerName = itemView.findViewById(R.id.volunteer_name);
             this.description = itemView.findViewById(R.id.description);
             this.region = itemView.findViewById(R.id.region);
-            this.status = itemView.findViewById(R.id.status);
             this.order = itemView.findViewById(R.id.donationOrder);
         }
     }

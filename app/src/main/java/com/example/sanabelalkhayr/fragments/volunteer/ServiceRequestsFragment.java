@@ -11,9 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import com.example.sanabelalkhayr.Constants;
+import com.example.sanabelalkhayr.utils.Constants;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.adapters.volunteer.ServiceRequestsAdapter;
 import com.example.sanabelalkhayr.model.ServiceRequest;

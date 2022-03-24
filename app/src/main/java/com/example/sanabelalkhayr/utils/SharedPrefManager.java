@@ -13,6 +13,7 @@ public class SharedPrefManager {
     private static final String KEY_ID = "keyid";
     private static final String KEY_NAME = "keyname";
     private static final String KEY_USERNAME = "keyusername";
+    private static final String KEY_PASS = "keypassword";
     private static final String KEY_PHONE = "keyphone";
     private static final String KEY_ADDRESS = "keyaddress";
     private static final String KEY_USER_TYPE = "userType";
@@ -39,13 +40,22 @@ public class SharedPrefManager {
         editor.putInt(KEY_ID, user.getId());
         editor.putString(KEY_NAME, user.getName());
         editor.putString(KEY_USERNAME, user.getUserName());
+//        editor.putString(KEY_PASS, user.getPassword());
         editor.putString(KEY_PHONE, user.getPhone());
         editor.putString(KEY_ADDRESS, user.getAddress());
         editor.putInt(KEY_USER_TYPE, user.getType());
+        SharedPrefManager.getInstance(context).setUserType(user.getType());
 
         editor.apply();
     }
-
+    public void userUpdate(String name,  String phone , String address) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_NAME, name);
+        editor.putString(KEY_PHONE,phone);
+        editor.putString(KEY_ADDRESS, address);
+        editor.apply();
+    }
     //this method will check whether user is already logged in or not
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
