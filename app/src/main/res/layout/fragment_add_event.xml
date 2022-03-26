@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.donor.AddDonationFragment">
+    tools:context=".donor.fragments.AddDonationFragment">
 
     <LinearLayout
         android:id="@+id/input_layout"
@@ -82,7 +82,8 @@
             android:scrollbars="none"
             android:textColor="@color/input_login"
             android:textColorHint="@color/input_login_hint"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:imeOptions="actionDone"/>
     </LinearLayout>
 
     <Button

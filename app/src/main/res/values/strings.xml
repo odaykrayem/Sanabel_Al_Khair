@@ -36,7 +36,6 @@
     <string name="donation_description">description</string>
     <string name="order_date">28-1-2022</string>
     <string name="donationOrder">Order</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_donations">Donations</string>
     <string name="menu_report_problem">Send Problem Report</string>
@@ -113,4 +112,25 @@
     <string name="waiting">waiting</string>
     <string name="interested_in">interested in</string>
 
+    <string name="add_event_error">Error add event please try again later</string>
+    <string name="report_success">Send report Successfully</string>
+    <string name="get_categories_error">Error loading categories</string>
+    <string name="get_categories_success">Categories loaded successfully</string>
+    <string name="get_my_dnotion_success">dontaions loaded successfully</string>
+    <string name="get_regions_success">regions loaded successfully</string>
+    <string name="orders">Orders</string>
+    <string name="user_id">USer ID</string>
+    <string name="confirmation_delete">Confirm delete</string>
+    <string name="are_you_sure_you_want_to_delete_user">Are you sure you want  to delete this user ?</string>
+    <string name="needy">Needy</string>
+    <string name="save_area">Save area</string>
+    <string name="save_category">Save Category</string>
+    <string name="hint_area">Area</string>
+    <string name="hint_category">Category</string>
+    <string name="add_new_info">Add new info</string>
+    <string name="add_donation">Add donation</string>
+    <string name="donation_details">Donation Details</string>
+    <string name="are_you_sure_you_want_to_delete_event">Are you sure you want  to delete this event ?</string>
+    <string name="error_get_info">loading information Error</string>
+    <string name="are_you_sure_you_want_to_delete_service">Are you sure you want  to delete this service ?</string>
 </resources>

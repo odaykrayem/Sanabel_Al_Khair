@@ -10,15 +10,6 @@ public class DonationOrder {
     private String message;
     private String createdAt;
 
-    public DonationOrder(int id, int user_id, int donation_id, int quantity, int status, String message) {
-        this.id = id;
-        this.user_id = user_id;
-        this.donation_id = donation_id;
-        this.quantity = quantity;
-        this.status = status;
-        this.message = message;
-    }
-
 //constructor for order list
     public DonationOrder(int id, int donation_id, String donation_title, int quantity, int status, String message, String createdAt) {
         this.id = id;

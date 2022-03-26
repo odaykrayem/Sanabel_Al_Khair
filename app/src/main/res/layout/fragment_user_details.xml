@@ -6,7 +6,7 @@
     android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.admin.UserDetailsFragment"
+    tools:context=".admin.fragments.UserDetailsFragment"
     android:background="@color/white">
 
     <androidx.core.widget.NestedScrollView
@@ -30,15 +30,56 @@
                 android:padding="10dp"
                 android:layout_marginBottom="40dp"
                 android:textAlignment="center"/>
-
-
             <RelativeLayout
-                android:id="@+id/name_layout"
+                android:id="@+id/id_layout"
                 android:layout_below="@id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:id="@+id/profile_icon1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_profile" />
+
+                <TextView
+                    android:id="@+id/id_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/profile_icon1"
+                    android:text="@string/user_id"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/id_text_view"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@id/profile_icon1"
+                    android:text="@string/user_id" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/name_layout"
+                android:layout_below="@id/id_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="20dp"
+                >
 
                 <ImageView
                     android:id="@+id/profile_icon"
@@ -56,7 +97,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/profile_icon"
-                    android:text="Full Name"
+                    android:text="@string/profile_name"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -210,7 +251,7 @@
                 android:background="@android:color/black" />
 
             <Button
-                android:id="@+id/logout"
+                android:id="@+id/delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/divider"

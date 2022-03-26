@@ -9,7 +9,7 @@ public class Donation {
     private String image;
     private int quantity;
     private String donorUserName;
-
+    private String region;
 
     public Donation(Integer id, String title, String description, String image, String category, int quantity, String donorUserName) {
         this.id = id;
@@ -19,6 +19,17 @@ public class Donation {
         this.quantity = quantity;
         this.category = category;
         this.donorUserName = donorUserName;
+    }
+
+    public Donation(Integer id, String title, String description, String category, String image, int quantity, String donorUserName, String region) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.category = category;
+        this.image = image;
+        this.quantity = quantity;
+        this.donorUserName = donorUserName;
+        this.region = region;
     }
 
     public Integer getId() {

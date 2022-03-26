@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.donor.AddDonationFragment">
+    tools:context=".donor.fragments.AddDonationFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/image_container"
@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             android:layout_gravity="top"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
@@ -48,7 +48,9 @@
                 android:inputType="text"
                 android:backgroundTint="@color/secondary"
                 android:textAlignment="center"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:imeOptions="actionDone"
+                />
 
 
             <RelativeLayout
@@ -69,7 +71,7 @@
 
                 <FrameLayout
                     android:layout_width="200dp"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/bg_img_order"
                     android:layout_toEndOf="@id/category_title"
                     android:layout_marginStart="30dp"
@@ -108,7 +110,7 @@
 
                 <FrameLayout
                     android:layout_width="200dp"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/bg_img_order"
                     android:layout_toEndOf="@id/region_title"
                     android:layout_marginStart="45dp"
@@ -184,14 +186,10 @@
                 android:textSize="16sp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:lines="5"
                 android:gravity="top"
-                android:inputType="textMultiLine"
                 android:backgroundTint="@color/secondary"
                 android:hint="@string/hint_details"
-                android:isScrollContainer="true"
-                android:overScrollMode="never"
-                android:scrollbars="none"/>
+                android:imeOptions="actionDone"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

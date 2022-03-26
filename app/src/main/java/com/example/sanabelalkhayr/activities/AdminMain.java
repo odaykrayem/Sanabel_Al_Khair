@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +44,6 @@ public class AdminMain extends AppCompatActivity implements NavigationView.OnNav
 
         setupNavigation();
 
-
     }
 
     private void setupNavigation() {
@@ -57,7 +57,7 @@ public class AdminMain extends AppCompatActivity implements NavigationView.OnNav
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_events, R.id.menu_users, R.id.menu_reports).setOpenableLayout(drawerLayout).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_events, R.id.menu_users,R.id.menu_add_new_info, R.id.menu_reports).setOpenableLayout(drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
@@ -101,12 +101,19 @@ public class AdminMain extends AppCompatActivity implements NavigationView.OnNav
                 destination = R.id.menu_events;
                 break;
 
+            case R.id.menu_add_new_info:
+                destination = R.id.menu_add_new_info;
+                break;
+
+
             case R.id.menu_reports:
                 destination = R.id.menu_reports;
                 break;
 
-            case R.id.logout:
-                //todo log the user out
+            case R.id.menu_logout:
+                SharedPrefManager.getInstance(this).logout();
+                startActivity(new Intent(this, Login.class));
+                finish();
                 break;
         }
 

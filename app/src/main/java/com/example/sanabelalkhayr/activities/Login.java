@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -114,6 +115,7 @@ public class Login extends AppCompatActivity {
                             mLoginBtn.setEnabled(true);
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.e("login catch", e.getMessage());
                             pDialog.dismiss();
                             mLoginBtn.setEnabled(true);
                         }
@@ -122,6 +124,7 @@ public class Login extends AppCompatActivity {
                     public void onError(ANError anError) {
                         pDialog.dismiss();
                         mLoginBtn.setEnabled(true);
+                        Log.e("loginerror", anError.getErrorBody());
                         try {
                             JSONObject error = new JSONObject(anError.getErrorBody());
                             JSONObject data = error.getJSONObject("data");

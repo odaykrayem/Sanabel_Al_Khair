@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.donor.DonationRequestsFragment"
-    android:background="@color/donation_bg">
+    tools:context=".donor.fragments.DonationRequestsFragment"
+    android:background="@color/donation_bg"
+    android:id="@+id/swipe"
+    >
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_sV"

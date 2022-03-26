@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_event"
             android:title="@string/events_list" />
         <item
+            android:id="@+id/menu_add_new_info"
+            android:icon="@drawable/ic_event"
+            android:title="@string/add_new_info" />
+        <item
             android:id="@+id/menu_reports"
             android:icon="@drawable/ic_report"
             android:title="@string/problem_reports" />

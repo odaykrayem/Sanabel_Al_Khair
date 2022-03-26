@@ -7,16 +7,12 @@
 
     <fragment
         android:id="@+id/menu_my_donations"
-        android:name="com.example.sanabelalkhayr.fragments.donor.MyDonationsFragment"
-        android:label="fragment_my_donations"
+        android:name="com.example.sanabelalkhayr.donor.fragments.MyDonationsFragment"
+        android:label="@string/my_donations"
         tools:layout="@layout/fragment_my_donations" >
         <action
             android:id="@+id/action_myDonationsFragment_to_donationDetailsFragment2"
             app:destination="@id/donationDetailsFragment2"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/menu_my_donations"/>
         <action
             android:id="@+id/action_myDonationsFragment_to_addDonationFragment"
@@ -26,32 +22,32 @@
 
     <fragment
         android:id="@+id/donationDetailsFragment2"
-        android:name="com.example.sanabelalkhayr.fragments.user.DonationDetailsFragment"
-        android:label="fragment_donation_details"
+        android:name="com.example.sanabelalkhayr.needy.fragments.DonationDetailsFragment"
+        android:label="@string/donation_details"
         tools:layout="@layout/fragment_donation_details" />
     <fragment
         android:id="@+id/addDonationFragment"
-        android:name="com.example.sanabelalkhayr.fragments.donor.AddDonationFragment"
-        android:label="fragment_add_donation"
+        android:name="com.example.sanabelalkhayr.donor.fragments.AddDonationFragment"
+        android:label="@string/add_donation"
         tools:layout="@layout/fragment_add_donation" />
     <fragment
         android:id="@+id/menu_charitable_events"
-        android:name="com.example.sanabelalkhayr.fragments.CharitableEventsFragment"
-        android:label="CharitableEventsFragment"
+        android:name="com.example.sanabelalkhayr.all.fragments.CharitableEventsFragment"
+        android:label="@string/charitable_events"
         tools:layout="@layout/fragment_charitable_events"/>
     <fragment
         android:id="@+id/menu_report_problem"
-        android:name="com.example.sanabelalkhayr.fragments.SendProblemReportFragment"
+        android:name="com.example.sanabelalkhayr.all.fragments.SendProblemReportFragment"
         android:label="fragment_send_problem_report"
         tools:layout="@layout/fragment_send_problem_report" />
     <fragment
         android:id="@+id/menu_received_orders"
-        android:name="com.example.sanabelalkhayr.fragments.donor.DonationRequestsFragment"
-        android:label="fragment_user_orders"
+        android:name="com.example.sanabelalkhayr.donor.fragments.DonationRequestsFragment"
+        android:label="@string/orders"
         tools:layout="@layout/fragment_donation_requests" />
     <fragment
         android:id="@+id/menu_profile"
-        android:name="com.example.sanabelalkhayr.fragments.user.ProfileFragment"
+        android:name="com.example.sanabelalkhayr.all.fragments.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_user_profile">
         <action
@@ -61,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/UpdateProfileFragment"
-        android:name="com.example.sanabelalkhayr.fragments.user.UpdateProfileFragment"
+        android:name="com.example.sanabelalkhayr.all.fragments.UpdateProfileFragment"
         android:label="@string/update_profile"
         tools:layout="@layout/fragment_update_profile" />
 </navigation>

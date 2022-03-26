@@ -60,7 +60,7 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_my_donations, R.id.menu_report_problem, R.id.menu_charitable_events, R.id.menu_service_requests, R.id.menu_profile).setOpenableLayout(drawerLayout).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_my_donations, R.id.menu_report_problem, R.id.menu_charitable_events, R.id.menu_received_orders, R.id.menu_profile).setOpenableLayout(drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
@@ -101,8 +101,8 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
                 destination = R.id.menu_my_donations;
                 break;
 
-            case R.id.menu_service_requests:
-                destination = R.id.menu_service_requests;
+            case R.id.menu_received_orders:
+                destination = R.id.menu_received_orders;
                 break;
 
             case R.id.menu_charitable_events:
@@ -117,9 +117,7 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
                 break;
 
             case R.id.menu_logout:
-                SharedPrefManager.getInstance(this).logout();
-                startActivity(new Intent(this, Login.class));
-                finish();
+
                 break;
 
         }

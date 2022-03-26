@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/donation_bg"
-    tools:context=".fragments.volunteer.MyServicesFragment">
+    tools:context=".volunteer.fragments.MyServicesFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
