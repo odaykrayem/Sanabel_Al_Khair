@@ -66,7 +66,6 @@ public class SendProblemReportFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(getContext());
 
         pDialog = new ProgressDialog(context);
         pDialog.setCancelable(false);

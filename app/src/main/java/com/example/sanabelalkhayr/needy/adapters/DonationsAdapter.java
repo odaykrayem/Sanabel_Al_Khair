@@ -97,6 +97,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
                 args.putString("details", donation.getDescription());
                 args.putString("for_donor", "no");
                 args.putInt("quantity", donation.getQuantity());
+                args.putString("area", donation.getRegion());
                 navController.navigate(R.id.action_donationsFragment_to_donationDetailsFragment, args);
 
         });

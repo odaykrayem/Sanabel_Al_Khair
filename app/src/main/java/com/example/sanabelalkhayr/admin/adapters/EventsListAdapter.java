@@ -61,8 +61,8 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
 
         holder.description.setText(event.getDescription());
 
-        holder.start_at.setText(event.getStart_at());
-        holder.end_at.setText(event.getEnd_at());
+        holder.start_at.setText(event.getStart_at().substring(0,10));
+        holder.end_at.setText(event.getEnd_at().substring(0,10));
 
         pDialog = new ProgressDialog(context);
         pDialog.setMessage("Processing Please wait...");
@@ -76,7 +76,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
             TextView no = view1.findViewById(R.id.ok_btn);
 
             yes.setOnClickListener(v1 -> {
-                deleteEvent(event);
+                deleteEvent(event, position);
                 deleteConfirmationDialog.dismiss();
 
             });
@@ -87,7 +87,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
         });
     }
 
-    private void deleteEvent(CharitableEvent event) {
+    private void deleteEvent(CharitableEvent event, int position) {
         pDialog.show();
         String url = Urls.DELETE_EVENT_URL;
 
@@ -108,7 +108,8 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                             //if no error in response
                             if (message.toLowerCase().contains(dataGot.toLowerCase())) {
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-
+                                events.remove(position);
+                                notifyItemRemoved(position);
                             }
                             pDialog.dismiss();
 

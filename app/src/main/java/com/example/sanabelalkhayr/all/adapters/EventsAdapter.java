@@ -55,7 +55,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         return viewHolder;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -65,8 +64,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
         holder.description.setText(event.getDescription());
 
-        holder.start_at.setText(event.getStart_at());
-        holder.end_at.setText(event.getEnd_at());
+        holder.start_at.setText(event.getStart_at().substring(0,10));
+        holder.end_at.setText(event.getEnd_at().substring(0,10));
 
         pDialog = new ProgressDialog(context);
         pDialog.setCancelable(false);
@@ -86,7 +85,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     private void registerInterested(CharitableEvent event) {
         pDialog.show();
-        String url = Urls.LOGIN_URL;
+        String url = Urls.INTERESTED;
 
         AndroidNetworking.post(url)
                 .addBodyParameter("user_id", String.valueOf(SharedPrefManager.getInstance(context).getUserId()))
@@ -106,21 +105,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
                             //if no error in response
                             if (message.toLowerCase().contains(userFounded.toLowerCase())) {
 
-                                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-
-                                //getting the user from the response
-                                JSONObject userJson = obj.getJSONObject("data");
-                                User user;
-                                user = new User(
-                                        Integer.parseInt(userJson.getString("id")),
-                                        userJson.getString("name"),
-                                        userJson.getString("user_name"),
-                                        userJson.getString("phone"),
-                                        userJson.getString("address"),
-                                        userJson.getInt("type")
-                                );
-
-                            }else{
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                             }
                             pDialog.dismiss();

@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/menu_donations"
         android:name="com.example.sanabelalkhayr.needy.fragments.DonationsFragment"
-        android:label="fragment_donations"
+        android:label="@string/menu_donations"
         tools:layout="@layout/fragment_donations">
         <action
             android:id="@+id/action_donationsFragment_to_donationDetailsFragment"
@@ -32,7 +32,7 @@
         android:label="@string/my_donation_orders"
         tools:layout="@layout/fragment_donation_orders" />
     <fragment
-        android:id="@+id/menu_services_orders"
+        android:id="@+id/menu_my_services_orders"
         android:name="com.example.sanabelalkhayr.needy.fragments.ServiceOrdersFragment"
         android:label="@string/my_service_orders"
         tools:layout="@layout/fragment_service_orders" />

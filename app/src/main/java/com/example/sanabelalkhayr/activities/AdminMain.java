@@ -46,7 +46,7 @@ public class AdminMain extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
-    private void setupNavigation() {
+    private void setupNavigation(){
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

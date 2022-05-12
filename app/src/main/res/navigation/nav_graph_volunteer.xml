@@ -50,11 +50,19 @@
             android:id="@+id/action_profileTOUpdateProfileFragment"
             app:destination="@id/UpdateProfileFragment"
             app:popUpTo="@id/menu_profile"/>
+<!--        <action-->
+<!--            android:id="@+id/action_profileTOGenerateCertFragment"-->
+<!--            app:destination="@id/GenerateCertFragment"-->
+<!--            app:popUpTo="@id/menu_profile"/>-->
     </fragment>
     <fragment
         android:id="@+id/UpdateProfileFragment"
         android:name="com.example.sanabelalkhayr.all.fragments.UpdateProfileFragment"
         android:label="@string/update_profile"
         tools:layout="@layout/fragment_update_profile" />
-
+<!--    <fragment-->
+<!--        android:id="@+id/GenerateCertFragment"-->
+<!--        android:name="com.example.sanabelalkhayr.volunteer.fragments.GenerateCertActivity"-->
+<!--        android:label="@string/generate_cert"-->
+<!--        tools:layout="@layout/fragmente_generat_cert" />-->
 </navigation>

@@ -84,6 +84,10 @@ public class Donation {
         return donorUserName;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
     public void setDonorUserName(String donorUserName) {
         this.donorUserName = donorUserName;
     }

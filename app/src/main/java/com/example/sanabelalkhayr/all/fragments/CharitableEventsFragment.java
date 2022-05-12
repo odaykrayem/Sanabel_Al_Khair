@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class CharitableEventsFragment extends Fragment {
+public class CharitableEventsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     Context context;
 
@@ -39,6 +40,8 @@ public class CharitableEventsFragment extends Fragment {
     RecyclerView mList;
     EventsAdapter mAdapter;
     ProgressDialog pDialog;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -49,7 +52,18 @@ public class CharitableEventsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_charitable_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_charitable_events, container, false);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipe);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.secondary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        mSwipeRefreshLayout.post(() -> {
+            mSwipeRefreshLayout.setRefreshing(true);
+            getEvents();
+        });
+        return view;
     }
 
     @Override
@@ -58,8 +72,6 @@ public class CharitableEventsFragment extends Fragment {
         mList = view.findViewById(R.id.rv);
         pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Processing Please wait...");
-
-        getEvents();
     }
 
     private void getEvents() {
@@ -89,7 +101,7 @@ public class CharitableEventsFragment extends Fragment {
                                                     obj.getString("start_at"),
                                                     obj.getString("end_at"),
                                                     obj.getString("address"),
-                                                    obj.getBoolean("interested")
+                                                    obj.getBoolean("intersted")
                                             )
                                     );
                                 }
@@ -99,9 +111,11 @@ public class CharitableEventsFragment extends Fragment {
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                             }
                             pDialog.dismiss();
+                            mSwipeRefreshLayout.setRefreshing(false);
                         } catch (Exception e) {
                             e.printStackTrace();
                             pDialog.dismiss();
+                            mSwipeRefreshLayout.setRefreshing(false);
                             Log.e("event catch", e.getMessage());
                         }
                     }
@@ -109,8 +123,14 @@ public class CharitableEventsFragment extends Fragment {
                     @Override
                     public void onError(ANError error) {
                         pDialog.dismiss();
+                        mSwipeRefreshLayout.setRefreshing(false);
                         Log.e("event anerror",error.getErrorBody());
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        getEvents();
     }
 }

@@ -6,19 +6,12 @@ public class User {
     private int id;
     private String name;
     private String userName;
+    private String userEmail;
     private String password;
     private String phone;
     private String address;
     private int type;
     private int numOfResponses;
-
-    public void setNumOfResponses(int numOfResponses) {
-        this.numOfResponses = numOfResponses;
-    }
-
-    public int getNumOfResponses() {
-        return numOfResponses;
-    }
 
     public User(int id, String name, String userName, String phone, String address, int type) {
         this.id = id;
@@ -29,14 +22,33 @@ public class User {
         this.type = type;
     }
 
-    public User(int id, String name, String userName, String phone, String address, int type, int numOfResponses) {
+    public void setNumOfResponses(int numOfResponses) {
+        this.numOfResponses = numOfResponses;
+    }
+
+    public int getNumOfResponses() {
+        return numOfResponses;
+    }
+
+
+
+    public User(int id, String name, String userName, String email,String phone, String address, int type, int numOfResponses) {
         this.id = id;
         this.name = name;
         this.userName = userName;
+        this.userEmail = email;
         this.phone = phone;
         this.address = address;
         this.type = type;
         this.numOfResponses = numOfResponses;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public int getId() {

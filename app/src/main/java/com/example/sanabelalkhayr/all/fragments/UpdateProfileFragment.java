@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,7 @@ public class UpdateProfileFragment extends Fragment {
     private ProgressDialog pDialog;
     Context context;
 
+    NavController navController;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -63,6 +66,7 @@ public class UpdateProfileFragment extends Fragment {
         pDialog.setCancelable(false);
         pDialog.setMessage("Processing Please wait...");
 
+        navController = Navigation.findNavController(view);
         mNameET = view.findViewById(R.id.name);
         mPasswordET = view.findViewById(R.id.password);
         mPhoneET = view.findViewById(R.id.phone);
@@ -121,6 +125,7 @@ public class UpdateProfileFragment extends Fragment {
                                         userJson.getString("phone"),
                                         userJson.getString("address")
                                 );
+                                navController.popBackStack();
                             }else{
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                             }

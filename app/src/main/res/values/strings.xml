@@ -5,8 +5,8 @@
     <string name="btn_login">Login</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
     <string name="user_and_password_required">user name and password must not be empty!</string>
-    <string name="hint_name">full name</string>
-    <string name="register">Register</string>
+    <string name="hint_name">full user name</string>
+    <string name="register">Register user</string>
     <string name="btn_link_to_login">Already registred! Login Me.</string>
     <string name="hint_phone">Phone</string>
     <string name="hint_address">Address</string>
@@ -53,7 +53,7 @@
 
     <string name="status_new">NEW</string>
     <string name="status_rejected">REJECTED</string>
-    <string name="status_accepted">PROCESSING</string>
+    <string name="status_accepted">ACCEPTED</string>
     <string name="status_completed">COMPLETED</string>
     <string name="show_message">Show message</string>
     <string name="ok">Ok</string>
@@ -119,7 +119,7 @@
     <string name="get_my_dnotion_success">dontaions loaded successfully</string>
     <string name="get_regions_success">regions loaded successfully</string>
     <string name="orders">Orders</string>
-    <string name="user_id">USer ID</string>
+    <string name="user_id">User ID</string>
     <string name="confirmation_delete">Confirm delete</string>
     <string name="are_you_sure_you_want_to_delete_user">Are you sure you want  to delete this user ?</string>
     <string name="needy">Needy</string>
@@ -133,4 +133,23 @@
     <string name="are_you_sure_you_want_to_delete_event">Are you sure you want  to delete this event ?</string>
     <string name="error_get_info">loading information Error</string>
     <string name="are_you_sure_you_want_to_delete_service">Are you sure you want  to delete this service ?</string>
+    <string name="cert_title">"Volunteering Certificate</string>
+    <string name="cert_to">We provide this certificate for</string>
+    <string name="cert_text">as an expression of thanks for his useful volunteer work for the community</string>
+    <string name="generate_cert">Generate certeficate</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="get_my_services_success">Services loaded successfully</string>
+    <string name="get_orders_success">Get orders successfully</string>
+    <string name="service_ordered">Service Ordered successfully</string>
+    <string name="service_status_changed">Service status changed successfully</string>
+    <string name="error_code">Code is not correct</string>
+    <string name="correct_code">Code is correct</string>
+    <string name="enter_the_code_sent_to_your_email">Enter the code sent to your email</string>
+    <string name="hint_code">Code</string>
+    <string name="verify_email">Verify email</string>
+    <string name="hint_email">Email</string>
+    <string name="email_missing_message">Please enter your email</string>
+    <string name="profile_email">Email</string>
+    <string name="are_you_sure_you_want_to_delete_donation">Are you sure you want  to delete this donation ?</string>
+
 </resources>

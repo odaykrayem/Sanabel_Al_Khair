@@ -24,17 +24,17 @@
 
             <EditText
                 android:id="@+id/title"
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:hint="@string/service_title"
-                android:textSize="18sp"
-                android:inputType="text"
                 android:backgroundTint="@color/secondary"
+                android:hint="@string/service_title"
+                android:inputType="text"
                 android:textAlignment="center"
-                android:textStyle="bold"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -105,20 +105,19 @@
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="@string/save_service"
         android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_img_order"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:drawableTint="@color/white"
+        android:background="@drawable/bg_img_order"
         android:drawableEnd="@drawable/ic_forward"
-        android:layout_marginTop="20dp"
+        android:drawableTint="@color/white"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/save_service"
         android:textAllCaps="false"
-        />
+        android:textColor="@color/white" />
 
 
 

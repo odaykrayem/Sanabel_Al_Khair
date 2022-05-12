@@ -373,6 +373,7 @@ public class AddDonationFragment extends Fragment {
         String url = Urls.ADD_DONATION_URL;
         String description = mDescET.getText().toString().trim();
         String title = mTitleET.getText().toString().trim();
+        Log.e("username",SharedPrefManager.getInstance(context).getUserData().getUserName());
 
         String id = String.valueOf(SharedPrefManager.getInstance(context).getUserId());
         AndroidNetworking.upload(url)
@@ -389,8 +390,6 @@ public class AddDonationFragment extends Fragment {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // do anything with response
-                        pDialog.dismiss();
                         try {
                             //converting response to json object
                             JSONObject obj = response;

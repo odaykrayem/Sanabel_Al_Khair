@@ -11,6 +11,7 @@
     >
 
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -95,9 +96,9 @@
         android:text="@string/accept"
         android:textColor="@color/white"
         android:background="@drawable/bg_img_order"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="10dp"
+        android:layout_below="@id/layout"
         />
 
     <Button
@@ -112,9 +113,9 @@
         android:textAlignment="center"
         android:text="@string/reject"
         android:background="@drawable/bg_img_order"
-        android:layout_alignParentBottom="true"
         android:layout_toStartOf="@id/accept"
         android:layout_marginBottom="10dp"
+        android:layout_below="@id/layout"
         />
 
 

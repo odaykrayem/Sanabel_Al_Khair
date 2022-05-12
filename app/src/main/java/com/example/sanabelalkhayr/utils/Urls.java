@@ -11,22 +11,23 @@ public class Urls {
     public static final String REGISTER_URL = BASE_URL + "register";
     public static final String UPDATE_ACC_URL = BASE_URL + "update-profile";
     public static final String FEEDBACK_URL = BASE_URL + "send-report";
-    public static final String GET_EVENTS_FOR_USERS = BASE_URL + "";//TODO
+    public static final String GET_EVENTS_FOR_USERS = BASE_URL + "get-events";
+    public static final String INTERESTED = BASE_URL +"interested";
 
-    //NEEdY
+    //NEEDY
 
     public static final String GET_CATEGORIES = BASE_URL + "get-categories";
     public static final String GET_DONATIONS = BASE_URL + "get-donations";
     public static final String ORDER_DONATION_URL = BASE_URL + "order-donation";
     public static final String GET_DONATION_ORDERS = BASE_URL + "get-donation-orders";
-    public static final String GET_SERVICES = BASE_URL + "";//TODO
-    public static final String GET_SERVICE_ORDERS = BASE_URL + "";//TODO
+    public static final String GET_SERVICES = BASE_URL+"get-services";
+    public static final String GET_SERVICE_ORDERS = BASE_URL + "get-service-orders";
     public static final String ORDER_SERVICE_URL = BASE_URL + "order-service";
 
     //DONOR
     public static final String ADD_DONATION_URL = BASE_URL + "add-donation";
     public static final String GET_REGIONS = BASE_URL + "get-areas";
-    public static final String GET_ORDERS_REQUESTS = BASE_URL + "";//TODO
+    public static final String GET_ORDERS_REQUESTS = BASE_URL + "get-donation-requests";//TODO
     public static final String GET_DONATIONS_BY_DONOR = BASE_URL + "get-donor-donations";
     public static final String UPDATE_DONATION_REQUEST_STATUS = BASE_URL + "change-donation-status";
 
@@ -35,17 +36,21 @@ public class Urls {
     public static final String DELETE_SERVICE_URL = BASE_URL + "delete-service";
     public static final String GET_VOLUNTEER_SERVICES_URL = BASE_URL + "get-volunteer-services";
     public static final String UPDATE_SERVICE_REQUEST_STATUS = BASE_URL + "change-service-status";
+    public static final String GET_SERVICE_REQUESTS = BASE_URL + "get-service-orders-for-owner";
 
     //ADMIN
+    public static final String LOGIN_ADMIN_URL = BASE_URL + "admin/login";
     public static final String GET_USERS_URL = BASE_URL + "get-users";
     public static final String DELETE_USER_URL = BASE_URL + "delete-user";
+    public static final String GET_REPORTS_URL = BASE_URL + "get-reports";
 
-    public static final String GET_EVENTS_FOR_ADMIN = BASE_URL + "";//TODO
+    public static final String GET_EVENTS_FOR_ADMIN = BASE_URL + "get-all-events";
     public static final String DELETE_EVENT_URL = BASE_URL + "delete-event";
-
 
     public static final String ADD_EVENT_URL = BASE_URL + "add-event";
     public static final String ADD_AREA_URL = BASE_URL + "add-area";
     public static final String ADD_CATEGORY_URL = BASE_URL + "add-category";
+
+    public static final String DELETE_DONATION_URL = BASE_URL +  "delete_donation";
 
 }

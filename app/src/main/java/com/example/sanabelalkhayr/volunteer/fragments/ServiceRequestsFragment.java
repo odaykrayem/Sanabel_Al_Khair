@@ -3,42 +3,39 @@ package com.example.sanabelalkhayr.volunteer.fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.sanabelalkhayr.model.ServiceOrder;
 import com.example.sanabelalkhayr.R;
-import com.example.sanabelalkhayr.needy.adapters.ServiceOrdersAdapter;
+import com.example.sanabelalkhayr.utils.SharedPrefManager;
 import com.example.sanabelalkhayr.utils.Urls;
 import com.example.sanabelalkhayr.volunteer.adapters.ServiceRequestsAdapter;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ServiceRequestsFragment extends Fragment {
+public class ServiceRequestsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     Context context;
-
     ArrayList<ServiceOrder> requests;
     ServiceRequestsAdapter mAdapter;
     RecyclerView mList;
-
     ProgressDialog pDialog;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -56,7 +53,18 @@ public class ServiceRequestsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_service_requests, container, false);
+        View view = inflater.inflate(R.layout.fragment_service_requests, container, false);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipe);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.secondary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        mSwipeRefreshLayout.post(() -> {
+            mSwipeRefreshLayout.setRefreshing(true);
+            getServicesRequests();
+        });
+        return view;
     }
 
     @Override
@@ -68,19 +76,16 @@ public class ServiceRequestsFragment extends Fragment {
         pDialog.setMessage("Processing Please wait...");
         pDialog.setCancelable(false);
 
-        getServicesRequests();
-
-        mAdapter = new ServiceRequestsAdapter(context, requests);
-        mList.setAdapter(mAdapter);
     }
 
     private void getServicesRequests() {
-        String url = Urls.GET_SERVICE_ORDERS;
+        String url = Urls.GET_SERVICE_REQUESTS;
         requests = new ArrayList<ServiceOrder>();
-
+        String userId = String.valueOf(SharedPrefManager.getInstance(context).getUserId());
         pDialog.show();
         AndroidNetworking.get(url)
                 .setPriority(Priority.MEDIUM)
+                .addQueryParameter("user_id", userId)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -94,15 +99,16 @@ public class ServiceRequestsFragment extends Fragment {
                                 JSONArray jsonArray = response.getJSONArray("data");
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    JSONObject user_data = jsonObject.getJSONObject("user");
 //                                    JSONObject category_data = jsonObject.getJSONObject("category_data");
 //                                    String category = category_data.getString("name");
-                                    JSONObject region_data = jsonObject.getJSONObject("region_data");
-                                    String region = region_data.getString("name");
+//                                    JSONObject region_data = jsonObject.getJSONObject("region_data");
+//                                    String region = region_data.getString("name");
                                     requests.add(
                                             new ServiceOrder(
                                                     Integer.parseInt(jsonObject.getString("id")),
-                                                    jsonObject.getString("donation_title"),
-                                                    jsonObject.getString("volunteer_name"),
+                                                    "",
+                                                    user_data.getString("user_name"),
                                                     Integer.parseInt(jsonObject.getString("status")),
                                                     jsonObject.getString("message"),
                                                     jsonObject.getString("created_at")
@@ -112,10 +118,12 @@ public class ServiceRequestsFragment extends Fragment {
                                 mAdapter = new ServiceRequestsAdapter(context, requests);
                                 mList.setAdapter(mAdapter);
                                 pDialog.dismiss();
+                                mSwipeRefreshLayout.setRefreshing(false);
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
                             pDialog.dismiss();
+                            mSwipeRefreshLayout.setRefreshing(false);
                             Log.e("catch", e.getMessage());
                         }
                     }
@@ -125,5 +133,10 @@ public class ServiceRequestsFragment extends Fragment {
                         Log.e("anError", error.getErrorBody());
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        getServicesRequests();
     }
 }

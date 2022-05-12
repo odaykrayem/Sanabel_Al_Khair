@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +34,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class EventsListFragment extends Fragment {
+public class EventsListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     Context context;
 
@@ -45,6 +46,7 @@ public class EventsListFragment extends Fragment {
 
     NavController navController;
     ProgressDialog pDialog;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -65,7 +67,22 @@ public class EventsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_events_list, container, false);
+        View view =  inflater.inflate(R.layout.fragment_events_list, container, false);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipe);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.secondary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        mSwipeRefreshLayout.post(new Runnable() {
+
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                getEvents();
+            }
+        });
+        return view;
     }
 
     @Override
@@ -94,7 +111,6 @@ public class EventsListFragment extends Fragment {
         events = new ArrayList<CharitableEvent>();
         AndroidNetworking.get(url)
                 .setPriority(Priority.MEDIUM)
-                .addQueryParameter("user_id", id)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -113,7 +129,7 @@ public class EventsListFragment extends Fragment {
                                                     obj.getString("start_at"),
                                                     obj.getString("end_at"),
                                                     obj.getString("address"),
-                                                    obj.getBoolean("interested")
+                                                    obj.getBoolean("intersted")
                                             )
                                     );
                                 }
@@ -122,10 +138,12 @@ public class EventsListFragment extends Fragment {
                             }else{
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                             }
+                            mSwipeRefreshLayout.setRefreshing(false);
                             pDialog.dismiss();
                         } catch (Exception e) {
                             e.printStackTrace();
                             pDialog.dismiss();
+                            mSwipeRefreshLayout.setRefreshing(false);
                             Log.e("event catch", e.getMessage());
                         }
                     }
@@ -133,8 +151,14 @@ public class EventsListFragment extends Fragment {
                     @Override
                     public void onError(ANError error) {
                         pDialog.dismiss();
+                        mSwipeRefreshLayout.setRefreshing(false);
                         Log.e("event anerror",error.getErrorBody());
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        getEvents();
     }
 }

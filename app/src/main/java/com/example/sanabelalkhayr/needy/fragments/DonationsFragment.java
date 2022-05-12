@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,7 +35,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class DonationsFragment extends Fragment {
+public class DonationsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     Context context;
     RecyclerView mList;
@@ -47,6 +48,7 @@ public class DonationsFragment extends Fragment {
 
     AppCompatSpinner mCategoriesChooser;
     ProgressDialog pDialog;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onAttach(Context context) {
@@ -54,13 +56,24 @@ public class DonationsFragment extends Fragment {
         this.context = context;
     }
 
-    public DonationsFragment() {
-    }
+    public DonationsFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_donations, container, false);
+        View view =  inflater.inflate(R.layout.fragment_donations, container, false);
+
+        mSwipeRefreshLayout = view.findViewById(R.id.swipe);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.secondary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        mSwipeRefreshLayout.post(() -> {
+//            mSwipeRefreshLayout.setRefreshing(true);
+            getDonations();
+        });
+        return view;
     }
 
     @Override
@@ -74,7 +87,6 @@ public class DonationsFragment extends Fragment {
         pDialog.setCancelable(false);
         pDialog.setMessage("Processing Please wait...");
 
-        getDonations();
         getAllCategories();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -85,7 +97,10 @@ public class DonationsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mAdapter.getFilter().filter(newText + ":" + selectedCategory);
+                if(mAdapter != null){
+                    mAdapter.getFilter().filter(newText + ":" + selectedCategory);
+
+                }
                 return true;
             }
         });
@@ -192,28 +207,36 @@ public class DonationsFragment extends Fragment {
                                                     jsonObject.getString("title"),
                                                     jsonObject.getString("description"),
                                                     category,
-                                                    jsonObject.getString("image"),
+                                                    Urls.IMAGE_BASE_URL+jsonObject.getString("image"),
                                                     jsonObject.getInt("quantity"),
                                                     jsonObject.getString("donor_user_name"),
                                                     region
                                             )
                                     );
                                 }
-                                mAdapter = new DonationsAdapter(context, donationsList, null);
+                                mAdapter = new DonationsAdapter(context, donationsList);
                                 mList.setAdapter(mAdapter);
+                                mSwipeRefreshLayout.setRefreshing(false);
                                 pDialog.dismiss();
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
                             pDialog.dismiss();
+                            mSwipeRefreshLayout.setRefreshing(false);
                             Log.e("catch", e.getMessage());
                         }
                     }
                     @Override
                     public void onError(ANError error) {
                         pDialog.dismiss();
+                        mSwipeRefreshLayout.setRefreshing(false);
                         Log.e("anError", error.getErrorBody());
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        getDonations();
     }
 }

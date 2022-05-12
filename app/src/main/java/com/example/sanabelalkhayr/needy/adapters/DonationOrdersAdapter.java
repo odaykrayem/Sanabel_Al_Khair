@@ -73,6 +73,8 @@ public class DonationOrdersAdapter extends RecyclerView.Adapter<DonationOrdersAd
         holder.title.setText(donationOrder.getDonation_title());
         holder.quantity.setText(String.valueOf(donationOrder.getQuantity()));
 
+        holder.donorName.setText(donationOrder.getUserName());
+
         holder.show_message.setOnClickListener(v -> {
             LayoutInflater factory = LayoutInflater.from(context);
             final View view = factory.inflate(R.layout.message_dialog, null);
@@ -124,16 +126,14 @@ public class DonationOrdersAdapter extends RecyclerView.Adapter<DonationOrdersAd
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView date;
-        public TextView title;
-        public TextView quantity;
-        public TextView status;
+        public TextView date, title, quantity, status, donorName;
         public Button show_message;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.date = itemView.findViewById(R.id.date);
             this.title = itemView.findViewById(R.id.title);
+            this.donorName = itemView.findViewById(R.id.user_name);
             this.quantity = itemView.findViewById(R.id.quantity);
             this.status = itemView.findViewById(R.id.response);
             this.show_message = itemView.findViewById(R.id.show_message);

@@ -77,6 +77,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
             args.putInt("id", user.getId());
             args.putString("name", user.getName());
             args.putString("userName", user.getUserName());
+            args.putString("email", user.getUserEmail());
             args.putString("phone", user.getPhone());
             args.putString("address", user.getAddress());
             args.putInt("type", user.getType());

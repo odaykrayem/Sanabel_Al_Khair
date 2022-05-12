@@ -13,10 +13,12 @@ public class SharedPrefManager {
     private static final String KEY_ID = "keyid";
     private static final String KEY_NAME = "keyname";
     private static final String KEY_USERNAME = "keyusername";
+    private static final String KEY_USEREMAIL = "keyuseremail";
     private static final String KEY_PASS = "keypassword";
     private static final String KEY_PHONE = "keyphone";
     private static final String KEY_ADDRESS = "keyaddress";
     private static final String KEY_USER_TYPE = "userType";
+    private static final String KEY_RESPONSES_NUM = "responses";
 
 
     private static SharedPrefManager mInstance;
@@ -40,10 +42,11 @@ public class SharedPrefManager {
         editor.putInt(KEY_ID, user.getId());
         editor.putString(KEY_NAME, user.getName());
         editor.putString(KEY_USERNAME, user.getUserName());
-//        editor.putString(KEY_PASS, user.getPassword());
+        editor.putString(KEY_USEREMAIL, user.getUserEmail());
         editor.putString(KEY_PHONE, user.getPhone());
         editor.putString(KEY_ADDRESS, user.getAddress());
         editor.putInt(KEY_USER_TYPE, user.getType());
+        editor.putInt(KEY_RESPONSES_NUM, user.getNumOfResponses());
         SharedPrefManager.getInstance(context).setUserType(user.getType());
 
         editor.apply();
@@ -80,8 +83,6 @@ public class SharedPrefManager {
         return sharedPreferences.getInt(KEY_ID, -1);
     }
 
-
-
     //this method will give the logged in user
     public User getUserData() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -89,12 +90,13 @@ public class SharedPrefManager {
                 sharedPreferences.getInt(KEY_ID, -1),
                 sharedPreferences.getString(KEY_NAME, null),
                 sharedPreferences.getString(KEY_USERNAME, null),
+                sharedPreferences.getString(KEY_USEREMAIL, null),
                 sharedPreferences.getString(KEY_PHONE, null),
                 sharedPreferences.getString(KEY_ADDRESS, null),
-                sharedPreferences.getInt(KEY_USER_TYPE, -1)
+                sharedPreferences.getInt(KEY_USER_TYPE, -1),
+                sharedPreferences.getInt(KEY_RESPONSES_NUM, 0)
                 );
     }
-
 
     //this method will logout the user
     public void logout() {

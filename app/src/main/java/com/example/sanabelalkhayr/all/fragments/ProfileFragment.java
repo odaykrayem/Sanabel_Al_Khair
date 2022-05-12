@@ -1,6 +1,7 @@
 package com.example.sanabelalkhayr.all.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,18 +17,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sanabelalkhayr.utils.Constants;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.model.User;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
+import com.example.sanabelalkhayr.volunteer.fragments.GenerateCertActivity;
 
 
 public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     Context context;
 
-    TextView mNameTV, mUserNameTV, mPhoneTV, mAddressTV, mNumOfResponsesTV;
+    TextView mNameTV, mUserNameTV,mEmailTV, mPhoneTV, mAddressTV, mNumOfResponsesTV;
     Button mGenerateCertBtn, mUpdateBtn;
     SwipeRefreshLayout mSwipeRefreshLayout;
     RelativeLayout mNumOfResponsesLayout;
@@ -50,6 +53,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         mNameTV = view.findViewById(R.id.name);
         mUserNameTV = view.findViewById(R.id.user_name);
+        mEmailTV = view.findViewById(R.id.email);
         mAddressTV = view.findViewById(R.id.address);
         mPhoneTV = view.findViewById(R.id.phone);
         mNumOfResponsesTV = view.findViewById(R.id.num_of_responses);
@@ -81,25 +85,32 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         User user = sharedPrefManager.getUserData();
         mNameTV.setText(user.getName());
         mUserNameTV.setText(user.getUserName());
+        mEmailTV.setText(user.getUserEmail());
         mPhoneTV.setText(user.getPhone());
         mAddressTV.setText(user.getAddress());
         mUpdateBtn.setOnClickListener(v->{
             navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_profileTOUpdateProfileFragment);
-        });
+            navController.navigate(R.id.action_profileTOUpdateProfileFragment);}
+        );
+
         if (user.getType() == Constants.USER_TYPE_VOLUNTEER) {
             mNumOfResponsesLayout.setVisibility(View.VISIBLE);
             mNumOfResponsesTV.setText(String.valueOf(user.getNumOfResponses()));
         } else {
             mNumOfResponsesLayout.setVisibility(View.GONE);
         }
-        if(user.getNumOfResponses() > 3){
-            mGenerateCertBtn.setEnabled(true);
-        }else{
-            mGenerateCertBtn.setEnabled(false);
-        }
+//
+//        if(user.getNumOfResponses() > 3){
+//            mGenerateCertBtn.setEnabled(true);
+//        }else{
+//            mGenerateCertBtn.setEnabled(false);
+//        }
         mGenerateCertBtn.setOnClickListener(v -> {
-            //TODO: generate cert
+            if(user.getNumOfResponses() > 3){
+                requireActivity().startActivity(new Intent(getActivity(), GenerateCertActivity.class));
+            }else{
+                Toast.makeText(context, "You must have at least 4 responses to generate cert", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -121,6 +132,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         } else {
             mNumOfResponsesLayout.setVisibility(View.GONE);
         }
+
         mSwipeRefreshLayout.setRefreshing(false);
     }
 }

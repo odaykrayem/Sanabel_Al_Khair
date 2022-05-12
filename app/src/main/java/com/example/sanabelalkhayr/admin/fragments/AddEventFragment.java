@@ -87,7 +87,19 @@ public class AddEventFragment extends Fragment {
             public void onClick(View v) {
                 final DatePickerDialog picker = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        mStartDateET.setText(""+dayOfMonth+"-"+monthOfYear+"-"+year);
+                        String month = "";
+                        if(String.valueOf(monthOfYear).length()<2){
+                             month = "0" + monthOfYear;
+                        }else{
+                            month = "" + monthOfYear;
+                        }
+                        String day = "";
+                        if(String.valueOf(dayOfMonth).length()<2){
+                            day = "0"+ dayOfMonth;
+                        }else{
+                            day = ""+dayOfMonth;
+                        }
+                        mStartDateET.setText(""+year+"-"+month+"-"+day);
                     }
 
                 }, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
@@ -100,7 +112,19 @@ public class AddEventFragment extends Fragment {
             public void onClick(View v) {
                 final DatePickerDialog picker = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        mEndDateET.setText(""+dayOfMonth+"-"+monthOfYear+"-"+year);
+                        String month = "";
+                        if(String.valueOf(monthOfYear).length()<2){
+                            month = "0" + monthOfYear;
+                        }else{
+                            month = "" + monthOfYear;
+                        }
+                        String day = "";
+                        if(String.valueOf(dayOfMonth).length()<2){
+                            day = "0"+ dayOfMonth;
+                        }else{
+                            day = ""+dayOfMonth;
+                        }
+                        mEndDateET.setText(""+year+"-"+month+"-"+day);
                     }
 
                 }, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
@@ -121,19 +145,17 @@ public class AddEventFragment extends Fragment {
         String url = Urls.ADD_EVENT_URL;
         pDialog.show();
         mSaveBtn.setEnabled(false);
-
         address = mAddressET.getText().toString();
         description = mDescriptionET.getText().toString();
-        startDate = mEndDateET.getText().toString();
-        endDate = mStartDateET.getText().toString();
+        startDate = mStartDateET.getText().toString();
+        endDate = mEndDateET.getText().toString();
+
 
         AndroidNetworking.post(url)
                 .addBodyParameter("description", description)
                 .addBodyParameter("address", address )
-                .addBodyParameter("start_at", startDate )
+                .addBodyParameter("start_at", startDate)
                 .addBodyParameter("end_at", endDate )
-                //todelete
-                .addBodyParameter("interested","1")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {

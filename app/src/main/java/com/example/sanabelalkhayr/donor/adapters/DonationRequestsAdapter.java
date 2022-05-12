@@ -89,6 +89,8 @@ public class DonationRequestsAdapter extends RecyclerView.Adapter<DonationReques
 
         holder.quantity.setText(String.valueOf(donationOrder.getQuantity()));
 
+        holder.userName.setText(donationOrder.getUserName());
+
         holder.accept.setOnClickListener(v -> {
             message = "donation accepted";
             changeStatus(donationOrder, Constants.REQUEST_STATUS_ACCEPTED, message);
@@ -100,20 +102,17 @@ public class DonationRequestsAdapter extends RecyclerView.Adapter<DonationReques
             final AlertDialog message_dialog = new AlertDialog.Builder(context).create();
             message_dialog.setView(view);
 
-            EditText reasonTv = view.findViewById(R.id.status);
-            Button save = view.findViewById(R.id.save);
+            EditText reasonTv = view.findViewById(R.id.reason);
+            TextView save = view.findViewById(R.id.save);
 
-            save.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String reason = reasonTv.getText().toString();
-                    if(TextUtils.isEmpty(reason)){
-                        reason = "no reason";
-                    }
-                    message = reason;
-                    changeStatus(donationOrder, Constants.REQUEST_STATUS_REJECTED, message);
-                    message_dialog.dismiss();
+            save.setOnClickListener(v1 -> {
+                String reason = reasonTv.getText().toString();
+                if(TextUtils.isEmpty(reason)){
+                    reason = "no reason";
                 }
+                message = reason;
+                changeStatus(donationOrder, Constants.REQUEST_STATUS_REJECTED, message);
+                message_dialog.dismiss();
             });
             message_dialog.show();
         });
@@ -129,7 +128,6 @@ public class DonationRequestsAdapter extends RecyclerView.Adapter<DonationReques
 
         String id = String.valueOf(SharedPrefManager.getInstance(context).getUserId());
         AndroidNetworking.post(url)
-                .addBodyParameter("user_id", id)
                 .addBodyParameter("donation_id", String.valueOf(donationOrder.getId()))
                 .addBodyParameter("message", message)
                 .addBodyParameter("status", String.valueOf(status))
@@ -193,18 +191,15 @@ public class DonationRequestsAdapter extends RecyclerView.Adapter<DonationReques
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView date;
-        public TextView title;
-        public TextView quantity;
-        public TextView status;
-        public Button accept;
-        public Button reject;
+        public TextView date, title, quantity, status, userName;
+        public Button accept, reject;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.date = itemView.findViewById(R.id.date);
             this.title = itemView.findViewById(R.id.title);
             this.quantity = itemView.findViewById(R.id.quantity);
+            this.userName = itemView.findViewById(R.id.user_name);
             this.status = itemView.findViewById(R.id.response);
             this.accept = itemView.findViewById(R.id.accept);
             this.reject = itemView.findViewById(R.id.reject);

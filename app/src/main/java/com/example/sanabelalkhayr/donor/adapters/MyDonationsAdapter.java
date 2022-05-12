@@ -1,22 +1,38 @@
 package com.example.sanabelalkhayr.donor.adapters;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.model.Donation;
+import com.example.sanabelalkhayr.utils.SharedPrefManager;
+import com.example.sanabelalkhayr.utils.Urls;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +42,7 @@ public class MyDonationsAdapter extends RecyclerView.Adapter<MyDonationsAdapter.
     private List<Donation> donations;
     public NavController navController;
     private List<Donation> donationsFiltered;
+    ProgressDialog pDialog;
 
     public MyDonationsAdapter(Context context, ArrayList<Donation> donations) {
         this.context = context;
@@ -54,6 +71,9 @@ public class MyDonationsAdapter extends RecyclerView.Adapter<MyDonationsAdapter.
 
         holder.quantity.setText(String.valueOf(donation.getQuantity()));
 
+        pDialog = new ProgressDialog(context);
+        pDialog.setMessage("Processing Please wait...");
+
         if(donation.getImage() != null){
             Glide.with(context)
                     .load(donation.getImage())
@@ -75,9 +95,35 @@ public class MyDonationsAdapter extends RecyclerView.Adapter<MyDonationsAdapter.
             args.putString("image", donation.getImage());
             args.putString("donor", donation.getDonorUserName());
             args.putString("details", donation.getDescription());
+            args.putString("area", donation.getRegion());
             args.putString("for_donor", "yes");
             navController.navigate(R.id.action_myDonationsFragment_to_donationDetailsFragment2, args);
         });
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater factory = LayoutInflater.from(context);
+                final View view1 = factory.inflate(R.layout.dialog_delete_donation, null);
+                final AlertDialog deleteConfirmationDialog = new AlertDialog.Builder(context).create();
+                deleteConfirmationDialog.setView(view1);
+
+                TextView yes = view1.findViewById(R.id.yes_btn);
+                TextView no = view1.findViewById(R.id.ok_btn);
+
+                yes.setOnClickListener(v1 -> {
+                    deleteDonation(donation.getId(), position);
+                    deleteConfirmationDialog.dismiss();
+
+                });
+
+                no.setOnClickListener(v12 ->
+                        deleteConfirmationDialog.dismiss());
+                deleteConfirmationDialog.show();
+
+            }
+        });
+
     }
 
     @Override
@@ -123,6 +169,57 @@ public class MyDonationsAdapter extends RecyclerView.Adapter<MyDonationsAdapter.
         };
         return filter;
     }
+    private void deleteDonation(int donationID, int position) {
+        pDialog.show();
+        String url = Urls.DELETE_DONATION_URL;
+
+        AndroidNetworking.post(url)
+                .addBodyParameter("id", String.valueOf(donationID))
+                .setPriority(Priority.MEDIUM)
+                .doNotCacheResponse()
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            //converting response to json object
+                            JSONObject obj = response;
+                            String message = obj.getString("message");
+                            String dataGot = "Deleted";
+                            //if no error in response
+                            if (message.toLowerCase().contains(dataGot.toLowerCase())) {
+                                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                                donations.remove(position);
+                                notifyItemRemoved(position);
+                            }
+                            pDialog.dismiss();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            pDialog.dismiss();
+                            Log.e("catch", e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        pDialog.dismiss();
+                        Log.e("anError", anError.getMessage());
+                        Log.e("anError", anError.getErrorDetail());
+                        try {
+                            JSONObject error = new JSONObject(anError.getErrorBody());
+                            JSONObject data = error.getJSONObject("data");
+                            Toast.makeText(context, error.getString("message"), Toast.LENGTH_SHORT).show();
+                            if (data.has("id")) {
+                                Toast.makeText(context, data.getJSONArray("id").toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -130,6 +227,7 @@ public class MyDonationsAdapter extends RecyclerView.Adapter<MyDonationsAdapter.
         public TextView title;
         public TextView quantity;
         public ImageView image;
+        public Button delete;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -137,6 +235,7 @@ public class MyDonationsAdapter extends RecyclerView.Adapter<MyDonationsAdapter.
             this.title = itemView.findViewById(R.id.title);
             this.image = itemView.findViewById(R.id.image);
             this.quantity = itemView.findViewById(R.id.quantity);
+            this.delete = itemView.findViewById(R.id.delete);
         }
     }
 }

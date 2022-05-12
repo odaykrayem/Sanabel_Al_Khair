@@ -3,16 +3,19 @@ package com.example.sanabelalkhayr.donor.fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -22,8 +25,10 @@ import com.example.sanabelalkhayr.donor.adapters.DonationRequestsAdapter;
 import com.example.sanabelalkhayr.model.DonationOrder;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
 import com.example.sanabelalkhayr.utils.Urls;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class DonationRequestsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -43,7 +48,8 @@ public class DonationRequestsFragment extends Fragment implements SwipeRefreshLa
         this.context = context;
     }
 
-    public DonationRequestsFragment() {}
+    public DonationRequestsFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,14 +61,11 @@ public class DonationRequestsFragment extends Fragment implements SwipeRefreshLa
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_blue_dark);
-        mSwipeRefreshLayout.post(new Runnable() {
-
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
-                getDonationRequests();            }
+        mSwipeRefreshLayout.post(() -> {
+            mSwipeRefreshLayout.setRefreshing(true);
+            getDonationRequests();
         });
-        return  view;
+        return view;
     }
 
     @Override
@@ -72,7 +75,6 @@ public class DonationRequestsFragment extends Fragment implements SwipeRefreshLa
         pDialog = new ProgressDialog(context);
         pDialog.setCancelable(false);
         pDialog.setMessage("Processing Please wait...");
-        getDonationRequests();
     }
 
     private void getDonationRequests() {
@@ -99,7 +101,7 @@ public class DonationRequestsFragment extends Fragment implements SwipeRefreshLa
                                     donationOrders.add(
                                             new DonationOrder(
                                                     Integer.parseInt(jsonObject.getString("id")),
-                                                    Integer.parseInt(donation_data.getString("id")),
+                                                    "username",
                                                     donation_data.getString("title"),
                                                     Integer.parseInt(jsonObject.getString("quantity")),
                                                     Integer.parseInt(jsonObject.getString("status")),
@@ -120,6 +122,7 @@ public class DonationRequestsFragment extends Fragment implements SwipeRefreshLa
                             mSwipeRefreshLayout.setRefreshing(false);
                         }
                     }
+
                     @Override
                     public void onError(ANError error) {
                         pDialog.dismiss();

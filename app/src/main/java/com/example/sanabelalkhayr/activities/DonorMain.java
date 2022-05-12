@@ -117,7 +117,9 @@ public class DonorMain extends AppCompatActivity implements NavigationView.OnNav
                 break;
 
             case R.id.menu_logout:
-
+                SharedPrefManager.getInstance(this).logout();
+                startActivity(new Intent(this, Login.class));
+                finish();
                 break;
 
         }

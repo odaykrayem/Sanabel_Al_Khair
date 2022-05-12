@@ -78,7 +78,8 @@ public class MyDonationsFragment extends Fragment implements SwipeRefreshLayout.
             @Override
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(true);
-getMyDonations();            }
+                getMyDonations();
+            }
         });
         return view;
     }
@@ -103,7 +104,7 @@ getMyDonations();            }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(mAdapter != null){
+                if (mAdapter != null) {
                     mAdapter.getFilter().filter(newText);
                 }
                 return true;
@@ -138,10 +139,9 @@ getMyDonations();            }
                                 JSONArray jsonArray = response.getJSONArray("data");
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    JSONObject donation = jsonObject.getJSONObject("donation");
-                                    JSONObject category_data = donation.getJSONObject("category_data");
+                                    JSONObject category_data = jsonObject.getJSONObject("category_data");
                                     String category = category_data.getString("name");
-                                    JSONObject region_data = donation.getJSONObject("region_data");
+                                    JSONObject region_data = jsonObject.getJSONObject("region_data");
                                     String region = region_data.getString("name");
                                     donations.add(
                                             new Donation(
@@ -149,7 +149,7 @@ getMyDonations();            }
                                                     jsonObject.getString("title"),
                                                     jsonObject.getString("description"),
                                                     category,
-                                                    Urls.IMAGE_BASE_URL+jsonObject.getString("image"),
+                                                    Urls.IMAGE_BASE_URL + jsonObject.getString("image"),
                                                     jsonObject.getInt("quantity"),
                                                     jsonObject.getString("donor_user_name"),
                                                     region
@@ -179,6 +179,7 @@ getMyDonations();            }
                     }
                 });
     }
+
     @Override
     public void onRefresh() {
         getMyDonations();

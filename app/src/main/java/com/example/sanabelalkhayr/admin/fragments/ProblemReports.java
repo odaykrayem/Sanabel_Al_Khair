@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,13 +33,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ProblemReports extends Fragment {
+public class ProblemReports extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     Context context;
     RecyclerView mList;
     ProblemReportsAdapter mAdapter;
     ArrayList<Feedback> list;
     ProgressDialog pDialog;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -59,9 +61,18 @@ public class ProblemReports extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_problem_reports, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_problem_reports, container, false);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipe);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.secondary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        mSwipeRefreshLayout.post(() -> {
+            mSwipeRefreshLayout.setRefreshing(true);
+            getReports();
+        });
+        return view;
 
     }
 
@@ -71,20 +82,16 @@ public class ProblemReports extends Fragment {
         pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Processing Please wait...");
         mList = view.findViewById(R.id.rv);
-
-        getReports();
     }
 
     private void getReports() {
 
         pDialog.show();
 
-        String url = Urls.GET_EVENTS_URL;
-        String id = String.valueOf(SharedPrefManager.getInstance(context).getUserId());
+        String url = Urls.GET_REPORTS_URL;
         list = new ArrayList<Feedback>();
         AndroidNetworking.get(url)
                 .setPriority(Priority.MEDIUM)
-                .addQueryParameter("user_id", id)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -111,10 +118,12 @@ public class ProblemReports extends Fragment {
                             }else{
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                             }
+                            mSwipeRefreshLayout.setRefreshing(false);
                             pDialog.dismiss();
                         } catch (Exception e) {
                             e.printStackTrace();
                             pDialog.dismiss();
+                            mSwipeRefreshLayout.setRefreshing(false);
                             Log.e("event catch", e.getMessage());
                         }
                     }
@@ -122,8 +131,14 @@ public class ProblemReports extends Fragment {
                     @Override
                     public void onError(ANError error) {
                         pDialog.dismiss();
+                        mSwipeRefreshLayout.setRefreshing(false);
                         Log.e("event anerror",error.getErrorBody());
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        getReports();
     }
 }

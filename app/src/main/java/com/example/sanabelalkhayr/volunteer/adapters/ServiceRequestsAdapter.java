@@ -20,7 +20,6 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.androidnetworking.model.Progress;
 import com.example.sanabelalkhayr.model.ServiceOrder;
 import com.example.sanabelalkhayr.utils.Constants;
 import com.example.sanabelalkhayr.R;
@@ -82,7 +81,7 @@ public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequests
 
         holder.title.setText(serviceOrder.getDonation_title());
 
-        holder.user_name.setText(serviceOrder.getVolunteer_name());
+        holder.user_name.setText(serviceOrder.getUser_name());
 
         holder.accept.setOnClickListener(v -> {
             message = "Service accepted";
@@ -95,8 +94,8 @@ public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequests
             final AlertDialog message_dialog = new AlertDialog.Builder(context).create();
             message_dialog.setView(view);
 
-            EditText reasonTv = view.findViewById(R.id.status);
-            Button save = view.findViewById(R.id.save);
+            EditText reasonTv = view.findViewById(R.id.reason);
+            TextView save = view.findViewById(R.id.save);
 
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -135,10 +134,10 @@ public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequests
                             //converting response to json object
                             JSONObject obj = response;
                             String message = obj.getString("message");
-                            String dataGot = "Data Got";
+                            String dataGot = "Data Saved";
                             //if no error in response
                             if (message.toLowerCase().contains(dataGot.toLowerCase())) {
-                                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, context.getResources().getString(R.string.service_status_changed), Toast.LENGTH_SHORT).show();
                             }
                             pDialog.dismiss();
                         } catch (JSONException e) {
@@ -158,7 +157,7 @@ public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequests
                             if (data.has("user_id")) {
                                 Toast.makeText(context, data.getJSONArray("user_id").toString(), Toast.LENGTH_SHORT).show();
                             }
-                            if (data.has("donation_id")) {
+                            if (data.has("service_id")) {
                                 Toast.makeText(context, data.getJSONArray("donation_id").toString(), Toast.LENGTH_SHORT).show();
                             }
                             if (data.has("message")) {
@@ -180,12 +179,8 @@ public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequests
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView date;
-        public TextView title;
-        public TextView status;
-        public TextView user_name;
-        public Button accept;
-        public Button reject;
+        public TextView date, title, status, user_name;
+        public Button accept, reject;
 
         public ViewHolder(View itemView) {
             super(itemView);

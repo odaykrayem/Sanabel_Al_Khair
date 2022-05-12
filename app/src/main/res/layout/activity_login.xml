@@ -18,11 +18,11 @@
         android:paddingRight="20dp" >
 
         <EditText
-            android:id="@+id/user_name"
+            android:id="@+id/email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="@string/hint_user_name"
+            android:hint="@string/hint_email"
             android:inputType="text"
             android:padding="10dp"
             android:singleLine="true"

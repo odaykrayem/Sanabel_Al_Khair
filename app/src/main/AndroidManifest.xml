@@ -9,6 +9,8 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -32,15 +34,18 @@
 
         </activity>
         <activity android:name=".activities.AdminMain">
+
+        </activity>
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".volunteer.fragments.GenerateCertActivity"
+            android:configChanges="orientation"/>
 
-        </activity>
         <activity android:name=".activities.Login">
 
         </activity>

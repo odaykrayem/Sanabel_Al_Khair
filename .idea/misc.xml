@@ -1,11 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_delete_btn.xml" value="0.12" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_dialog.xml" value="0.12" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_donor_card.xml" value="0.12" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_event_time.xml" value="0.12" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_input.xml" value="0.12" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_interested_btn.xml" value="0.12" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_item_donation.xml" value="0.12" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_order_btn.xml" value="0.12" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_spinner.xml" value="0.106" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_user_card.xml" value="0.106" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/bg_volunteer_card.xml" value="0.12" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/ic_logout.xml" value="0.106" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/ic_order.xml" value="0.106" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/drawable/ic_service_black.xml" value="0.106" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/activity_generat_cert.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/activity_main_admin.xml" value="0.1537037037037037" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/activity_main_donor.xml" value="0.1537037037037037" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/activity_main_user.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/dialog_delete_donation.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/dialog_delete_service.xml" value="0.17962962962962964" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/dialog_email_verification.xml" value="0.2" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/dialog_order_confirmation.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/dialog_verify_email.xml" value="0.17962962962962964" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_add_donation.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_add_event.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_add_new.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_add_service.xml" value="0.18" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_donation_details.xml" value="0.33" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_donation_orders.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_donation_requests.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_donations.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_events_list.xml" value="0.18" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_my_donations.xml" value="0.18" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_my_services.xml" value="0.18" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_problem_reports.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_send_problem_report.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_service_orders.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_service_requests.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_update_profile.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_user_details.xml" value="0.2" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_user_profile.xml" value="0.22" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/fragment_users_list.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/item_admin_event.xml" value="0.22" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/item_charitable_event.xml" value="0.1537037037037037" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/item_donation.xml" value="0.25" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/item_donation_donor.xml" value="0.17962962962962964" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/item_my_service.xml" value="0.17962962962962964" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/layout/nav_header.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/menu/admin_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/menu/donor_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/menu/user_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/menu/volunteer_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/O_o/AndroidStudioProjects/Sanabel_Al_Khayr/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.106" />
+      </map>
+    </option>
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />
     <option name="myDefaultNotNull" value="androidx.annotation.NonNull" />
     <option name="myNullables">
       <value>
-        <list size="12">
+        <list size="13">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
           <item index="2" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
@@ -18,12 +80,13 @@
           <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableDecl" />
           <item index="10" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableType" />
           <item index="11" class="java.lang.String" itemvalue="com.android.annotations.Nullable" />
+          <item index="12" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.Nullable" />
         </list>
       </value>
     </option>
     <option name="myNotNulls">
       <value>
-        <list size="11">
+        <list size="12">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
           <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
@@ -35,11 +98,12 @@
           <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullDecl" />
           <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullType" />
           <item index="10" class="java.lang.String" itemvalue="com.android.annotations.NonNull" />
+          <item index="11" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.NonNull" />
         </list>
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -75,13 +75,9 @@ public class MyServicesFragment extends Fragment  implements SwipeRefreshLayout.
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_blue_dark);
-        mSwipeRefreshLayout.post(new Runnable() {
-
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
-                getMyServices();
-            }
+        mSwipeRefreshLayout.post(() -> {
+            mSwipeRefreshLayout.setRefreshing(true);
+            getMyServices();
         });
         return view;
     }
@@ -98,11 +94,6 @@ public class MyServicesFragment extends Fragment  implements SwipeRefreshLayout.
         pDialog.setMessage("Processing Please wait...");
         pDialog.setCancelable(false);
 
-
-        getMyServices();
-        mAdapter = new MyServicesAdapter(getContext(), services);
-        mList.setAdapter(mAdapter);
-
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -111,7 +102,10 @@ public class MyServicesFragment extends Fragment  implements SwipeRefreshLayout.
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mAdapter.getFilter().filter(newText);
+                if(mAdapter!= null){
+                    mAdapter.getFilter().filter(newText);
+
+                }
                 return true;
             }
         });
@@ -131,6 +125,7 @@ public class MyServicesFragment extends Fragment  implements SwipeRefreshLayout.
         AndroidNetworking.get(url)
                 .setPriority(Priority.MEDIUM)
                 .addQueryParameter("user_id", id)
+                .doNotCacheResponse()
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -140,12 +135,11 @@ public class MyServicesFragment extends Fragment  implements SwipeRefreshLayout.
                             String message = obj.getString("message");
                             String userFounded = "Data Got";
                             if (message.toLowerCase().contains(userFounded.toLowerCase())) {
-                                Toast.makeText(context, context.getResources().getString(R.string.get_my_dnotion_success), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, context.getResources().getString(R.string.get_my_services_success), Toast.LENGTH_SHORT).show();
                                 JSONArray jsonArray = response.getJSONArray("data");
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    JSONObject donation = jsonObject.getJSONObject("donation");
-                                    JSONObject region_data = donation.getJSONObject("region_data");
+                                    JSONObject region_data = jsonObject.getJSONObject("region_data");
                                     String region = region_data.getString("name");
                                     services.add(
                                             new Service(
@@ -162,9 +156,10 @@ public class MyServicesFragment extends Fragment  implements SwipeRefreshLayout.
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            Log.e("catch", e.getMessage());
                             pDialog.dismiss();
                             mSwipeRefreshLayout.setRefreshing(false);
+                            Log.e("catch", e.getMessage());
+
                         }
                     }
 
@@ -173,7 +168,6 @@ public class MyServicesFragment extends Fragment  implements SwipeRefreshLayout.
                         pDialog.dismiss();
                         mSwipeRefreshLayout.setRefreshing(false);
                         Log.e("anError", error.getErrorBody());
-                        Toast.makeText(requireContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

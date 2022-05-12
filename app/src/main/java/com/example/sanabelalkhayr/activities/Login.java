@@ -23,7 +23,7 @@ import org.json.JSONObject;
 public class Login extends AppCompatActivity {
 
     private Button mLoginBtn,mToRegisterBtn;
-    private EditText mUserNameET, mPassET;
+    private EditText mEmailET, mPassET;
     private ProgressDialog pDialog;
 
     int userType;
@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mUserNameET = findViewById(R.id.user_name);
+        mEmailET = findViewById(R.id.email);
         mPassET = findViewById(R.id.password);
         mLoginBtn = findViewById(R.id.btnLogin);
         mToRegisterBtn = findViewById(R.id.btnLinkToRegisterScreen);
@@ -44,13 +44,12 @@ public class Login extends AppCompatActivity {
         // Login button Click Event
         mLoginBtn.setOnClickListener(view -> {
             //validation
-            String userName = mUserNameET.getText().toString().trim();
+            String userName = mEmailET.getText().toString().trim();
             String password = mPassET.getText().toString().trim();
 
             // Check for empty data in the form
             if (!userName.isEmpty() && !password.isEmpty()) {
                 // login user
-                mLoginBtn.setEnabled(false);
                 login(userName, password);
             } else {
                 // Prompt user to enter credentials
@@ -63,29 +62,34 @@ public class Login extends AppCompatActivity {
         // Link to Register Screen
         mToRegisterBtn.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(),Register.class));
+            finish();
         });
     }
 
-    private void login(String userName, String password) {
+    private void login(String userEmail, String password) {
         pDialog.show();
         mLoginBtn.setEnabled(false);
+        if(userEmail.equals("admin") && password.equals("00000000")){
+            mLoginBtn.setEnabled(true);
+            pDialog.dismiss();
+            goToUserMainActivity(Constants.USER_TYPE_ADMIN);
+        }
         String url = Urls.LOGIN_URL;
-
         AndroidNetworking.post(url)
                 .addBodyParameter("password", password)
-                .addBodyParameter("user_name", userName)
+                .addBodyParameter("user_name", userEmail)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         // do anything with response
-                        pDialog.dismiss();
                         try {
                             //converting response to json object
                             JSONObject obj = response;
                             String message = obj.getString("message");
                             String userFounded = "User founded";
+
                             //if no error in response
                             if (message.toLowerCase().contains(userFounded.toLowerCase())) {
 
@@ -98,18 +102,21 @@ public class Login extends AppCompatActivity {
                                         Integer.parseInt(userJson.getString("id")),
                                         userJson.getString("name"),
                                         userJson.getString("user_name"),
+                                        userJson.getString("email"),
                                         userJson.getString("phone"),
                                         userJson.getString("address"),
-                                        userJson.getInt("type")
+                                        userJson.getInt("type"),
+                                        userJson.getInt("num_of_responses")
                                 );
 
                                 userType= user.getType();
                                 //storing the user in shared preferences
                                 SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+
                                 goToUserMainActivity(userType);
 
                             }else{
-                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Wrong email or password", Toast.LENGTH_SHORT).show();
                             }
                             pDialog.dismiss();
                             mLoginBtn.setEnabled(true);
@@ -126,10 +133,10 @@ public class Login extends AppCompatActivity {
                         mLoginBtn.setEnabled(true);
                         Log.e("loginerror", anError.getErrorBody());
                         try {
-                            JSONObject error = new JSONObject(anError.getErrorBody());
+                            JSONObject error = new JSONObject(anError.getMessage());
                             JSONObject data = error.getJSONObject("data");
                             Toast.makeText(Login.this, error.getString("message"), Toast.LENGTH_SHORT).show();
-                              if (data.has("user_name")) {
+                            if (data.has("user_name")) {
                                 Toast.makeText(getApplicationContext(), data.getJSONArray("user_name").toString(), Toast.LENGTH_SHORT).show();
                             }
                             if (data.has("password")) {
@@ -141,6 +148,8 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
+
+
     private void goToUserMainActivity(int selectedUserType) {
         switch (selectedUserType){
             case Constants.USER_TYPE_MAIN:

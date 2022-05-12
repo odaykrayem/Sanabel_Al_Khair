@@ -11,16 +11,29 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
+import com.example.sanabelalkhayr.volunteer.fragments.GenerateCertActivity;
 import com.google.android.material.navigation.NavigationView;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 public class VolunteerMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener{
 
+    private static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
     public Toolbar toolbar;
 
     public DrawerLayout drawerLayout;
@@ -34,6 +47,7 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
     int destination = R.id.menu_my_services;
 
     AppBarConfiguration mAppBarConfiguration;
+    String dirpath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,4 +157,8 @@ public class VolunteerMain extends AppCompatActivity implements NavigationView.O
     @Override
     public void onDrawerStateChanged(int newState) {
     }
+
+
+
+
 }

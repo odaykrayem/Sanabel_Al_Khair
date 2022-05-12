@@ -49,8 +49,8 @@
                 android:textSize="@dimen/newsMoreTextSize"
                 android:gravity="top"
                 android:hint="@string/hint_details"
-                android:lines="10"
-                android:maxLines="10"
+                android:lines="5"
+                android:maxLines="5"
                 android:inputType="textMultiLine"
                 android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>

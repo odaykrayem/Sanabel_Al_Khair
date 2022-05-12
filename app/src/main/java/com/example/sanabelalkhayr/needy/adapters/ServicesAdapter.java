@@ -53,8 +53,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
 
         holder.order.setOnClickListener(v -> {
-            ChooseDonationOrderDialog cd = new ChooseDonationOrderDialog(context, service.getId());
-            cd.show();
+
             LayoutInflater factory = LayoutInflater.from(context);
             final View view = factory.inflate(R.layout.dialog_service_confirmation, null);
             final AlertDialog orderConfirmationDialog = new AlertDialog.Builder(context).create();
@@ -66,6 +65,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
             yes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ChooseDonationOrderDialog cd = new ChooseDonationOrderDialog(context, service.getId());
+                    cd.show();
                     orderConfirmationDialog.dismiss();
                 }
             });

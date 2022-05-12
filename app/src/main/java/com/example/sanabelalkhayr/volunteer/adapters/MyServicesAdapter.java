@@ -79,7 +79,7 @@ public class MyServicesAdapter extends RecyclerView.Adapter<MyServicesAdapter.Vi
                 TextView no = view1.findViewById(R.id.ok_btn);
 
                 yes.setOnClickListener(v1 -> {
-                    deleteService(service.getId());
+                    deleteService(service.getId(), position);
                     deleteConfirmationDialog.dismiss();
 
                 });
@@ -92,15 +92,16 @@ public class MyServicesAdapter extends RecyclerView.Adapter<MyServicesAdapter.Vi
         });
     }
 
-    private void deleteService(int id) {
+    private void deleteService(int serviceID, int position) {
         pDialog.show();
         String url = Urls.DELETE_SERVICE_URL;
 
         String userId = String.valueOf(SharedPrefManager.getInstance(context).getUserId());
         AndroidNetworking.post(url)
                 .addBodyParameter("user_id", userId)
-                .addBodyParameter("service_id", String.valueOf(id))
+                .addBodyParameter("service_id", String.valueOf(serviceID))
                 .setPriority(Priority.MEDIUM)
+                .doNotCacheResponse()
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -114,6 +115,8 @@ public class MyServicesAdapter extends RecyclerView.Adapter<MyServicesAdapter.Vi
                             //if no error in response
                             if (message.toLowerCase().contains(dataGot.toLowerCase())) {
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                                services.remove(position);
+                                notifyItemRemoved(position);
                             }
                             pDialog.dismiss();
 

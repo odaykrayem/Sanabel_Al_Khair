@@ -11,7 +11,7 @@ import com.example.sanabelalkhayr.utils.Constants;
 
 public class SplashActivity extends AppCompatActivity {
 
-    public static final int TIME_TO_START = 1500;
+    public static final int TIME_TO_START = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,22 +22,24 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void nextPhase() {
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-            switch(SharedPrefManager.getInstance(this).getUserType()){
-                case Constants.USER_TYPE_DONOR:
-                    startActivity(new Intent(this, DonorMain.class));
-                    break;
-                case Constants.USER_TYPE_MAIN:
-                    startActivity(new Intent(this, UserMain.class));
-                    break;
-                case Constants.USER_TYPE_VOLUNTEER:
-                    startActivity(new Intent(this, VolunteerMain.class));
-                    break;
-                case Constants.USER_TYPE_ADMIN:
-                    startActivity(new Intent(this, AdminMain.class));
-                    break;
-            }
-        }
+//        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+//            switch(SharedPrefManager.getInstance(this).getUserType()){
+//                case Constants.USER_TYPE_DONOR:
+//                    startActivity(new Intent(this, DonorMain.class));
+//                    break;
+//                case Constants.USER_TYPE_MAIN:
+//                    startActivity(new Intent(this, UserMain.class));
+//                    break;
+//                case Constants.USER_TYPE_VOLUNTEER:
+//                    startActivity(new Intent(this, VolunteerMain.class));
+//                    break;
+//                case Constants.USER_TYPE_ADMIN:
+//                    startActivity(new Intent(this, AdminMain.class));
+//                    break;
+//            }
+//        }else{
+            startActivity(new Intent(this, Login.class));
+//        }
         finish();
     }
 }

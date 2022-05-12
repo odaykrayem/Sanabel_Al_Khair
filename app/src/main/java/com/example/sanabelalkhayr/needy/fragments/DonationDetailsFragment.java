@@ -30,7 +30,7 @@ import org.json.JSONObject;
 public class DonationDetailsFragment extends Fragment {
 
     ImageView mImage;
-    TextView mNameTV, mCategoryTV, mDonorUserNameTV, mDetailsTV;
+    TextView mNameTV, mCategoryTV, mDonorUserNameTV, mDetailsTV, mAreaTV;
     Button mOrderBtn;
 
     private static final String KEY_ID = "id";
@@ -40,8 +40,9 @@ public class DonationDetailsFragment extends Fragment {
     private static final String KEY_DONOR = "donor";
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_QUANTITY = "quantity";
+    private static final String KEY_AREA= "area";
 
-    private String name, image, details, category, donorUserName, forDonor;
+    private String name, image, details, category,area, donorUserName, forDonor;
     private int donationId, donationQuantity;
      ProgressDialog pDialog;
 
@@ -66,6 +67,7 @@ public class DonationDetailsFragment extends Fragment {
             donorUserName = getArguments().getString(KEY_DONOR);
             image = getArguments().getString(KEY_IMAGE);
             category = getArguments().getString(KEY_CATEGORY);
+            area = getArguments().getString(KEY_AREA);
             forDonor = getArguments().getString("for_donor");
         }
     }
@@ -84,6 +86,7 @@ public class DonationDetailsFragment extends Fragment {
         mCategoryTV = view.findViewById(R.id.category);
         mDonorUserNameTV = view.findViewById(R.id.donor_user_name);
         mDetailsTV = view.findViewById(R.id.details);
+        mAreaTV = view.findViewById(R.id.area);
         mOrderBtn = view.findViewById(R.id.order_btn);
 
         pDialog = new ProgressDialog(getContext());
@@ -96,6 +99,7 @@ public class DonationDetailsFragment extends Fragment {
 
         mNameTV.setText(name);
         mCategoryTV.setText(category);
+        mAreaTV.setText(area);
         mDetailsTV.setText(details);
         mDonorUserNameTV.setText(donorUserName);
 

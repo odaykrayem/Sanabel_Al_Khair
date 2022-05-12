@@ -87,7 +87,6 @@ public class AddServiceFragment extends Fragment {
         mDescET = view.findViewById(R.id.description);
         mSaveBtn = view.findViewById(R.id.save);
 
-        setUpRegionsChooser();
         mSaveBtn.setOnClickListener(v -> {
             if (Validation.validateInput(context, mDescET)) {
                 if (selectedRegion != -1) {
@@ -97,6 +96,7 @@ public class AddServiceFragment extends Fragment {
                 }
             }
         });
+        getAllRegions();
     }
 
     private void setUpRegionsChooser() {
@@ -125,6 +125,7 @@ public class AddServiceFragment extends Fragment {
         String id = String.valueOf(SharedPrefManager.getInstance(context).getUserId());
         AndroidNetworking.post(url)
                 .addBodyParameter("user_id", id)
+                .addBodyParameter("title", "service")
                 .addBodyParameter("description", description)
                 .addBodyParameter("region", String.valueOf(selectedRegion))
                 .setPriority(Priority.MEDIUM)

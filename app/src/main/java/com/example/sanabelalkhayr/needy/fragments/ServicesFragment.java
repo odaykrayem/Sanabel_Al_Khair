@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -31,7 +32,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ServicesFragment extends Fragment {
+public class ServicesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     Context context;
 
@@ -42,6 +43,7 @@ public class ServicesFragment extends Fragment {
 
     ProgressDialog pDialog;
 
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onAttach(Context context) {
@@ -49,12 +51,29 @@ public class ServicesFragment extends Fragment {
         this.context = context;
     }
 
-    public ServicesFragment() {}
+    public ServicesFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_services, container, false);
+        View view = inflater.inflate(R.layout.fragment_services, container, false);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipe);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.secondary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        mSwipeRefreshLayout.post(new Runnable() {
+
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                getServices();
+            }
+        });
+
+        return view;
     }
 
     @Override
@@ -67,7 +86,6 @@ public class ServicesFragment extends Fragment {
         pDialog.setCancelable(false);
 
         searchView = view.findViewById(R.id.search);
-        getServices();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -91,16 +109,18 @@ public class ServicesFragment extends Fragment {
         pDialog.show();
         AndroidNetworking.get(url)
                 .setPriority(Priority.MEDIUM)
+                .doNotCacheResponse()
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             JSONObject obj = response;
+                            Log.e("res", response.toString());
                             String message = obj.getString("message");
                             String userFounded = "Data Got";
                             if (message.toLowerCase().contains(userFounded.toLowerCase())) {
-                                Toast.makeText(context, context.getResources().getString(R.string.get_categories_success), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, context.getResources().getString(R.string.get_my_services_success), Toast.LENGTH_SHORT).show();
                                 JSONArray jsonArray = response.getJSONArray("data");
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -113,9 +133,10 @@ public class ServicesFragment extends Fragment {
                                                     Integer.parseInt(jsonObject.getString("id")),
                                                     jsonObject.getString("description"),
                                                     region
-                                                    )
+                                            )
                                     );
                                 }
+                                mSwipeRefreshLayout.setRefreshing(false);
                                 pDialog.dismiss();
                                 mAdapter = new ServicesAdapter(context, services);
                                 mList.setAdapter(mAdapter);
@@ -123,14 +144,23 @@ public class ServicesFragment extends Fragment {
                         } catch (Exception e) {
                             e.printStackTrace();
                             pDialog.dismiss();
+                            mSwipeRefreshLayout.setRefreshing(false);
                             Log.e("catch", e.getMessage());
                         }
                     }
+
                     @Override
                     public void onError(ANError error) {
                         pDialog.dismiss();
+                        mSwipeRefreshLayout.setRefreshing(false);
                         Log.e("anError", error.getErrorBody());
+                        Log.e("anError", error.getErrorDetail());
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        getServices();
     }
 }

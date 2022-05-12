@@ -29,8 +29,8 @@ import org.json.JSONObject;
 public class UserDetailsFragment extends Fragment {
 
     Button deleteBtn;
-    TextView mIDTV, mNameTV, mUserNameTV, mPhoneTV, mAddressTV, mType;
-    String id, name, userName, phone, address;
+    TextView mIDTV, mNameTV, mUserNameTV,mEmailTV, mPhoneTV, mAddressTV, mType;
+    String id, name, userName,email, phone, address;
     int typeInt;
     Context context;
     ProgressDialog pDialog;
@@ -51,6 +51,7 @@ public class UserDetailsFragment extends Fragment {
             id = String.valueOf(getArguments().getInt("id"));
             name = getArguments().getString("name");
             userName = getArguments().getString("userName");
+            email = getArguments().getString("email");
             phone = getArguments().getString("phone");
             address = getArguments().getString("address");
             typeInt = getArguments().getInt("type");
@@ -73,6 +74,7 @@ public class UserDetailsFragment extends Fragment {
         mIDTV = view.findViewById(R.id.tv_id);
         mNameTV = view.findViewById(R.id.name);
         mUserNameTV = view.findViewById(R.id.user_name);
+        mEmailTV = view.findViewById(R.id.email);
         mAddressTV = view.findViewById(R.id.address);
         mPhoneTV = view.findViewById(R.id.phone);
         mType = view.findViewById(R.id.title);
@@ -81,6 +83,7 @@ public class UserDetailsFragment extends Fragment {
         mIDTV.setText(id);
         mNameTV.setText(name);
         mUserNameTV.setText(userName);
+        mEmailTV.setText(email);
         mAddressTV.setText(address);
         mPhoneTV.setText(phone);
         switch (typeInt){
@@ -134,7 +137,9 @@ public class UserDetailsFragment extends Fragment {
                             JSONObject obj = response;
                             String message = obj.getString("message");
                             String dataGot = "Data Deleted";
+
                             //if no error in response
+
                             if (message.toLowerCase().contains(dataGot.toLowerCase())) {
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                                 navController.popBackStack();

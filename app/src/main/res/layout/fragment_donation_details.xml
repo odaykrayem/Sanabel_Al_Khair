@@ -62,7 +62,21 @@
                 android:textColor="@color/secondary"
                 android:textAlignment="center"
                 android:text="category"/>
-
+            <TextView
+                android:layout_marginTop="16dp"
+                android:id="@+id/area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/category_text_shape"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="14sp"
+                android:textColor="@color/secondary"
+                android:textAlignment="center"
+                android:text="area"/>
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="16dp"

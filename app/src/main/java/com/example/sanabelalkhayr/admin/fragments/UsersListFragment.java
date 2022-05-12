@@ -105,6 +105,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
                                                     Integer.parseInt(obj.getString("id")),
                                                     obj.getString("name"),
                                                     obj.getString("user_name"),
+                                                    obj.getString("email"),
                                                     obj.getString("phone"),
                                                     obj.getString("address"),
                                                     obj.getInt("type"),
@@ -117,8 +118,8 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
                             } else {
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                             }
-                            pDialog.dismiss();
                             mSwipeRefreshLayout.setRefreshing(false);
+                            pDialog.dismiss();
                         } catch (Exception e) {
                             e.printStackTrace();
                             pDialog.dismiss();
@@ -130,6 +131,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
                     @Override
                     public void onError(ANError error) {
                         pDialog.dismiss();
+                        mSwipeRefreshLayout.setRefreshing(false);
                         Log.e("users anerror", error.getErrorBody());
                     }
                 });

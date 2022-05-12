@@ -1,5 +1,6 @@
 package com.example.sanabelalkhayr.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -7,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -21,17 +24,18 @@ import com.example.sanabelalkhayr.R;
 import com.example.sanabelalkhayr.utils.Urls;
 import com.example.sanabelalkhayr.model.User;
 import com.example.sanabelalkhayr.utils.SharedPrefManager;
-import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Register extends AppCompatActivity {
 
-    EditText mNameET, mUserNameET, mPassET, mPhoneET, mAddressET;
+    EditText mNameET, mUserNameET,mEmail, mPassET, mPhoneET, mAddressET;
     Button mRegisterBtn, mToLoginBtn;
     RadioGroup mAccountTypeSelector;
     int selectedUserType;
+    String verificationCode;
+    AlertDialog verificationDialog;
 
     private ProgressDialog pDialog;
 
@@ -43,6 +47,7 @@ public class Register extends AppCompatActivity {
         mNameET = findViewById(R.id.name);
         mPassET = findViewById(R.id.password);
         mUserNameET = findViewById(R.id.user_name);
+        mEmail = findViewById(R.id.email);
         mPhoneET = findViewById(R.id.phone);
         mAddressET = findViewById(R.id.address);
         mRegisterBtn = findViewById(R.id.btnRegister);
@@ -89,6 +94,7 @@ public class Register extends AppCompatActivity {
         final String name = mNameET.getText().toString();
         final String phone = mPhoneET.getText().toString();
         final String userName = mUserNameET.getText().toString();
+        final String userEmail = mEmail.getText().toString();
         final String address = mAddressET.getText().toString();
 
         //checking if username is empty
@@ -101,6 +107,12 @@ public class Register extends AppCompatActivity {
         //checking if userName is empty
         if (TextUtils.isEmpty(userName)) {
             Toast.makeText(this, getResources().getString(R.string.user_name_missing_message), Toast.LENGTH_SHORT).show();
+            mRegisterBtn.setEnabled(true);
+            return false;
+        }
+        //checking if userEmail is empty
+        if (TextUtils.isEmpty(userEmail)) {
+            Toast.makeText(this, getResources().getString(R.string.email_missing_message), Toast.LENGTH_SHORT).show();
             mRegisterBtn.setEnabled(true);
             return false;
         }
@@ -137,6 +149,7 @@ public class Register extends AppCompatActivity {
         final String name = mNameET.getText().toString();
         final String phone = mPhoneET.getText().toString();
         final String userName = mUserNameET.getText().toString();
+        final String userEmail = mEmail.getText().toString();
         final String address = mAddressET.getText().toString();
 
         String url = Urls.REGISTER_URL;
@@ -144,6 +157,7 @@ public class Register extends AppCompatActivity {
                 .addBodyParameter("type", String.valueOf(selectedUserType))
                 .addBodyParameter("name", name)
                 .addBodyParameter("user_name", userName)
+                .addBodyParameter("email", userEmail)
                 .addBodyParameter("password", pass)
                 .addBodyParameter("phone", phone)
                 .addBodyParameter("address", address)
@@ -153,8 +167,6 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         // do anything with response
-                        pDialog.dismiss();
-
                         try {
                             //converting response to json object
                             JSONObject obj = response;
@@ -164,7 +176,6 @@ public class Register extends AppCompatActivity {
                             JSONObject userJson = obj.getJSONObject("data");
 
                             if (message.toLowerCase().contains(userSaved.toLowerCase())) {
-                                Log.e("selectedUser", "inside");
                                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
                                 //getting the user from the response
@@ -174,18 +185,21 @@ public class Register extends AppCompatActivity {
                                         Integer.parseInt(userJson.getString("id")),
                                         userJson.getString("name"),
                                         userJson.getString("user_name"),
+                                        userJson.getString("email"),
                                         userJson.getString("phone"),
                                         userJson.getString("address"),
                                         userJson.getInt("type"),
                                         0
                                 );
+                                 verificationCode = userJson.getString("status");
+                                Log.e("code", verificationCode);
+                                //when user register api will send code to registered email
+                                //so we popup a dialog to check for the code
+                                verifyEmail(verificationCode);
 
                                 //storing the user in shared preferences
                                 SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-                                Log.e("selectedUser", selectedUserType + "");
-                                Log.e("selectedUser", "inside2");
-
-                                goToUserMainActivity();
+//                                goToUserMainActivity();
 
                             }
                             pDialog.dismiss();
@@ -202,8 +216,10 @@ public class Register extends AppCompatActivity {
                     public void onError(ANError anError) {
                         pDialog.dismiss();
                         mRegisterBtn.setEnabled(true);
+                        Log.e("err", anError.getErrorDetail());
+                        Log.e("err", anError.getMessage());
                         try {
-                            JSONObject error = new JSONObject(anError.getErrorBody());
+                            JSONObject error = new JSONObject(anError.getErrorDetail());
                             JSONObject data = error.getJSONObject("data");
                             Toast.makeText(Register.this, error.getString("message"), Toast.LENGTH_SHORT).show();
 
@@ -222,6 +238,8 @@ public class Register extends AppCompatActivity {
 
                             }  if (data.has("password")) {
                                 Toast.makeText(getApplicationContext(), data.getJSONArray("password").toString(), Toast.LENGTH_SHORT).show();
+                            } if (data.has("email")) {
+                                Toast.makeText(getApplicationContext(), data.getJSONArray("email").toString(), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -229,6 +247,30 @@ public class Register extends AppCompatActivity {
 //
                     }
                 });
+    }
+    private void verifyEmail(String verificationCode) {
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View view = factory.inflate(R.layout.dialog_email_verification, null);
+        verificationDialog = new AlertDialog.Builder(this).create();
+        verificationDialog.setView(view);
+        verificationDialog.setCanceledOnTouchOutside(true);
+        verificationDialog.setCancelable(false);
+
+
+        EditText code = view.findViewById(R.id.code);
+        Button verify = view.findViewById(R.id.btn_verify_code);
+        verify.setOnClickListener(v -> {
+            if (!code.getText().toString().trim().isEmpty()) {
+                String codeFromUser = code.getText().toString().trim();
+                if(codeFromUser.equals(verificationCode)){
+                    Toast.makeText(this, getResources().getString(R.string.correct_code), Toast.LENGTH_SHORT).show();
+                    goToUserMainActivity();
+                }else{
+                    Toast.makeText(this, getResources().getString(R.string.error_code), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        verificationDialog.show();
     }
 
     private void goToUserMainActivity() {
@@ -252,4 +294,32 @@ public class Register extends AppCompatActivity {
                 break;
         }
     }
+
+//    public void sendCode(String email, String code){
+//        String url = Urls.S_C;
+//        AndroidNetworking.post(url)
+//                .addBodyParameter("email", email)
+//                .addBodyParameter("code", code)
+//                .setPriority(Priority.MEDIUM)
+//                .build()
+//                .getAsJSONObject(new JSONObjectRequestListener() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        try {
+//                            String error = response.getString("error");
+//                            if(error.equals("false")){
+//                                Toast.makeText(Register.this, "A code has been sent to your email", Toast.LENGTH_SHORT).show();
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            Log.e("error", e.getMessage());
+//                        }
+//                    }
+//                    @Override
+//                    public void onError(ANError anError) {
+//                        Log.e("err", anError.getErrorDetail());
+//                        Log.e("err", anError.getMessage());
+//                    }
+//                });
+//    }
 }

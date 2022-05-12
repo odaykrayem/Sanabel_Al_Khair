@@ -68,6 +68,7 @@ public class ServiceOrdersAdapter extends RecyclerView.Adapter<ServiceOrdersAdap
 
         holder.title.setText(obj.getDonation_title());
 
+        holder.volunteerName.setText(obj.getUser_name());
 //        holder.quantity.setText(String.valueOf(obj.getQuantity()));
         holder.show_message.setOnClickListener(v -> {
             LayoutInflater factory = LayoutInflater.from(context);
